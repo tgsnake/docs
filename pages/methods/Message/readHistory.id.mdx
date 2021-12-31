@@ -1,31 +1,31 @@
 ---
-title: readHistory
---- 
-## Overview
-Marks message history as read.
-## Parameters
-```ts 
+title : readHistory
+---
+## Gambaran
+Menandai riwayat pesan sebagai telah dibaca.
+## Parameter
+```ts
 ctx.telegram.readHistory(chatId,messageId,more)
 ```
-- `chatId` (_number|string_)
-    - Target user or group.
+- `chatId` (_number|string|bigint_)
+     - Targetkan pengguna atau grup.
 - `messageId` (_number_)
-    - Message id.
+     - Nomor pesan.
 - `more` (_object_)
-    - `maxId` (_number_)
-        - If a positive value is passed, only messages with identifiers less or equal than the given one will be read.
-## Example
-```ts headlight=2
+     - `maxId` (_number_)
+         - Jika nilai positif diteruskan, hanya pesan dengan pengidentifikasi kurang atau sama dari yang diberikan yang akan dibaca.
+## Contoh
+```ts highlight=2
 bot.command("readHistory",async (ctx)=>{
-    let results = await ctx.telegram.readHistory(ctx.chat.id,ctx.id) 
-    console.log(results) 
+     let hasil = await ctx.telegram.readHistory(ctx.chat.id,ctx.id)
+     console.log(hasil)
 })
 ```
-## Possible Error
-| code |       tipe        |            deskripsi            |
-|:----:|:-----------------:|:-------------------------------:|
-| 400  | CHAT_ID_INVALID | The provided chat id is invalid |
-| 400  | MSG_ID_INVALID  |   Invalid message ID provided   |
-| 400  | PEER_ID_INVALID | The provided peer id is invalid |
+## Kemungkinan Kesalahan
+| kode | ketik | deskripsi |
+| :---: | :---: | :------:|
+| 400 | CHAT_ID_INVALID | Id obrolan yang diberikan tidak valid |
+| 400 | MSG_ID_INVALID | ID pesan yang diberikan tidak valid |
+| 400 | PEER_ID_INVALID | ID rekan yang diberikan tidak valid |
 
-## Bot can't use this method.
+## Bot tidak dapat menggunakan metode ini.

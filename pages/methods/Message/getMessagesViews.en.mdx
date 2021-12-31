@@ -7,7 +7,7 @@ Get and increase the view counter of a message sent or forwarded from a channel.
 ```ts 
 ctx.telegram.getMessagesViews(chatId,messageId,increment)
 ```
-- `chatId` (_number|string_) 
+- `chatId` (_number|string|bigint_) 
     - Where the message was found.
 - `messageId` (_number[]_) 
     - IDs of message.

@@ -7,12 +7,12 @@ Getting all user profile photos.
 ```ts 
 ctx.telegram.getUserPhotos(chatId,more)
 ```
-- `chatId` (_number|string_) 
+- `chatId` (_number|string|bigint_) 
     - id of user.
 - `more` (_object_)
     - `offset` (_number_) 
         - Number of list elements to be skipped.
-    - `maxId` (_BigInteger_) 
+    - `maxId` (_bigint_) 
         - If a positive value was transferred, the method will return only photos with IDs less than the set one.
     - `limit` (_number_) 
         - Number of list elements to be returned

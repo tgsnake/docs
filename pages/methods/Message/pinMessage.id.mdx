@@ -1,45 +1,45 @@
 ---
 title : pinMessage
 ---
-## Overview
-Pin or unpin a message.
-## Parameters
-```ts 
+## Gambaran
+Menyematkan atau melepas sematan pesan.
+## Parameter
+```ts
 ctx.telegram.pinMessage(chatId,messageId,more)
 ```
-- `chatId` (_number|string_)
-    - where to pin or unpin the message.
+- `chatId` (_number|string|bigint_)
+    - tempat menyematkan atau melepas sematan pesan.
 - `messageId` (_number_)
-    - The message to pin or unpin
+    - Pesan untuk menyematkan atau melepas pin
 - `more` (_object_)
     - `silent` (_boolean_)
-        - Pin the message silently, without triggering a notification.
+        - Sematkan pesan secara diam-diam, tanpa memicu pemberitahuan.
     - `unpin` (_boolean_)
-        - Whether the message should unpinned or pinned.
+        - Apakah pesan harus dilepas atau disematkan.
     - `pmOneside` (_boolean_)
-        - Whether the message should only be pinned on the local side of a one-to-one chat.
-## Example
-```ts headlight=2,8
+        - Apakah pesan hanya boleh disematkan di sisi lokal obrolan satu lawan satu.
+## Contoh
+```ts highlight=2,8
 bot.command("pin",async (ctx)=>{
-    let results = await ctx.telegram.pinMessage(ctx.chat.id,ctx.id) 
-    console.log(results) 
+    let hasil = await ctx.telegram.pinMessage(ctx.chat.id,ctx.id)
+    console.log(hasil)
 })
-// unpin a message
+// melepaskan pesan tersemat
 bot.command("unpin",async (ctx)=>{
     if(ctx.replyToMessage){
-        let results = await ctx.telegram.unpinMessage(ctx.chat.id,ctx.replyToMessage.id)
-        console.log(results)
+        let hasil = await ctx.telegram.unpinMessage(ctx.chat.id,ctx.replyToMessage.id)
+        console.log(hasil)
     }
 })
 ```
-## Possible Error
-| code |          tipe          |                  deskripsi                   |
-|:----:|:----------------------:|:--------------------------------------------:|
-| 400  |    CHANNEL_PRIVATE     |  You haven't joined this channel/supergroup  |
-| 400  | CHAT_ADMIN_REQUIRED  | You must be an admin in this chat to do this |
-| 400  |  CHAT_NOT_MODIFIED   |      The pinned message wasn't modified      |
-| 403  | CHAT_WRITE_FORBIDDEN |         You can't write in this chat         |
-| 400  |  MESSAGE_ID_INVALID  |      The provided message id is invalid      |
-| 400  |     PIN_RESTRICTED     |            You can't pin messages            |
+## Kemungkinan Kesalahan
+| kode | ketik | deskripsi |
+| :---: | :---: | :------:|
+| 400 | CHANNEL_PRIVATE | Anda belum bergabung dengan saluran/supergrup ini |
+| 400 | CHAT_ADMIN_REQUIRED | Anda harus menjadi admin dalam obrolan ini untuk melakukan ini |
+| 400 | CHAT_NOT_MODIFIED | Pesan yang disematkan tidak diubah |
+| 403 | CHAT_WRITE_FORBIDDEN | Anda tidak dapat menulis di obrolan ini |
+| 400 | MESSAGE_ID_INVALID | ID pesan yang diberikan tidak valid |
+| 400 | PIN_TERBATAS | Anda tidak dapat menyematkan pesan |
 
-## Bot can use this method.
+## Bot dapat menggunakan metode ini.

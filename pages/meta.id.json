@@ -1,8 +1,6 @@
 {
   "index": {
-    "title": "Perkenalan",
-    "type": "nav",
-    "hidden": true
+    "title": "Perkenalan"
   },
   "release": {
     "title": "Catatan Perubahan"
