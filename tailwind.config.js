@@ -1,6 +1,5 @@
 module.exports = { 
-  mode : "jit",
-  purge: ["./styles/global.css","./pages/**","./components/**"],
+  content: ["./styles/global.css","./pages/**","./components/**"],
   darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
