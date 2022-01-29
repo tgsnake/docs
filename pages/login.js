@@ -29,7 +29,7 @@ function SvgClipboard() {
 export default function Home() {
   const [apiId, setApiId] = useState('');
   const [apiHash, setApiHash] = useState('');
-  const [otp, setOtp] = useState(false);
+  const [otp, setOtp] = useState('');
   const [botToken, setBotToken] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [twoFAPass, setTwoFAPass] = useState('');
@@ -46,15 +46,18 @@ export default function Home() {
           connectionRetries: 5,
         });
         _client.setLogLevel('debug');
+        let _ask = '';
         if (loginAs == 'bot') {
           await _client.start({
             botAuthToken: () => {
               setAsk('botToken');
+              _ask = 'botToken';
               setProgress('waiting bot token');
               return new Promise((resolve, reject) => {
-                let btn = document.getElementById('submit');
+                let btn = document.getElementById(`submitbotToken`);
                 btn.addEventListener('click', (e) => {
                   e.preventDefault();
+                  if (_ask !== 'botToken') return false;
                   setProgress('Verifying bot token.');
                   let botTokenDomValue = document.getElementById('bottoken')
                     ? document.getElementById('bottoken').value
@@ -82,17 +85,20 @@ export default function Home() {
           await _client.start({
             phoneNumber: () => {
               setAsk('phoneNumber');
+              _ask = 'phoneNumber';
               setProgress('waiting phone number.');
               return new Promise((resolve) => {
-                let btn = document.getElementById('submit');
+                let btn = document.getElementById('submitphoneNumber');
                 btn.addEventListener('click', (e) => {
                   e.preventDefault();
+                  if (_ask !== 'phoneNumber') return false;
+                  setProgress('Verifying phoneNumber.');
                   let phoneNumberDomValue = document.getElementById('phonenumber')
                     ? document.getElementById('phonenumber').value
                     : phoneNumber;
                   if (phoneNumber !== '' || phoneNumberDomValue !== '') {
                     setProgress('resolve phone number');
-                    resolve(phoneNumber == '' ? phoneNumberDomValue : phoneNumber);
+                    return resolve(phoneNumber == '' ? phoneNumberDomValue : phoneNumber);
                   } else {
                     setProgress('');
                     setError('phoneNumber cannot be empty or undefined.');
@@ -102,11 +108,14 @@ export default function Home() {
             },
             password: () => {
               setAsk('password');
+              _ask = 'password';
               setProgress('waiting password.');
               return new Promise((resolve) => {
-                let btn = document.getElementById('submit');
+                let btn = document.getElementById('submitpassword');
                 btn.addEventListener('click', (e) => {
                   e.preventDefault();
+                  if (_ask !== 'password') return false;
+                  setProgress('Verifying password.');
                   let passwordDomValue = document.getElementById('password')
                     ? document.getElementById('password').value
                     : twoFAPass;
@@ -122,11 +131,14 @@ export default function Home() {
             },
             phoneCode: () => {
               setAsk('phoneCode');
+              _ask = 'phoneCode';
               setProgress('waiting phone code.');
               return new Promise((resolve) => {
-                let btn = document.getElementById('submit');
+                let btn = document.getElementById('submitphoneCode');
                 btn.addEventListener('click', (e) => {
                   e.preventDefault();
+                  if (_ask !== 'phoneCode') return false;
+                  setProgress('Verifying OTP.');
                   let otpDomValue = document.getElementById('phonecode')
                     ? document.getElementById('phonecode').value
                     : otp;
@@ -146,7 +158,7 @@ export default function Home() {
               setProgress('');
             },
           });
-          if(_client.session){
+          if (_client.session) {
             setProgress('generating session');
             setSession(await _client.session.save());
           }
@@ -413,7 +425,7 @@ export default function Home() {
               {ask ? (
                 <div className='mt-3'>
                   <button
-                    id='submit'
+                    id={`submit${ask ? ask : ''}`}
                     className='w-[96%] p-2 rounded-lg bg-[#769FCD] hover:bg-[#769FCD] focus:bg-[#769FCD] text-white focus:ring focus:ring-[#769FCD]/50 focus:outline-none text-center mx-2 '
                   >
                     Verify
