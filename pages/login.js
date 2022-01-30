@@ -74,6 +74,25 @@ export default function Home() {
             },
           });
           setProgress('generating session');
+          switch (Number(_client.session.dcId)) {
+            case 1:
+              _client.session.setDC(1, '149.154.175.53', 80);
+              break;
+            case 2:
+              _client.session.setDC(2, '149.154.167.51', 80);
+              break;
+            case 3:
+              _client.session.setDC(3, '149.154.175.100', 80);
+              break;
+            case 4:
+              _client.session.setDC(4, '149.154.167.91', 80);
+              break;
+            case 5:
+              _client.session.setDC(5, '91.108.56.130', 80);
+              break;
+            default:
+              _client.session.setDC(4, '149.154.167.91', 80);
+          }
           setSession(await _client.session.save());
           setProgress('');
           setAsk(false);
@@ -160,6 +179,25 @@ export default function Home() {
           });
           if (_client.session) {
             setProgress('generating session');
+            switch (Number(_client.session.dcId)) {
+              case 1:
+                _client.session.setDC(1, '149.154.175.53', 80);
+                break;
+              case 2:
+                _client.session.setDC(2, '149.154.167.51', 80);
+                break;
+              case 3:
+                _client.session.setDC(3, '149.154.175.100', 80);
+                break;
+              case 4:
+                _client.session.setDC(4, '149.154.167.91', 80);
+                break;
+              case 5:
+                _client.session.setDC(5, '91.108.56.130', 80);
+                break;
+              default:
+                _client.session.setDC(4, '149.154.167.91', 80);
+            }
             setSession(await _client.session.save());
           }
           setAsk(false);
