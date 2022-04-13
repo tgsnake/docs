@@ -1,34 +1,39 @@
 ---
 title : editMessage
 ---
-## Gambaran
+# editMessage
 Metode ini memungkinkan Anda untuk mengedit pesan.
 ## Parameter
 ```ts
 ctx.telegram.editMessage(chatId,messageId,text, more)
 ```
-- `chatId` (_number|string|bigint_)
-    - Obrolan/Grup/Id Saluran.
-- `messageId` (_number_)
-    - Id pesan yang akan diedit.
-- `text` (_string_)
-    - Pesan/Keterangan Baru. Anda dapat meneruskan dengan string kosong (`""`) jika Anda ingin mengedit media.
-- `more` (_objek_)
-    - `noWebPage` (_boolean_)
-        - Nonaktifkan pratinjau halaman web
-    - `media` (_[Api.TypeInputMedia](https://gram.js.org/beta/modules/tl_api.api.html#typeinputmedia)_)
-        - Media terlampir baru
-    - `replyMarkup` (_TypeReplyMarkup_)
-        - Markup balasan untuk keyboard sebaris.
-    - `entities` (_Entities[]_)
-        - Entitas Pesan
-    - `scheduleDate` (_number_)
-        - Tanggal pesan terjadwal untuk pesan terjadwal.
-    - `parseMode` (_string_)
-        - Modus Parsing.
-## Contoh
-_Contoh tidak ditemukan!_
+| parameter | tipe | diperlukan | deskripsi | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | Ya | Chat/Groups/Channel id/username. |
+| messageId | number | Ya | Id pesan yang akan diedit. | 
+| text | string | Ya | Pesan/Keterangan Baru. Anda dapat meneruskan dengan string kosong (`""`) jika Anda ingin mengedit media. | 
+| more | JSON objek dari [Parameter Tambahan](#paramete-tambahan) | opsional | Parameter tambahan yang akan di gunakan untuk menjalankan fungsi ini. | 
 
+### Parameter Tambahan
+| params | type | description | 
+| :----: | :---: | :---------: |
+| noWebPage | boolean | Nonaktifkan pratinjau halaman web
+| media | [Api.TypeInputMedia](https://gram.js.org/beta/modules/tl_api.api.html#typeinputmedia) | Media terlampir baru | 
+| replyMarkup | [TypeReplyMarkup](/beta/modules/Utils.html#TypeReplyMarkup) | replyMarkup untuk mengirim tombol bot. |
+| entities | [Entities[]](https://github.com/tgsnake/parser/blob/5f4497d7fcd7bae610328005d411fd91bf37d7af/src/Entities.ts#L37) | entities pesan untuk memberi gaya pada teks. |
+| scheduleDate | number | Tanggal pesan terjadwal untuk pesan terjadwal. | 
+| parseMode | string | mode parse untuk mengatur gaya teks. lihat [tgsnake@parser](https://github.com/tgsnake/parser#available-parsemode) untuk opsi pemformatan |
+
+## Contoh
+```ts highlight="3" 
+bot.command("editMessage",async (ctx)=>{
+    let msg = await ctx.reply("Hello") 
+    setTimeout(()=>{
+        return ctx.telegram.editMessage(msg.message.chat.id,msg.message.id,"Hohoho")
+    },5000)
+    return console.log(msg)
+})
+```
 ## Kemungkinan Kesalahan
 | kode | ketik | deskripsi |
 | :---: | :---: | :------:|

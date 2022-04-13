@@ -1,51 +1,55 @@
 --- 
 title : editBanned 
 --- 
-## Overview 
+# editBanned
 Ban/unban/kick a user in a supergroup/channel.
 ## Parameters 
 ```ts 
 ctx.telegram.editBanned(chatId,userId,more)
 ```
-- `chatId` (_number|string|bigint_) 
-    - Chat/Group/Channel id. 
-- `userId` (_number|string|bigint_) 
-    - User id.
-- `more` (_object_)
-    - `untilDate` (_number_) 
-      - Validity of said permissions (it is considered forever any value less then 30 seconds or more then 366 days).
-    - `viewMessages` (_boolean_) 
-      - If set, does not allow a user to view messages in a supergroup/channel/chat.
-    - `sendMessages` (_boolean_) 
-      - If set, does not allow a user to send messages in a supergroup/chat.
-    - `sendMedia` (_boolean_) 
-      - If set, does not allow a user to send any media in a supergroup/chat.
-    - `sendStickers` (_boolean_) 
-      - If set, does not allow a user to send stickers in a supergroup/chat.
-    - `sendGifs` (_boolean_) 
-      - If set, does not allow a user to send gifs in a supergroup/chat.
-    - `sendGames` (_boolean_) 
-      - If set, does not allow a user to send games in a supergroup/chat.
-    - `sendInline` (_boolean_) 
-      - If set, does not allow a user to use inline bots in a supergroup/chat.
-    - `sendPolls` (_boolean_) 
-      - If set, does not allow a user to send stickers in a supergroup/chat.
-    - `changeInfo` (_boolean_) 
-      - If set, does not allow any user to change the description of a supergroup/chat.
-    - `inviteUsers` (_boolean_) 
-      - If set, does not allow any user to invite users in a supergroup/chat.
-    - `pinMessages` (_boolean_) 
-      - If set, does not allow any user to pin messages in a supergroup/chat.
-    - `embedLinks` (_boolean_) 
-      - If set, does not allow a user to embed links in the messages of a supergroup/chat. 
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Target chat | 
+| userId | `string` or `bigint` | true | Target user | 
+| more | JSON object of [More Parameters](#more-parameters) | optional | More parametes will use to execute this function. | 
+
+### More Parameters
+| params | type | description | 
+| :----: | :---: | :---------: |
+| untilDate | number | Validity of said permissions (it is considered forever any value less then 30 seconds or more then 366 days). |
+| viewMessages | boolean | If set, does not allow a user to view messages in a supergroup/channel/chat. | 
+| sendMessages | boolean | If set, does not allow a user to send messages in a supergroup/chat. | 
+| sendMedia | boolean | If set, does not allow a user to send any media in a supergroup/chat. |
+| sendStickers | boolean | If set, does not allow a user to send stickers in a supergroup/chat. | 
+| sendGifs | boolean | If set, does not allow a user to send gifs in a supergroup/chat. | 
+| sendGames | boolean | If set, does not allow a user to send games in a supergroup/chat. | 
+| sendInline | boolean | If set, does not allow a user to use inline bots in a supergroup/chat. | 
+| sendPolls | boolean | If set, does not allow a user to send stickers in a supergroup/chat. |
+| changeInfo | boolean | If set, does not allow any user to change the description of a supergroup/chat. | 
+| inviteUsers | boolean | If set, does not allow any user to invite users in a supergroup/chat. | 
+| pinMessages | boolean | If set, does not allow any user to pin messages in a supergroup/chat. | 
+| embedLinks | boolean | If set, does not allow a user to embed links in the messages of a supergroup/chat. |
+
 ## Example 
-```ts highlight=3
+```ts highlight="3"
 bot.command("ban",async (ctx) => {
   if((!ctx.chat.private) && ctx.replyToMessage){
     let results = await ctx.telegram.editBanned(ctx.chat.id,ctx.replyToMessage.from.id) 
     console.log(results)
   }
 })
+```
+## Shorthand function 
+```ts 
+// banChatMember 
+ctx.telegram.banChatMember(chatId,userId)
+// kickChatMember 
+ctx.telegram.kickChatMember(chatId,userId)
+// unbanChatMember 
+ctx.telegram.unbanChatMember(chatId,userId)
+// restrictChatMember 
+ctx.telegram.restrictChatMember(chatId,userId,more)
 ```
 ## Possible Error 
 

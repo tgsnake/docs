@@ -1,19 +1,19 @@
 ---
 title : getAdminedPublicChannels
 ---
-## Gambaran
+# getAdminedPublicChannels
 Dapatkan saluran/supergrup/geogrup tempat kita menjadi admin.Biasanya dipanggil ketika pengguna melebihi batas saluran publik/supergrup/geogrup yang dimiliki, dan pengguna diberi pilihan untuk menghapus salah satu kanal/grup super/geogrupnya.
 ## Parameter
 ```ts
 ctx.telegram.getAdminedPublicChannels(byLocation,checkLimit)
 ```
-- `byLocation` (_boolean_)
-    - Dapatkan geogroup.
-- `checkLimit` (_boolean_)
-    - Jika disetel dan pengguna telah mencapai batas saluran publik/supergrup/geogroup yang dimiliki, alih-alih mengembalikan daftar saluran, salah satu kesalahan yang ditentukan akan dikembalikan.
-    - Berguna untuk memeriksa apakah saluran publik baru memang dapat dibuat, bahkan sebelum meminta pengguna memasukkan nama pengguna saluran untuk digunakan di channels.checkUsername/channels.updateUsername.
+| parameter | tipe | diperlukan | deskripsi | 
+| :----: | :---: | :-----: | :---------: |
+| byLocation | boolean | Opsional | Dapatkan geogroup. | 
+| checkLimit | boolean | Opsional | Jika disetel dan pengguna telah mencapai batas saluran publik/supergrup/geogroup yang dimiliki, alih-alih mengembalikan daftar saluran, salah satu kesalahan yang ditentukan akan dikembalikan.Berguna untuk memeriksa apakah saluran publik baru memang dapat dibuat, bahkan sebelum meminta pengguna memasukkan nama pengguna saluran untuk digunakan di channels.checkUsername/channels.updateUsername. | 
+
 ## Contoh
-```ts highlight=3
+```ts highlight="3"
 bot.command("getAdminedPublicChannels",async (ctx) => {
     if(!ctx.chat.private){
         let hasil = await ctx.telegram.getAdminedPublicChannels()

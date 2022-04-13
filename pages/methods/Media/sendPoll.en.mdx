@@ -1,0 +1,51 @@
+---
+title : sendPoll
+---
+# sendPoll
+Sending polling.
+## Parameters 
+```ts 
+ctx.telegram.sendPoll(chatId,poll,more)
+```
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Chat/Groups/Channel id. |
+| poll | JSON object of [Poll](#poll) or [MediaPoll](/beta/modules/Utils.Medias.html#MediaPoll) | true | Poll will be sending | 
+| more | JSON Object of [More Parameters](#more-parameters) | Optional | More parametes will use to execute this function. | 
+
+### Poll 
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| question | string | true | the polling question. | 
+| options | Array&lt;string&gt; | true | List of options. |
+
+### More Parametes 
+This parameter is extending [sendMediaMoreParams](/methods/Media/sendMedia#more-parameters).
+
+| params | type | description | 
+| :----: | :---: | :---------: |
+| closed | boolean | close the poll | 
+| publicVoters | boolean | make as public vote either anonymous vote | 
+| multipleChoice | boolean | make use possible to choice multiple answer | 
+| quiz | boolean | set poll as quiz |
+| closePeriod | number | polling period, will be closed automatically when it passes that period | 
+| closeDate | number | automatic close the poll when it passes that date | 
+| correctAnswers | number | index of correct answer, index start from zero (quiz only) | 
+| solution | string | solution message when user choice the answer (quiz only) | 
+| solutionEntities | [Entities[]](https://github.com/tgsnake/parser/blob/5f4497d7fcd7bae610328005d411fd91bf37d7af/src/Entities.ts#L37) | style the solution message. | 
+| solutionParseMode | string | parse mode to style the solution message. see [tgsnake@parser](https://github.com/tgsnake/parser#available-parsemode) for formatting options |
+
+## Example 
+```ts highlight="2-5"
+bot.command("poll",async (ctx) => {
+    let results = await ctx.telegram.sendPoll(ctx.chat.id,{
+        question : "something"
+        options : ["A","B"],
+    })
+})
+```
+## Possible Error 
+Same as [sendMedia](/methods/Media/sendMedia#possible-error)
+## Bot can use this method.

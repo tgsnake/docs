@@ -1,7 +1,7 @@
 --- 
 title : getChatMember 
 --- 
-## Overview 
+# getChatMember
 Get info about a channel/supergroup participant
 
 ## Parameters
@@ -9,13 +9,13 @@ Get info about a channel/supergroup participant
 ctx.telegram.getChatMember(chatId,userId)
 ```
 
-- `chat` (_number|string|bigint_) 
-    - Chat or channels id to getting the list of members. 
-- `userId` (_number|string|bigint_) 
-    - Participant to get info about
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Target chat | 
+| userId | `string` or `bigint` | true | Target user | 
 
 ## Example 
-```ts headlight=2
+```ts highlight="2"
 bot.command("getChatMember",async (ctx) => {
     let results = await ctx.telegram.getParticipant(ctx.chat.id,ctx.from.id) // getChatMember and getParticipant.is same methods.
     console.log(results)

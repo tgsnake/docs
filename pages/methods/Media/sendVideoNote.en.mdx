@@ -1,0 +1,41 @@
+--- 
+title : sendVideoNote
+--- 
+# sendVideoNote
+Sending Rounded Video with file location/url/buffer/fileId/[MediaVideoNote](/beta/modules/Utils.Medias.html#MediaVideoNote). 
+## Parameters 
+```ts  
+ctx.telegram.sendVideoNote(chatId,video,more)
+```
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Chat/Groups/Channel id. |
+| video | `string` or `Buffer` or [MediaVideoNote](/beta/modules/Utils.Medias.html#MediaVideoNote) | true | Rounded Video will sending |
+| more | JSON object of [More Parameters](#more-parameters) | optional | More parametes will use to execute this function. | 
+
+### More Parametes 
+This parameter is extending [sendMediaMoreParams](/methods/Media/sendMedia#more-parameters).
+
+| params | type | description | 
+| :----: | :---: | :---------: |
+| workers | number | How many workers to use to upload the file. anything above 16 is unstable. |
+| mimeType | string | Mime type of video |
+| onProgress | [onProgress](/beta/interfaces/Telegram.Media.onProgress.html) | progress callback when uploading video | 
+| download | boolean | When video is url, force to downloading that file first before uploading to telegram. default is `false` | 
+| thumbnail | `Buffer` or `string` | Set the thumbnail of document, it won't work if you pass with fileId. | 
+| width | number | width the video |
+| height | number | height the video | 
+| duration | number | duration the video | 
+| supportsStreaming | boolean | make the video support streaming. | 
+
+## Example 
+```ts highlight="2"
+bot.command("vidnote",async (ctx) => {
+    let results = await ctx.telegram.sendVideoNote(ctx.chat.id,"file id here")
+    return console.log(results)
+})
+```
+## Possible Error 
+Same as [sendMedia](/methods/Media/sendMedia#possible-error)
+## Bot can use this method.

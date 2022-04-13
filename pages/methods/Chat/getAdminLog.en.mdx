@@ -1,43 +1,50 @@
 ---
 title : getAdminLog
 ---
-## Overview 
+# getAdminLog
 Get the admin log of a channel/supergroup
 ## Parameters 
 ```ts 
 ctx.telegram.getAdminLog(chatId,more)
 ```
-- `chatId` (_number|string|bigint_) 
-    - Chat/Channel/Group id. 
-- `more` (_object_) 
-    - `q` (_string_) 
-        - Search query, can be empty.
-    - `maxId` (_bigint_) 
-        - Maximum ID of message to return. _(>=1)_
-    - `minId` (_bigint_) 
-        - Minimum ID of message to return. _(>=1)_
-    - `limit` (_number_) 
-        - Maximum number of results to return. _(>=1)_
-          
-    _below are the available filters. You can find the explanation [here](https://core.telegram.org/constructor/channelAdminLogEventsFilter)._
-    - `join` (_boolean_) 
-    - `leave` (_boolean_)
-    - `invite` (_boolean_)
-    - `ban` (_boolean_)
-    - `unban` (_boolean_)
-    - `kick` (_boolean_)
-    - `unkick` (_boolean_)
-    - `promote` (_boolean_)
-    - `demote` (_boolean_)
-    - `info` (_boolean_)
-    - `settings` (_boolean_)
-    - `pinned` (_boolean_)
-    - `groupCall` (_boolean_)
-    - `invites` (_boolean_)
-    - `edit` (_boolean_)
-    - `delete` (_boolean_)
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Target chat | 
+| more | JSON object of [More Parameters](#more-parameters) | optional | More parametes will use to execute this function. | 
+
+### More Parameters
+| params | type | description | 
+| :----: | :---: | :---------: |
+| query | string | Search query, can be empty. | 
+| maxId | bigint | Maximum ID of message to return. _(>=1n)_ | 
+| minId | bigint | Minimum ID of message to return. _(>=1n)_ | 
+| limit | number | Maximum number of results to return. _(>=1)_ | 
+| filters | JSON object of [Filters](#filters) | Filter only certain admin log events | 
+
+#### Filters 
+
+| params | type | description | 
+| :----: | :---: | :---------: |
+| join | boolean | Join event | 
+| leave | boolean | Leave event | 
+| invite | boolean | Invite members event | 
+| ban | boolean | Banned members event | 
+| unban | boolean | Unban members event | 
+| kick | boolean | Kick members event | 
+| unkick | boolean | Unkick members event | 
+| promote | boolean | Promoting members to admin event|
+| demote | boolean | Demote admin event | 
+| info | boolean | Change grup/channel info event | 
+| settings | boolean | Changr grup/channel settings event | 
+| pinned | boolean | Pinned messages event | 
+| groupCall | boolean | Voice Chat event | 
+| invites | boolean | Invites event | 
+| edit | boolean | Edit messages event | 
+| delete | boolean | Delete messages event | 
+
 ## Example 
-```ts headlight=3
+```ts headlight="3"
 bot.command("getAdminLog",async (ctx) => {
     if(!ctx.chat.private){
         let results = await ctx.telegram.getAdminLog(ctx.chat.id)

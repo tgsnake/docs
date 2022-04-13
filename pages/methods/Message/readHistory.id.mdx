@@ -1,21 +1,25 @@
 ---
 title : readHistory
 ---
-## Gambaran
+# readHistory
 Menandai riwayat pesan sebagai telah dibaca.
 ## Parameter
 ```ts
 ctx.telegram.readHistory(chatId,messageId,more)
 ```
-- `chatId` (_number|string|bigint_)
-     - Targetkan pengguna atau grup.
-- `messageId` (_number_)
-     - Nomor pesan.
-- `more` (_object_)
-     - `maxId` (_number_)
-         - Jika nilai positif diteruskan, hanya pesan dengan pengidentifikasi kurang atau sama dari yang diberikan yang akan dibaca.
+| parameter | tipe | diperlukan | deskripsi | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | Ya | Target pengguna atau grup. | 
+| messageId | number | Ya | Message Id | 
+| more | JSON objek dari [Parameter Tambahan](#paramete-tambahan) | opsional | Parameter tambahan yang akan di gunakan untuk menjalankan fungsi ini. | 
+
+### Parameter Tambahan
+| params | type | description | 
+| :----: | :---: | :---------: |
+| maxId | number | Jika nilai positif diteruskan, hanya pesan dengan pengidentifikasi kurang atau sama dari yang diberikan yang akan dibaca. | 
+
 ## Contoh
-```ts highlight=2
+```ts highlight="2"
 bot.command("readHistory",async (ctx)=>{
      let hasil = await ctx.telegram.readHistory(ctx.chat.id,ctx.id)
      console.log(hasil)

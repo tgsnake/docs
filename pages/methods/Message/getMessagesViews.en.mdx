@@ -1,20 +1,20 @@
 --- 
 title : getMessagesViews 
 --- 
-## Overview 
+# getMessagesViews
 Get and increase the view counter of a message sent or forwarded from a channel. 
 ## Parameters 
 ```ts 
 ctx.telegram.getMessagesViews(chatId,messageId,increment)
 ```
-- `chatId` (_number|string|bigint_) 
-    - Where the message was found.
-- `messageId` (_number[]_) 
-    - IDs of message.
-- `increment` (_boolean_) 
-    - Whether to mark the message as viewed and increment the view counter 
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Channel id. |
+| messageId | Array&lt;number&gt; | true | IDs of messages. |
+| increment | boolean | Optional | Whether to mark the message as viewed and increment the view counter  | 
+
 ## Example 
-```ts headlight=2
+```ts highlight="2"
 bot.command("getMessagesViews",async (ctx)=>{
     let results = await ctx.telegram.getMessagesViews(ctx.chat.id,[ctx.id]) 
     console.log(results) 

@@ -1,16 +1,18 @@
 ---
 title : getFullChat
 ---
-## Gambaran
+# getFullChat
 Mengembalikan info obrolan/saluran lengkap sesuai dengan ID-nya.
 ## Parameter
 ```ts
 ctx.telegram.getFullChat(chatId)
 ```
-- `chatId` (_number|string|bigint_)
-     - Obrolan/Grup/Id Saluran.
+| parameter | tipe | diperlukan | deskripsi | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | Ya | Chat/Groups/Channel id/username. |
+
 ## Contoh
-```ts highlight=2
+```ts highlight="2"
 bot.command("getFullChat",async (ctx) => {
      let hasil = await ctx.telegram.getFullChat(ctx.chat.id)
 })

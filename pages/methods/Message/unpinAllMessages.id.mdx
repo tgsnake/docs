@@ -7,10 +7,12 @@ Lepas sematan semua pesan dalam obrolan.
 ```ts
 ctx.telegram.unpinAllMessages(chatId)
 ```
-- `chatId` (_number|string|bigint_)
-     - Obrolan/Grup/Id Saluran.
+| parameter | tipe | diperlukan | deskripsi | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | Ya | Target | 
+
 ## Contoh
-```ts highlight=2
+```ts highlight="2"
 bot.command("unpinAll",async (ctx)=>{
      let hasil = await ctx.telegram.unpinAllMessages(ctx.chat.id)
      console.log(hasil)

@@ -1,23 +1,27 @@
 --- 
 title : getUserPhotos 
 --- 
-## Overview 
+# getUserPhotos
 Getting all user profile photos. 
 ## Parameters 
 ```ts 
 ctx.telegram.getUserPhotos(chatId,more)
 ```
-- `chatId` (_number|string|bigint_) 
-    - id of user.
-- `more` (_object_)
-    - `offset` (_number_) 
-        - Number of list elements to be skipped.
-    - `maxId` (_bigint_) 
-        - If a positive value was transferred, the method will return only photos with IDs less than the set one.
-    - `limit` (_number_) 
-        - Number of list elements to be returned
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | User id/username |
+| more | JSON object of [More Parameters](#more-parameters) | optional | More parametes will use to execute this function. | 
+
+### More Parameters
+| params | type | description | 
+| :----: | :---: | :---------: |
+| offset | number | Number of list elements to be skipped. |
+| maxId | bigint | If a positive value was transferred, the method will return only photos with IDs less than the set one. | 
+| limit | number |  Number of list elements to be returned | 
+
 ## Example 
-```ts headlight=2
+```ts highlight="2"
 bot.command("getUserPhotos",async (ctx)=>{
     let results = await ctx.telegram.getUserPhotos(ctx.from.id)
     console.log(results)

@@ -1,16 +1,18 @@
 --- 
-title : readmessagecontents
+title : readMessageContents
 --- 
-## Overview
+# readMessageContents
 Notifies the sender about the recipient having listened a voice message or watched a video.
 ## Parameters 
 ```ts 
 ctx.telegram.readMessageContents(messageId)
 ```
-- `messageId` (_number[]_) 
-    - Message IDs
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| messageId | Array&lt;number&gt; | true | Message IDs | 
+
 ## Example 
-```ts highlight=3
+```ts highlight="3"
 bot.on("message",async (ctx)=>{
     if(ctx.media){
         let results = await ctx.telegram.readMessageContents([ctx.id]) 

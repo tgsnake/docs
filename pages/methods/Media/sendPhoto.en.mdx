@@ -1,26 +1,37 @@
 --- 
 title : sendPhoto 
 --- 
-## Overview 
-Sending photo with fileId/file location/url/buffer. 
+# sendPhoto
+Sending Photo with file location/url/buffer/fileId/[MediaPhoto](/beta/modules/Utils.Medias.html#MediaPhoto). 
 ## Parameters 
 ```ts  
 ctx.telegram.sendPhoto(chatId,photo,more)
 ```
-- `chatId` (_number|string|bigint_) 
-    - Chat/Groups/Channel id. 
-- `photo` (_string|Buffer|Media_) 
-    - FileId/File Location/Url/Buffer
-- `more` (_[sendMediaMoreParams](/en/telegram/media/SendMedia#parameters)_)
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Chat/Groups/Channel id. |
+| photo | `string` or `Buffer` or [MediaPhoto](/beta/modules/Utils.Medias.html#MediaPhoto) | true | Photo will sending |
+| more | JSON object of [More Parameters](#more-parameters) | optional | More parametes will use to execute this function. |
+
+### More Parameters 
+This parameter is extending [sendMediaMoreParams](/methods/Media/sendMedia#more-parameters).
+
+| params | type | description | 
+| :----: | :---: | :---------: |
+| workers | number | How many workers to use to upload the file. anything above 16 is unstable. |
+| onProgress | [onProgress](/beta/interfaces/Telegram.Media.onProgress.html) | progress callback when uploading photo | 
+| download | boolean | When photo is url, force to downloading that file first before uploading to telegram. default is `false` | 
+
 ## Example 
-```ts highlight=3
+```ts highlight="3"
 bot.on("message",async (ctx) => {
-    if(ctx.media && ctx.media.type == "photo"){
-        let results = await ctx.telegram.sendPhoto(ctx.chat.id,ctx.media.fileId) 
+    if(ctx.media && ctx.media["_"] == "photo"){
+        let results = await ctx.telegram.sendPhoto(ctx.chat.id,ctx.media) 
         console.log(results)
     }
 })
 ```
 ## Possible Error 
-Same as [sendMedia](/methods/Media/sendMedia#possibleerror)
+Same as [sendMedia](/methods/Media/sendMedia#possible-error)
 ## Bot can use this method.

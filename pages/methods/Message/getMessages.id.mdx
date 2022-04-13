@@ -2,20 +2,20 @@
 title : getMessages
 ---
 
-## Gambaran
+# getMessages
 Mengembalikan daftar pesan menurut ID mereka.
 ## Parameter
 ```ts
 ctx.telegram.getMessages(chatId,messageId,replies)
 ```
-- `chatId` (_number|string|bigint_)
-     - Obrolan/Grup/Id Saluran.
-- `messageId` (_number[]_)
-     - ID Pesan.
-- `replis` (_boolean_)
-     - jika `true` itu akan mendapatkan balasan bersarang. dan akan membuat flood wait.
+| parameter | tipe | diperlukan | deskripsi | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | Ya | Tujuan. | 
+| messageId | Array&lt;number&gt; | Ya | ID pesan. |
+| replis | boolean | Opsional | jika `true` itu akan mendapatkan pesan balasan. Dan akan membuat flood wait. |
+
 ## Contoh
-```ts highlight=2
+```ts highlight="2"
 bot.command("getMessages",async (ctx)=>{
      let hasil = await ctx.telegram.getMessages(ctx.chat.id,[ctx.id])
      console.log(hasil)

@@ -1,23 +1,21 @@
 --- 
 title : deleteUserHistory 
 --- 
-import Callout from 'nextra-theme-docs/callout'
 
-
-## Overview 
+# deleteUserHistory 
 Delete all messages sent by a certain user in a supergroup.
 
 ## Parameters 
 ```ts 
 ctx.telegram.deleteUserHistory(chatId,userId)
 ```
-- `chatId` (_number|string|bigint_) 
-    - supergroup id. 
-- `userId` (_number|string|bigint_) 
-    - User whose messages should be deleted. 
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Target chat | 
+| userId | `string` or `bigint` | true | Target user | 
 
 ## Example 
-```ts headlight=2
+```ts highlight="2"
 bot.command("deleteMe", async (ctx) => {
     let results = await ctx.telegram.deleteUserHistory(ctx.chat.id,ctx.from.id) 
     return console.log(results)

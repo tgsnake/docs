@@ -1,244 +1,177 @@
 ---
-title : Menangani Update
+title: Menangani Update
 ---
-import {TabGroup,TabContent} from "@/components/Tab"
 
-Untuk menangani update kamu bisa menggunakan method `hears`,`command`,`use`,`on`. Sebagai contoh kamu bisa lihat ini :
+import { TabGroup, TabContent } from "@/components/Tab"
+import Callout from "nextra-theme-docs/callout"
 
-## Menggunakan `hears`
-Method ini mengizinkan kamu untuk menggunkana regex atau kamu bisa mengisi dengan beberapa text
+# Menangani Update
 
-<TabGroup>
-    <TabContent name="javascript">
-    ```ts
-    // index.js
-    const {Snake} = require("tgsnake")
-    const bot = new Snake() // isian opsi. kamu bisa menggunakan file tgsnake.config.js.
-    // dengan teks
-    bot.hears("hello",(ctx)=>{
-      ctx.reply("Hi") 
-      if(ctx.replyToMessage){ 
-        ctx.replyToMessage.reply("Who are you?")
-      }
-    })
-    // dengan regex 
-    bot.hears(/hello/i,(ctx,match)=>{
-      ctx.reply("Hi") 
-      if(ctx.replyToMessage){ 
-        ctx.replyToMessage.reply("Who are you?")
-      }
-    })
-    bot.run() // jalankan 🐍
-    ```
-    </TabContent>
-    <TabContent name="typescript">
-    ```ts 
-    // index.ts
-    import {Snake} from "tgsnake"
-    const bot = new Snake() // isian opsi. kamu bisa menggunakan file tgsnake.config.js.
-    // dengan teks
-    bot.hears("hello",(ctx)=>{
-      ctx.reply("Hi") 
-      if(ctx.replyToMessage){ 
-        ctx.replyToMessage.reply("Who are you?")
-      }
-    })
-    // dengan regex 
-    bot.hears(/hello/i,(ctx,match)=>{
-      ctx.reply("Hi") 
-      if(ctx.replyToMessage){ 
-        ctx.replyToMessage.reply("Who are you?")
-      }
-    })
-    bot.run() // jalankan 🐍
-    ```
-    </TabContent>
-</TabGroup>
+## Composer
 
-Kemudian kirim pesan `hello`.
+composer merupakan suatu class yang berfungsi untuk menghandle update. Composer sendiri dapat di gunakan untuk menghandle di file yang berbeda dari index/main file anda. Amda dapat mengimpor Composer ini dari tgsnake kemudian menggunakan nya. Baca selengkapnya : [Creating New Composer.](#creating-new-composer)
 
-## Menggunakan `command`
-Method ini hanya mengizinkanmu menggunakan string atau array string. Awalannya `.!/`
+## handle update menggunakan Composer.hears
 
-<TabGroup>
-    <TabContent name="javascript">
-    ```ts
-    // index.js
-    const {Snake} = require("tgsnake")
-    const bot = new Snake() // isian opsi. kamu bisa menggunakan file tgsnake.config.js.
-    // dengan teks
-    bot.command("hello",(ctx)=>{
-      ctx.reply("Hi") 
-      if(ctx.replyToMessage){ 
-        ctx.replyToMessage.reply("Who are you?")
-      }
-    })
-    // dengan array
-    bot.command(["hello","hi"],(ctx)=>{
-      ctx.reply("Hi") 
-      if(ctx.replyToMessage){ 
-        ctx.replyToMessage.reply("Who are you?")
-      }
-    })
-    bot.run() // jalankan 🐍
-    ```
-    </TabContent>
-    <TabContent name="typescript">
-    ```ts 
-    // index.ts
-    import {Snake} from "tgsnake"
-    const bot = new Snake() // isi opsi. kamu bisa menggunakan file tgsnake.config.js.
-    // dengan teks
-    bot.command("hello",(ctx)=>{
-      ctx.reply("Hi") 
-      if(ctx.replyToMessage){ 
-        ctx.replyToMessage.reply("Who are you?")
-      }
-    })
-    // dengan array
-    bot.command(["hello","hi"],(ctx)=>{
-      ctx.reply("Hi") 
-      if(ctx.replyToMessage){ 
-        ctx.replyToMessage.reply("Who are you?")
-      }
-    })
-    bot.run() // jalankan 🐍
-    ```
-    </TabContent>
-</TabGroup>
+> Shorthand : Composer.hear
 
-Kemudian kirim pesan `!hello` atau `!hi`
-## Menggunakan `use`
-Ini perangkat tengah. Fungsi ini akan di jalankan lebih dahulu sebelum yang lain.
-
-<TabGroup>
-    <TabContent name="javascript">
-    ```ts 
-    // index.js
-    const {Snake} = require("tgsnake")
-    const bot = new Snake() 
-    bot.use((ctx,next)=>{
-        console.log(ctx)
-        return next()
-    })
-    bot.run() // jalankan 🐍
-    ```
-    </TabContent>
-    <TabContent name="typescript">
-    ```ts 
-    // index.ts
-    import {Snake} from "tgsnake"
-    const bot = new Snake() 
-    bot.use((ctx,next)=>{
-        console.log(ctx)
-        return next()
-    })
-    bot.run() // jalankan 🐍
-    ```
-    </TabContent>
-</TabGroup>
-Kamu dapat menggunakan `Composer` sebagai perangkat tengah.
-<TabGroup>
-    <TabContent name="javascript">
-    ```ts 
-    // index.js
-    const {Snake,Composer} = require("tgsnake")
-    const bot = new Snake() 
-    const startComposer = new Composer() 
-    startComposer.command("start",(ctx)=>{
-        ctx.reply("Welcome")
-    })
-    bot.use(startComposer.middleware())
-    bot.run() // jalankan 🐍
-    ```
-    </TabContent>
-    <TabContent name="typescript">
-    ```ts 
-    // index.ts
-    import {Snake,Composer} from "tgsnake"
-    const bot = new Snake() 
-    const startComposer = new Composer() 
-    startComposer.command("start",(ctx)=>{
-        ctx.reply("Welcome")
-    })
-    bot.use(startComposer.middleware())
-    bot.run() // jalankan 🐍
-    ```
-    </TabContent>
-</TabGroup>
-
-## Menggunakan `on`
-Method ini untuk menerima event yang datang. *Event yang tersedia* :
-```ts 
-interface Context {
-  '*': TypeUpdate;
-  connected: ResultGetEntity;
-  message: MessageContext;
-  newChatMember: MessageContext;
-  migrateTo: MessageContext;
-  chatCreate: MessageContext;
-  editChatTitle: MessageContext;
-  editChatPhoto: MessageContext;
-  leftChatMember: MessageContext;
-  channelCreate: MessageContext;
-  migrateFrom: MessageContext;
-  gameScore: MessageContext;
-  paymentSentMe: MessageContext;
-  paymentSent: MessageContext;
-  phoneCall: MessageContext;
-  customAction: MessageContext;
-  botAllowed: MessageContext;
-  secureValuesSentMe: MessageContext;
-  secureValuesSent: MessageContext;
-  deleteChatPhoto: MessageContext;
-  pinMessage: MessageContext;
-  historyClear: MessageContext;
-  screenshotTaken: MessageContext;
-  contactSingUp: MessageContext;
-  groupCall: MessageContext;
-  groupCallScheduled: MessageContext;
-  callbackQuery: UpdateInlineBotCallbackQuery | UpdateBotCallbackQuery;
-  inlineQuery: UpdateBotInlineQuery;
-  updateChatParticipants: UpdateChatParticipants;
-  updateChatUserTyping: UpdateUserTyping;
-  updateDeleteMessages: UpdateDeleteMessages;
-  updateMessageID: UpdateMessageID;
-  updateNewMessage: UpdateNewMessage;
-  updateShortChatMessage: UpdateShortChatMessage;
-  updateShortMessage: UpdateShortMessage;
-  updateShortSentMessage: UpdateShortSentMessage;
-  updateUserStatus: UpdateUserStatus;
-  updateUserTyping: UpdateUserTyping;
-  updateNewChannelMessage: UpdateNewChannelMessage;
-  updateInlineBotCallbackQuery: UpdateInlineBotCallbackQuery;
-  updateBotCallbackQuery: UpdateBotCallbackQuery;
-  updateBotInlineQuery: UpdateBotInlineQuery;
-}
+```typescript
+Composer.hears(key, ...middlewareFunction)
 ```
 
+**Key** Merupakan sebuah filter yang digunakan untuk memfilter update yang datang (pesan text). jika pesan tersebut sesuai dengan `key`, maka fungsi **middlewareFunction** akan dijalankan.
+
+**middlewareFunction** Merupakan sebuah fungsi yang akan di jalankan jika **key** bernilai **true**. **middlewareFunction** ini akan memberikan sebuah argumen berupa **[MessageContext](/beta/classes/Context.MessageContext.html)** yang bisa kita sebut dengan **ctx** atau **context** yang merupakan update dari pesan text atau edit message.
+
+```typescript
+// anda juga dapat menggunakan bot.hears jika tidak ingin membuat composer baru.
+new_composer.hears("hello", (ctx) => {
+  ctx.reply("its work")
+})
+```
+
+## handle update menggunakan Composer.command
+
+> Shorthand : Composer.cmd
+
+```typescript
+Composer.command(key, ...middlewareFunction)
+```
+
+**Key** Merupakan sebuah filter yang digunakan untuk memfilter update yang datang (pesan text dengan `prefix` (awalan) `.!/`). jika pesan tersebut sesuai dengan `prefix + key`, maka fungsi **middlewareFunction** akan dijalankan. `prefix` hanya berlaku saat `key` berupa `string`.
+
+**middlewareFunction** Merupakan sebuah fungsi yang akan di jalankan jika **key** bernilai **true**. **middlewareFunction** ini akan memberikan sebuah argumen berupa **[MessageContext](/beta/classes/Context.MessageContext.html)** yang bisa kita sebut dengan **ctx** atau **context** yang merupakan update dari pesan text atau edit message.
+
+```typescript
+// anda juga dapat menggunakan bot.cmd jika tidak ingin membuat composer baru.
+new_composer.cmd("hello", (ctx) => {
+  ctx.reply("send !hello or .hello or /hello")
+})
+```
+
+## handle update menggunakan Composer.action
+
+```typescript
+Composer.action(key, ...middlewareFunction)
+```
+
+**Key** Merupakan sebuah filter yang digunakan untuk memfilter update yang datang (callbackQuery). jika data dari callbackQuery tersebut sesuai dengan key, maka fungsi **middlewareFunction** akan dijalankan.
+
+**middlewareFunction** Merupakan sebuah fungsi yang akan di jalankan jika **key** bernilai **true**. **middlewareFunction** ini akan memberikan sebuah argumen berupa **[UpdateBotCallbackQuery](/beta/classes/Updates.UpdateInlineBotCallbackQuery.html) | [UpdateBotInlineCallbackQuery](/beta/classes/Updates.UpdateBotCallbackQuery.html)** yang bisa kita sebut dengan **ctx** atau **context**.
+
+```typescript
+// anda juga dapat menggunakan bot.action jika tidak ingin membuat composer baru.
+new_composer.action("click", (ctx) => {
+  ctx.reply("clicked")
+})
+```
+
+## handle update menggunakan Composer.inlineQuery
+
+```typescript
+Composer.inlineQuery(key, ...middlewareFunction)
+```
+
+**Key** Merupakan sebuah filter yang digunakan untuk memfilter update yang datang (inlineQuery). jika query dari inlineQuery tersebut sesuai dengan key, maka fungsi **middlewareFunction** akan dijalankan.
+
+**middlewareFunction** Merupakan sebuah fungsi yang akan di jalankan jika **key** bernilai **true**. **middlewareFunction** ini akan memberikan sebuah argumen berupa **[UpdateBotInlineQuery](/beta/classes/Updates.UpdateBotInlineQuery.html)** yang bisa kita sebut dengan **ctx** atau **context**.
+
+```typescript
+// anda juga dapat menggunakan bot.inlineQuery jika tidak ingin membuat composer baru.
+new_composer.inlineQuery("search", (ctx) => {
+  console.log(ctx)
+})
+```
+
+## handle update menggunakan Composer.on
+
+> [Lihat juga seluruh key yang tersedia.](/beta/interfaces/Update.Context)
+
+```typescript
+Composer.on(key, ...middlewareFunction)
+```
+
+**Key** Merupakan sebuah filter yang digunakan untuk memfilter update yang datang. jika update tersebut sesuai dengan key, maka fungsi **middlewareFunction** akan dijalankan.
+
+**middlewareFunction** Merupakan sebuah fungsi yang akan di jalankan jika **key** bernilai **true**. **middlewareFunction** ini akan memberikan sebuah argumen berupa **[TypeUpdate](/beta/modules/Updates#TypeUpdate)** yang bisa kita sebut dengan **ctx** atau **context**.
+
+```typescript
+// anda juga dapat menggunakan bot.on jika tidak ingin membuat composer baru.
+new_composer.on("message", (ctx) => {
+  console.log(ctx)
+})
+```
+
+## Middleware Function (Composer.use)
+
+```typescript
+Composer.use(...middlewareFunction)
+```
+
+Fungsi ini akan di eksekusi terlebih dahulu sebelum beberapa handler di atas.
+
+```plain-text
+// on new event
+[ UPDATE FROM TELEGRAM ] -> [ TGSNAKE ] -> [ MIDDLEWARE ] -> [ EVENT HANDLER ]
+// after receive the event and you doing something like sendMessage
+[ EVENT HANDLER ] -> [ TGSNAKE ] -> [ TELEGRAM ]
+```
+
+Contoh penggunaan middleware secara sederhana
+
+```typescript
+// anda juga dapat menggunakan bot.use jika tidak ingin membuat composer baru.
+Composer.use((ctx, next) => {
+  console.log(ctx)
+  return next() // anda harus menjalan kan fungsi next agar event handler dapat bekerja, jika tidak maka akan berhenti disini.
+})
+```
+
+## Creating New Composer
+
 <TabGroup>
-    <TabContent name="javascript">
-    ```ts 
-    // index.js
-    const {Snake} = require("tgsnake")
-    const bot = new Snake() 
-    bot.use((ctx,next)=>{
-        console.log(ctx)
-        return next()
-    })
-    bot.run() // jalankan 🐍
-    ```
-    </TabContent>
-    <TabContent name="typescript">
-    ```ts 
+  <TabContent name="typescript">
+
+    ```typescript
     // index.ts
-    import {Snake} from "tgsnake"
-    const bot = new Snake() 
-    bot.use((ctx,next)=>{
-        console.log(ctx)
-        return next()
-    })
-    bot.run() // jalankan 🐍
+    // import the composer first from tgsnake.
+    import { Composer, Snake } from 'tgsnake';
+    //      ^^^^^^^^
+    // You have successfully imported, the next step is to create a new composer
+    const new_composer = new Composer();
+    //    ^^^^^^^^^^^^
+    // You can rename with anything.
+    const bot = new Snake();
+    //    ^^^^^^^^^^^^^^^^^
+    // Make sure you already have a client.
+    bot.use(new_composer.middleware());
+    //      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    // Running the Composer using middleware. Well this is a required part to make a composer work.
+    bot.run();
+
     ```
-    </TabContent>
-</TabGroup>
+
+  </TabContent>
+  <TabContent name="javascript">
+
+    ```typescript
+    // index.js
+    // import the composer first from tgsnake.
+    const { Composer, Snake } = required('tgsnake');
+    //      ^^^^^^^^
+    // You have successfully imported, the next step is to create a new composer
+    const new_composer = new Composer();
+    //    ^^^^^^^^^^^^
+    // You can rename with anything.
+    const bot = new Snake();
+    //    ^^^^^^^^^^^^^^^^^
+    // Make sure you already have a client.
+    bot.use(new_composer.middleware());
+    //      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    // Running the Composer using middleware. Well this is a required part to make a composer work.
+    bot.run();
+
+    ```
+
+  </TabContent>
+</TabGroup><br/>

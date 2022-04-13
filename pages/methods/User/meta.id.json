@@ -1,8 +1,8 @@
 {
   "getEntity": {
-    "title": "getEntity"
+    "title": "telegram.getEntity"
   },
   "getUserPhotos": {
-    "title": "getUserPhotos"
+    "title": "telegram.getUserPhotos"
   }
 }

@@ -1,39 +1,50 @@
 ---
 title : sendMedia
 ---
-## Gambaran
+# sendMedia
 Media pengirim pesan.
-## Parameter
+## Parameters
 ```ts
 ctx.telegram.sendMedia(chatId,media,more)
 ```
-- `chatId` (_number|string|bigint_)
-    - Obrolan/Grup/Id Saluran.
-- `media` (_[Api.TypeInputMedia](https://gram.js.org/beta/modules/tl_api.api.html#typeinputmedia)_)
-    - Media Pesan.
-- `more` (_objek_)
-    - `silent` (_boolean_)
-        - kirim pesan tanpa pemberitahuan.
-    - `background` (_boolean_)
-        - kirim sebagai pesan latar belakang.
-    - `parseMode` (_string_)
-        - mode parse untuk mengatur gaya teks.
-    - `clearDraft` (_boolean_)
-        - kosongkan bidang draf.
-    - `replyToMsgId` (_number_)
-        - kirim dengan membalas pesan.
-    - `replyMarkup` (_TypeReplyMarkup_)
-        - Markup balasan untuk mengirim tombol bot.
-    - `entities` (_Entities[]_)
-        - entitas pesan untuk memberi gaya pada teks.
-    - `scheduleDate` (_number_)
-        - membuat pesan jadwal.
-    - `caption` (_string_)
-        - keterangan media.
-    - `workers` (_number_)
-        - pekerja untuk mengunggah media.
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Chat/Groups/Channel id. |
+| media | [Api.TypeInputMedia](https://gram.js.org/beta/modules/tl_api.api.html#typeinputmedia) | true | Message Media. | 
+| more | JSON objek dari [Parameter Tambahan](#paramete-tambahan) | opsional | Parameter tambahan yang akan di gunakan untuk menjalankan fungsi ini. | 
+
+### Parameter Tambahan
+#### Default Parameters
+
+| params | type | description | 
+| :----: | :---: | :---------: |
+| silent | boolean | mengirim pesan tanpa pemberitahuan. |
+| background | boolean | kirim sebagai pesan latar. |
+| clearDraf | boolean | kosongkan bidang draf. |
+| replyToMsgId | nomor | kirim dengan membalas pesan, isi menggunakan id pesan. |
+| replyMarkup | [TypeReplyMarkup](/beta/modules/Utils.html#TypeReplyMarkup) | replyMarkup untuk mengirim tombol bot. |
+| scheduleDate | number | membuat pesan jadwal. |
+| sendAs | string | kirim sebagai saluran |
+| noforwards | boolean | Hanya untuk bot, melarang penerusan dan penyimpanan pesan, meskipun obrolan tujuan tidak mengaktifkan perlindungan konten |
+
+#### Memperpanjang 
+
+Parameter ini pemperpanjang [default parameter](#default-parameters)
+
+| params | type | description | 
+| :----: | :---: | :---------: |
+| parseMode | string | mode parse untuk mengatur gaya teks. lihat [tgsnake@parser](https://github.com/tgsnake/parser#available-parsemode) untuk opsi pemformatan |
+| entities | [Entities[]](https://github.com/tgsnake/parser/blob/5f4497d7fcd7bae610328005d411fd91bf37d7af/src/Entities.ts#L37) | entities pesan untuk memberi gaya pada teks. |
+| caption | string | keterangan media |
+
 ## Contoh
-_Contoh Tidak Ditemukan!_
+```ts highlight="2" 
+bot.command("sendMedia",async (ctx)=>{
+    let media = await ctx.telegram.sendMedia(chatId,new Api.InputMediaDice({ emoticon: "🎯" }));
+    console.log(media)
+})
+```
 ## Kemungkinan Kesalahan
 | kode | ketik | deskripsi |
 | :---: | :---: | :------:|

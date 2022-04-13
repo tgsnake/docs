@@ -1,18 +1,20 @@
 ---
 title : editTitle
 ---
-## Gambaran
+# editTitle
 edit judul obrolan/grup/saluran.
 ## Parameter
 ```ts
 ctx.telegram.editTitle(chatId,title)
 ```
-- `chatId` (_number|string|bigint_)
-    - Obrolan/Grup/Id Saluran.
-- `title` (_string_)
-    - Judul baru
+
+| parameter | tipe | diperlukan | deskripsi | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | Ya | Target. |
+| title | string | Ya | Judul baru | 
+
 ## Contoh
-```ts highlight=3
+```ts highlight="3"
 bot.command("editTitle",async (ctx) => {
     if(!ctx.chat.private){
         let hasil = await ctx.telegram.editTitle(ctx.chat.id,"hei judul baru")

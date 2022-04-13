@@ -1,16 +1,19 @@
 --- 
 title : getFullChat 
 --- 
-## Overview 
+# getFullChat
 Returns full chat/channel info according to its ID.
 ## Parameters 
 ```ts 
 ctx.telegram.getFullChat(chatId)
 ```
-- `chatId` (_number|string|bigint_) 
-    - Chat/Groups/Channel id.
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Target chat | 
+
 ## Example 
-```ts highlight=2
+```ts highlight="2"
 bot.command("getFullChat",async (ctx) => {
     let results = await ctx.telegram.getFullChat(ctx.chat.id)
 })

@@ -1,23 +1,34 @@
 --- 
 title : deleteMessages 
 --- 
-## Overview 
+# deleteMessages
 This method allow you to deletes messages by their identifiers
 ## Parameters 
 ```ts 
 ctx.telegram.deleteMessages(chatId,mesageId)
 ```
-- `chatId` (_number|string|bigint_)
-    - User or chat, where is the message located.
-- `messageId` (_number[]_) 
-    - Message ID list which will be deleted.
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | User or chat, where is the message located. | 
+| messageId | Array&lt;number&gt; | true | Message ID list which will be deleted.| 
+
 ## Example 
-```ts headlight=2
+```ts highlight="2"
 bot.command("delete", async (ctx) => {
     let results = await ctx.telegram.deleteMessages(ctx.chat.id,[ctx.id]) 
     return console.log(results)
 })
 ```
+
+## Shorthand function 
+```ts
+/**
+  * @param chatId {BigInt|String} - User or chat, where is the message located.
+  * @param messageId {Number} - Message id which will be deleted.
+  */
+ctx.telegram.deleteMessage(chatId, messageId) 
+```
+
 ## Possible Error 
 | code | type | description | 
 | :---: | :---: | :------:| 

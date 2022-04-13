@@ -1,7 +1,7 @@
 ---
 title : getChatMember
 ---
-## Gambaran
+# getChatMember
 Dapatkan info tentang peserta saluran/supergrup
 
 ## Parameter
@@ -9,13 +9,13 @@ Dapatkan info tentang peserta saluran/supergrup
 ctx.telegram.getChatMember(chatId,userId)
 ```
 
-- `chatId` (_number|string|bigint_)
-    - Obrolan atau id saluran untuk mendapatkan daftar anggota.
-- `userId` (_number|string|bigint_)
-    - Peserta mendapatkan info tentang
+| parameter | tipe | diperlukan | deskripsi | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | Ya | Chat/Groups/Channel id/username. |
+| userd | `string` or `bigint` | Ya | User id/username. |
 
 ## Contoh
-```ts lampu depan = 2
+```ts highlight="2"
 bot.command("getChatMember",async (ctx) => {
     let hasil = await ctx.telegram.getParticipant(ctx.chat.id,ctx.from.id) // getChatMember dan getParticipant.adalah metode yang sama.
     console.log(hasil)

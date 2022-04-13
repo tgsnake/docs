@@ -1,18 +1,20 @@
 --- 
 title : editTitle 
 --- 
-## Overview 
+# editTitle
 edit chat/group/channel title. 
 ## Parameters 
 ```ts 
 ctx.telegram.editTitle(chatId,title) 
 ```
-- `chatId` (_number|string|bigint_) 
-    - Chat/Groups/Channel id. 
-- `title` (_string_) 
-    - New title 
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Target | 
+| title | string | true | New title | 
+
 ## Example 
-```ts highlight=3
+```ts highlight="3"
 bot.command("editTitle",async (ctx) => {
     if(!ctx.chat.private){
         let results = await ctx.telegram.editTitle(ctx.chat.id,"hey new title") 

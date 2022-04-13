@@ -1,23 +1,39 @@
 --- 
 title : sendDocument
 --- 
-## Overview 
-Sending Document file location/url/buffer. 
+# sendDocument
+Sending Document with file location/url/buffer/fileId/[TypeMediaDocument](/beta/modules/Utils.Medias.html#TypeMessageMediaDocument). 
 ## Parameters 
 ```ts  
 ctx.telegram.sendDocument(chatId,document,more)
 ```
-- `chatId` (_number|string_) 
-    - Chat/Groups/Channel id. 
-- `document` (_string|Buffer_) 
-    - File Location/Url/Buffer 
-- `more` (_[sendMediaMoreParams](/en/telegram/media/SendMedia#parameters)_)
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Chat/Groups/Channel id. |
+| document | `string` or `Buffer` or [TypeMediaDocument](/beta/modules/Utils.Medias.html#TypeMessageMediaDocument) | true | Document will sending |
+| more | JSON object of [More Parameters](#more-parameters) | optional | More parametes will use to execute this function. | 
+
+### More Parametes 
+This parameter is extending [sendMediaMoreParams](/methods/Media/sendMedia#more-parameters).
+
+| params | type | description | 
+| :----: | :---: | :---------: |
+| workers | number | How many workers to use to upload the file. anything above 16 is unstable. |
+| mimeType | string | Mime type of document |
+| filename | string | Custom filename of document | 
+| forceDocument |  boolean | force send as document, default is `true` | 
+| onProgress | [onProgress](/beta/interfaces/Telegram.Media.onProgress.html) | progress callback when uploading document | 
+| download | boolean | When document is url, force to downloading that file first before uploading to telegram. default is `false` | 
+| thumbnail | `Buffer` or `string` | Set the thumbnail of document, it won't work if you pass with fileId. | 
+
+
 ## Example 
-```ts headlight=2
+```ts hightlight="2"
 bot.command("doc",async (ctx) => {
     let results = await ctx.telegram.sendDocument(ctx.chat.id,"https://tgsnake.js.org/images/tgsnake.jpg")
 })
 ```
 ## Possible Error 
-Same as [sendMedia](/methods/Media/sendMedia#possibleerror)
+Same as [sendMedia](/methods/Media/sendMedia#possible-error)
 ## Bot can use this method.

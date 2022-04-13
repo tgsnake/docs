@@ -1,20 +1,20 @@
 ---
 title : getMessagesViews
 ---
-## Gambaran
+# getMessagesViews
 Dapatkan dan tingkatkan penghitung tampilan pesan yang dikirim atau diteruskan dari saluran.
 ## Parameter
 ```ts
 ctx.telegram.getMessagesViews(chatId,messageId,increment)
 ```
-- `chatId` (_number|string|bigint_)
-    - Di mana pesan itu ditemukan.
-- `messageId` (_number[]_)
-    - ID pesan.
-- `increment` (_boolean_)
-    - Apakah akan menandai pesan sebagai dilihat dan menambah penghitung tampilan
+| parameter | tipe | diperlukan | deskripsi | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | Ya | Channel Id | 
+| messageId | Array&lt;number&gt; | Ya | ID pesan. |
+| increment | boolean | Opsional | Apakah akan menandai pesan sebagai dilihat dan menambah penghitung tampilan | 
+
 ## Contoh
-```ts highlight=2
+```ts highlight="2"
 bot.command("getMessagesViews",async (ctx)=>{
     let hasil = await ctx.telegram.getMessagesViews(ctx.chat.id,[ctx.id])
     console.log(hasil)

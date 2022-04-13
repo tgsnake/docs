@@ -1,39 +1,49 @@
 --- 
 title : sendMedia 
 --- 
-## Overview 
+# sendMedia
 Sending message media. 
 ## Parameters 
 ```ts 
 ctx.telegram.sendMedia(chatId,media,more)
 ```
-- `chatId` (_number|string|bigint_) 
-    - Chat/Groups/Channel id. 
-- `media` (_[Api.TypeInputMedia](https://gram.js.org/beta/modules/tl_api.api.html#typeinputmedia)_)
-    - Message Media.
-- `more` (_object_) 
-    - `silent` (_boolean_) 
-        - send message without notification.
-    - `background` (_boolean_)
-        - send as background message.
-    - `parseMode` (_string_)
-        - parse mode to style the caption.
-    - `clearDraft` (_boolean_)
-        - clear the draf field.
-    - `replyToMsgId` (_number_)
-        - send with reply a message.
-    - `replyMarkup` (_TypeReplyMarkup_)
-        - Reply markup for sending bot buttons.
-    - `entities` (_Entities[]_)
-        - message entities to style the caption.
-    - `scheduleDate` (_number_)
-        - create a schedule message. 
-    - `caption` (_string_) 
-        - media caption.
-    - `workers` (_number_) 
-        - workers to uploading media.
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Chat/Groups/Channel id. |
+| media | [Api.TypeInputMedia](https://gram.js.org/beta/modules/tl_api.api.html#typeinputmedia) | true | Message Media. | 
+| more | JSON object of [More Parameters](#more-parameters) | optional | More parametes will use to execute this function. | 
+
+### More Parameters 
+#### Default Parameters
+
+| params | type | description | 
+| :----: | :---: | :---------: |
+| silent | boolean | send message without notification. |
+| background | boolean | send as background message. | 
+| clearDraft | boolean | clear the draf field. | 
+| replyToMsgId | number | send with reply a message, pass it with message id. |
+| replyMarkup | [TypeReplyMarkup](/beta/modules/Utils.html#TypeReplyMarkup) | Reply markup for sending bot buttons. | 
+| scheduleDate | number | create a schedule message. |
+| sendAs | string | send as channel | 
+| noforwards | boolean | Only for bots, disallows forwarding and saving of the messages, even if the destination chat doesn't have content protection enabled |
+
+#### Extends 
+This parameter is extending [default parameter](#default-parameters)
+
+| params | type | description | 
+| :----: | :---: | :---------: |
+| parseMode | string | parse mode to style the caption. see [tgsnake@parser](https://github.com/tgsnake/parser#available-parsemode) for formatting options |
+| entities | [Entities[]](https://github.com/tgsnake/parser/blob/5f4497d7fcd7bae610328005d411fd91bf37d7af/src/Entities.ts#L37) | message entities to style the caption. | 
+| caption | string | media caption | 
+
 ## Example 
-_Example Not Found!_
+```ts highlight="2" 
+bot.command("sendMedia",async (ctx)=>{
+    let media = await ctx.telegram.sendMedia(chatId,new Api.InputMediaDice({ emoticon: "🎯" }));
+    console.log(media)
+})
+```
 ## Possible Error 
 | code | type | description | 
 | :---: | :---: | :------:| 

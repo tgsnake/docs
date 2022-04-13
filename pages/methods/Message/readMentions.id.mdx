@@ -1,21 +1,27 @@
 ---
 title : readMentions
 ---
-## Gambaran
+
+# readMentions
 Tandai sebutan sebagai telah dibaca.
 ## Parameter
 ```ts
 ctx.telegram.readMentions(chatId)
 ```
-- `chatId` (_number|string|bigint_)
-     - Obrolan/Grup/Id Saluran.
+
+| parameter | tipe | diperlukan | deskripsi | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | Ya | Obrolan/Grup/Id  Saluran. |
+
 ## Contoh
-```ts highlight=2
+
+```ts highlight="2"
 bot.command("readMentions",async (ctx)=>{
      let hasil = await ctx.telegram.readMentions(ctx.chat.id)
      console.log(hasil)
 })
 ```
+
 ## Kemungkinan Kesalahan
 | kode | ketik | deskripsi |
 | :---: | :---: | :------:|
