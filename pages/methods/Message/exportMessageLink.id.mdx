@@ -1,23 +1,26 @@
 ---
 title : exportMessageLink
 ---
-## Gambaran
+# exportMessageLink
 Dapatkan tautan dan sematkan info pesan di saluran/grup super
 ## Parameter
 ```ts
 ctx.telegram.exportMessageLink(chatId,messageId, more)
 ```
-- `chatId` (_number|string|bigint_)
-    - id supergrup/saluran.
-- `messageId` (_number_)
-    - nomor pesan.
-- `more` (_objek_)
-    - `thread` (_boolean_)
-        - Apakah akan menyertakan juga ID utas, jika tersedia, di dalam tautan.
-    - `grouped` (_boolean_)
-        - Apakah akan menyertakan media lain yang dikelompokkan (untuk album)
+| parameter | tipe | diperlukan | deskripsi | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | Ya | Chat/Groups/Channel id/username. |
+| messageId | number | Ya | message id. | 
+| more | JSON objek dari [Parameter Tambahan](#paramete-tambahan) | opsional | Parameter tambahan yang akan di gunakan untuk menjalankan fungsi ini. | 
+
+### Parameter Tambahan
+| params | type | description | 
+| :----: | :---: | :---------: |
+| thread | boolean | Apakah akan menyertakan juga ID utas, jika tersedia, di dalam tautan. | 
+| grouped | boolean | Apakah akan menyertakan media lain yang dikelompokkan (untuk album) | 
+
 ## Contoh
-```ts highlight=2
+```ts highlight="2"
 bot.command("getLink", async (ctx) => {
     let hasil = await ctx.telegram.exportMessageLink(ctx.chat.id,ctx.id)
     return console.log(hasil)

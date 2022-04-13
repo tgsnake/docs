@@ -1,5 +1,5 @@
 export default {
-  github: 'https://github.com/butthx/tgsnake', // GitHub link in the navbar
+  projectLink : 'https://github.com/tgsnake', // GitHub link in the navbar
   docsRepositoryBase: 'https://github.com/tgsnake/docs/tree/master/pages', // base URL for the docs repository
   titleSuffix: '',
   nextLinks: true,
@@ -9,6 +9,7 @@ export default {
   darkMode: true,
   footer: true,
   footerText: `MIT ${new Date().getFullYear()} © butthx.`,
+  floatTOC : true,
   footerEditLink: `Edit this page on GitHub`,
   logo: (
     <span className="font-extrabold text-lg">Tgsnake</span>
@@ -21,17 +22,21 @@ export default {
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="tgsnake documentation"/>
       <meta property="og:description" content="Telegram MTProto Framework for Typescript/Javascript based on gramjs." /> 
-      <meta property="og:image" content="https://tgsnake.js.org/images/20211122_200419.jpg" key="https://tgsnake.js.org/images/20211019_194542.jpg" />
+      <meta property="og:image" content="https://tgsnake.js.org/images/tgsnake.jpg" key="https://tgsnake.js.org/images/tgsnake.jpg" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="tgsnake.js.org" /> 
       <meta name="twitter:description" content="Telegram MTProto Framework for Typescript/Javascript based on gramjs." />
-      <meta name="twitter:image" content="https://tgsnake.js.org/images/20211122_200419.jpg" />
+      <meta name="twitter:image" content="https://tgsnake.js.org/images/tgsnake.jpg" />
       <meta name="article:author" content="tgsnake"/>
     </>
   ),
-  i18n: [
-    { locale: 'en', text: 'English' }, 
-    { locale : 'id',text: 'Indonesia' }
-  ],
+  i18n: [{
+    locale : "en",
+    text : "English"
+  },{
+    locale : "id",
+    text : "Indonesia"
+  }],
   unstable_staticImage: true,
+  unstable_stork: false,
 }

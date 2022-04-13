@@ -1,16 +1,18 @@
 --- 
 title : getChannels
 --- 
-## Overview 
+# getChannels 
 Get info about channels/supergroups. 
 ## Parameters 
 ```ts 
 ctx.telegram.getChannels(chatId)
 ```
-- `chatId` (_number[]|string[]|bigint[]_) 
-    - List of channel ids.
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | Array&lt;`string` or `bigint`&gt; | true | List of channel ids. | 
+
 ## Example 
-```ts:index.ts headlight=2
+```ts highlight="2"
 bot.command("getChannels",async (ctx) => {
     let results = await ctx.telegram.getChannels([ctx.chat.id]) 
     console.log(results)

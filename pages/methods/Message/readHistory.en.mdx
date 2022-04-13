@@ -1,21 +1,26 @@
 ---
 title : readHistory 
 --- 
-## Overview 
+# readHistory
 Marks message history as read.
 ## Parameters 
 ```ts 
 ctx.telegram.readHistory(chatId,messageId,more)
 ```
-- `chatId` (_number|string|bigint_) 
-    - Target user or group.
-- `messageId` (_number_) 
-    - Message id.
-- `more` (_object_)
-    - `maxId` (_number_) 
-        - If a positive value is passed, only messages with identifiers less or equal than the given one will be read. 
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Target user or group. | 
+| messageId | number | True | Message id. |
+| more | JSON object of [More Parameters](#more-parameters) | optional | More parametes will use to execute this function. | 
+
+### More Parameters 
+
+| params | type | description | 
+| :----: | :---: | :---------: | 
+| maxId | number | If a positive value is passed, only messages with identifiers less or equal than the given one will be read. | 
+
 ## Example 
-```ts headlight=2
+```ts highlight="2"
 bot.command("readHistory",async (ctx)=>{
     let results = await ctx.telegram.readHistory(ctx.chat.id,ctx.id) 
     console.log(results) 

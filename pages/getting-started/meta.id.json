@@ -1,11 +1,11 @@
 {
   "start": {
-    "title": "Mulai Dari Nol"
+    "title": "Mulai dari nol"
   },
   "update": {
     "title": "Menangani Update"
   },
   "config": {
-    "title": "Menggunakan tgsnake.config.js"
+    "title": "Menggunakan config file"
   }
 }

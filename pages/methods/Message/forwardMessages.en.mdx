@@ -1,33 +1,44 @@
 ---
 title : forwardMessages 
 --- 
-## Overview 
+# forwardMessages
 Forwards messages by their IDs. 
 ## Parameters
 ```ts 
 ctx.telegram.forwardMessages(chatId,fromChatId,messageId,more)
 ```
-- `chatId` (_number|string|bigint_)
-    - Destination.
-- `fromChatId` (_number|string|bigint_)
-    - Source of messages.
-- `messageId` (_number[]_)
-    - IDs of messages which will forwarded.
-- `more` (_object_) 
-    - `withMyScore` (_boolean_) 
-        - When forwarding games, whether to include your score in the game.
-    - `silent` (_boolean_) 
-        - Whether to send messages silently (no notification will be triggered on the destination clients)
-    - `background` (_boolean_) 
-        - Whether to send the message in background.
-    - `scheduleDate` (_number_) 
-        - Scheduled message date for scheduled messages.
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Chat/Groups/Channel id. |
+| fromChatId | `string` or `bigint` | true | Source of messages.
+| messageId | Array&lt;number&gt; | true | IDs of messages which will forwarded. | 
+| more | JSON object of [More Parameters](#more-parameters) | optional | More parametes will use to execute this function. | 
+
+### More Parameters 
+
+| params | type | description | 
+| :----: | :---: | :---------: |
+| withMyScore | boolean | When forwarding games, whether to include your score in the game. | 
+| silent | boolean | Whether to send messages silently (no notification will be triggered on the destination clients) | 
+| background | boolean | Whether to send the message in background. | 
+| scheduleDate | number | Scheduled message date for scheduled messages. | 
+| sendAs | string | Send as channel | 
+| dropAuthor | boolean | Remove `forward from ...` when forwarding messages | 
+| dropMediaCaptions | boolean | Remove caption of media when forwarding messages | 
+
 ## Example 
-```ts headlight=2
+```ts highlight="2"
 bot.command("forward", async (ctx) => {
     let results = await ctx.telegram.forwardMessages(ctx.chat.id,ctx.chat.id,[ctx.id]) 
     return console.log(results)
 })
+```
+## Shorthand function 
+```ts 
+/**
+  * @param messageId {Number} Message id.
+  */
+ctx.telegram.forwardMessage(chatId,fromChatId,messageId,more)
 ```
 ## Possible Error
 | code | type | description | 

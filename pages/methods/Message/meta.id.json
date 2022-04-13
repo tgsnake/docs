@@ -1,44 +1,44 @@
 {
-  "deleteHistory": {
-    "title": "deleteHistory"
+  "deleteHistory" : {
+    "title" : "telegram.deleteHistory"
   },
-  "deleteMessages": {
-    "title": "deleteMessages"
+  "deleteMessages" : {
+    "title" : "telegram.deleteMessages"
   },
-  "deleteUserHistory": {
-    "title": "deleteUserHistory"
+  "deleteUserHistory" : {
+    "title" : "telegram.deleteUserHistory"
   },
-  "editMessage": {
-    "title": "editMessage"
+  "editMessage" : {
+    "title" : "telegram.editMessage"
   },
-  "exportMessageLink": {
-    "title": "exportMessageLink"
+  "exportMessageLink" : {
+    "title" : "telegram.exportMessageLink"
   },
-  "forwardMessages": {
-    "title": "forwardMessages"
+  "forwardMessages" : {
+    "title" : "telegram.forwardMessages"
   },
-  "getMessages": {
-    "title": "getMessages"
+  "getMessages" : {
+    "title" : "telegram.getMessages"
   },
-  "getMessagesViews": {
-    "title": "getMessagesViews"
+  "getMessagesViews" : {
+    "title" : "telegram.getMessagesViews"
   },
-  "pinMessage": {
-    "title": "pinMessage"
+  "pinMessage" : {
+    "title" : "telegram.pinMessage"
   },
-  "readHistory": {
-    "title": "readHistory"
+  "readHistory" : {
+    "title" : "telegram.readHistory"
   },
-  "readMentions": {
-    "title": "readMentions"
+  "readMentions" : {
+    "title" : "telegram.readMentions"
   },
   "readMessageContents": {
-    "title": "readMessageContents"
+    "title": "telegram.readMessageContents"
   },
-  "sendMessage": {
-    "title": "sendMessage"
+  "sendMessage" : {
+    "title" : "telegram.sendMessage"
   },
-  "unpinAllMessages": {
-    "title": "unpinAllMessages"
+  "unpinAllMessages" : {
+    "title" : "telegram.unpinAllMessages"
   }
 }

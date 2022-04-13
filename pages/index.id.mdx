@@ -1,64 +1,81 @@
 ---
-title : Linggadjati
+title: Selamat datang di tgsnake
+language : id
 ---
-import Callout from 'nextra-theme-docs/callout'
-import {TabGroup,TabContent} from "@/components/Tab"
+
+import Callout from "@/components/Callout"
+import { TabGroup, TabContent } from "@/components/Tab"
+
+# Selamat datang di tgsnake
 
 ![tgsnake-icon-by-flat-icon](./images/tgsnake.jpg)
 
 <TabGroup>
-    <TabContent name="npm">
-        ```bash 
-        npm install tgsnake@latest -s
-        ``` 
-    </TabContent>
-    <TabContent name="yarn">
-        ```bash 
-        yarn add tgsnake@latest 
-        ``` 
-    </TabContent>
-</TabGroup>
-setelah menginstal paket.
-<TabGroup>
-    <TabContent name="javascript">
-    ```js
-    // index.js
-    const {Snake} = require("tgsnake") //mengimport module.
-    const bot = new Snake({ // membuat client baru. kamu bisa mengisi opsinya di file tgsnake.config.js.
-      apiHash : "paste disini", // dapatkan dari my.telegram.org
-      apiId : 1234, // dapatkan dari my.telegram.org
-      botToken : "paste disini" // jika kamu butuh login dengan user, hapus ini dan buat session dulu. kemudian paste sesi string kamu di tempat "session".
-    }) 
-    bot.run() // menjalankan klien. 
-    // bot.generateSession() // aktifkan ini untuk menghasilkan sesi dan mematikan bot.run().
-    bot.hears("hi",(ctx)=>{
-        ctx.reply("wow you are perfect")
-    })
-    ```
-    </TabContent>
-    <TabContent name="typescript">
-    ```ts
-    // index.ts
-    import {Snake} from "tgsnake" //mengimport modul.
-    const bot = new Snake({ // membuat klien baru. kamu bisa mengisi opsinya di file tgsnake.config.js.
-      apiHash : "paste disini", // dapatkan dari my.telegram.org
-      apiId : 1234, // dapatkan dari my.telegram.org
-      botToken : "paste disini" // jika kamu butuh login dengan user, hapus ini dan buat session dulu. kemudian paste sesi string kamu di tempat "session".
-    }) 
-    bot.run() // menjalankan klien. 
-    // bot.generateSession() // aktifkan ini untuk menghasilkan sesi dan mematikan bot.run().
-    bot.hears("hi",(ctx)=>{
-        ctx.reply("wow you are perfect")
-    })
-    ```
-    </TabContent>
-</TabGroup>
+  <TabContent name="npm">
 
+```bash
+npm i tgsnake@latest
+```
+
+  </TabContent>
+  <TabContent name="yarn">
+
+```bash
+yarn add tgsnake@latest
+```
+
+  </TabContent>
+</TabGroup><br/>
+
+
+setelah menginstal package
+
+<TabGroup>
+  <TabContent name="typescript">
+
+```typescript
+// index.ts
+import { Snake } from 'tgsnake'; //importing the modules.
+const bot = new Snake({
+    // create new client. you can pass the options in tgsnake.config.js file.
+    apiHash: 'paste here', // get it from my.telegram.org
+    apiId: 1234, // get it from my.telegram.org
+    botToken: 'paste here', // if you need login with user remove this and create session first. then paste your string session in field "session".
+});
+bot.run(); // running client.
+bot.hears('hi', (ctx) => {
+    ctx.reply('wow you are perfect');
+});
+```
+
+  </TabContent>
+  <TabContent name="javascript">
+
+```javascript
+// index.js
+const { Snake } = require('tgsnake'); //importing the modules.
+const bot = new Snake({
+    // create new client. you can pass the options in tgsnake.config.js file.
+    apiHash: 'paste here', // get it from my.telegram.org
+    apiId: 1234, // get it from my.telegram.org
+    botToken: 'paste here', // if you need login with user remove this and create session first. then paste your string session in field "session".
+});
+bot.run(); // running client.
+bot.hears('hi', (ctx) => {
+    ctx.reply('wow you are perfect');
+});
+```
+
+  </TabContent>
+</TabGroup><br/>
+   
 <Callout type="warning">
-Akun telegram kamu bisa ter-banned jika kamu membuat userbot dan membuat flooding. Saya tidak bertanggung jawab jika ini terjadi.
-</Callout>
+Akun telegram Anda bisa dibanned jika Anda membuat userbot dan membuat banjir ke server telegram. Saya tidak bertanggung jawab jika hal ini terjadi.   
+</Callout><br/>
+
 
 <div className="text-center py-2">
-[Channel Telegram](https://t.me/tgsnake) - 
-[Chat Telegram](https://t.me/tgsnakechat) 
+
+[Telegram Channel](https://t.me/tgsnake) - [Telegram Chat](https://t.me/tgsnakechat)
+
 </div>

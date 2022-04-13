@@ -1,25 +1,27 @@
 --- 
 title : sendSticker
 --- 
-## Overview 
-Sending sticker with fileId/file location/url/buffer. 
+# sendSticker
+Sending Sticker with file location/url/buffer/fileId/[MediaSticker](/beta/modules/Utils.Medias.html#MediaSticker). 
 ## Parameters 
 ```ts  
 ctx.telegram.sendSticker(chatId,sticker)
 ```
-- `chatId` (_number|string|bigint_) 
-    - Chat/Groups/Channel id. 
-- `sticker` (_string|Buffer_).
-    - Path file/FileId/Buffer.
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Chat/Groups/Channel id. |
+| sticker | `string` or `Buffer` or [MediaSticker](/beta/modules/Utils.Medias.html#MediaSticker) | true | Sticker will sending |
+
 ## Example 
-```ts highlight=3
+```ts highlight="3"
 bot.on("message",async (ctx) => {
-    if(ctx.media && ctx.media.type == "sticker"){
-        let results = await ctx.telegram.sendSticker(ctx.chat.id,ctx.media.fileId) 
+    if(ctx.media && ctx.media["_"] == "sticker"){
+        let results = await ctx.telegram.sendSticker(ctx.chat.id,ctx.media) 
         console.log(results)
     }
 })
 ```
 ## Possible Error 
-Same as [sendMedia](/methods/Media/sendMedia#possibleerror)
+Same as [sendMedia](/methods/Media/sendMedia#possible-error)
 ## Bot can use this method.

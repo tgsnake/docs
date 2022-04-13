@@ -1,23 +1,33 @@
 ---
 title : deleteMessages
 ---
-## Gambaran
+# deleteMessages
 Metode ini memungkinkan Anda untuk menghapus pesan dengan pengidentifikasinya
 ## Parameter
 ```ts
 ctx.telegram.deleteMessages(chatId,mesageId)
 ```
-- `chatId` (_number|string|bigint_)
-     - Pengguna atau obrolan, di mana pesan berada.
-- `messageId` (_number[]_)
-     - Daftar ID Pesan yang akan dihapus.
+| parameter | tipe | diperlukan | deskripsi | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | Ya | Pengguna atau obrolan, di mana pesan berada. | 
+| messageId | Array&lt;number&gt;| Ya | Daftar ID Pesan yang akan dihapus.| 
+
 ## Contoh
-```ts highlight= 2
+```ts highlight="2"
 bot.command("hapus", async (ctx) => {
      let hasil = await ctx.telegram.deleteMessages(ctx.chat.id,[ctx.id])
      return console.log(hasil)
 })
 ```
+## Shorthand function 
+```ts
+/**
+  * @param chatId {BigInt|String} - User or chat, where is the message located.
+  * @param messageId {Number} - Message id which will be deleted.
+  */
+ctx.telegram.deleteMessage(chatId, messageId) 
+```
+
 ## Kemungkinan Kesalahan
 | kode | ketik | deskripsi |
 | :---: | :---: | :------:|

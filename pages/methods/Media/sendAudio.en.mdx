@@ -1,0 +1,41 @@
+--- 
+title : sendAudio
+--- 
+# sendAudio
+Sending Audio with file location/url/buffer/fileId/[MediaAudio](/beta/modules/Utils.Medias.html#MediaAudio). 
+## Parameters 
+```ts  
+ctx.telegram.sendAudio(chatId,audio,more)
+```
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Chat/Groups/Channel id. |
+| audio | `string` or `Buffer` or [MediaAudio](/beta/modules/Utils.Medias.html#MediaAudio) | true | Audio will sending |
+| more | JSON object of [More Parameters](#more-parameters) | optional | More parametes will use to execute this function. | 
+
+### More Parametes 
+This parameter is extending [sendMediaMoreParams](/methods/Media/sendMedia#more-parameters).
+
+| params | type | description | 
+| :----: | :---: | :---------: |
+| workers | number | How many workers to use to upload the file. anything above 16 is unstable. |
+| mimeType | string | Mime type of audio |
+| onProgress | [onProgress](/beta/interfaces/Telegram.Media.onProgress.html) | progress callback when uploading audio | 
+| download | boolean | When audio is url, force to downloading that file first before uploading to telegram. default is `false` | 
+| thumbnail | `Buffer` or `string` | Set the thumbnail of document, it won't work if you pass with fileId. |
+| duration | number | audio duration | 
+| title | string | audio title | 
+| performer | string | audio performer or singer | 
+| filename | string | filename |
+
+## Example 
+```ts highlight="2"
+bot.command("au",async (ctx) => {
+    let results = await ctx.telegram.sendAudio(ctx.chat.id,"file id here")
+    return console.log(results)
+})
+```
+## Possible Error 
+Same as [sendMedia](/methods/Media/sendMedia#possible-error)
+## Bot can use this method.

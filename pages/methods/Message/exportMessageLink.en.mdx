@@ -1,23 +1,27 @@
 --- 
 title : exportMessageLink
 --- 
-## Overview 
+# exportMessageLink
 Get link and embed info of a message in a channel/supergroup
 ## Parameters 
 ```ts 
 ctx.telegram.exportMessageLink(chatId,messageId,more)
 ```
-- `chatId` (_number|string|bigint_) 
-    - supergroup/channel id. 
-- `messageId` (_number_) 
-    - message id. 
-- `more` (_object_) 
-    - `thread` (_boolean_)
-        - Whether to also include a thread ID, if available, inside of the link.
-    - `grouped` (_boolean_) 
-        - Whether to include other grouped media (for albums)
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Chat/Groups/Channel id. |
+| messageId | number | true | message id. | 
+| more | JSON object of [More Parameters](#more-parameters) | optional | More parametes will use to execute this function. | 
+
+### More Parameters 
+
+| params | type | description | 
+| :----: | :---: | :---------: |
+| thread | boolean | Whether to also include a thread ID, if available, inside of the link. | 
+| grouped | boolean | Whether to include other grouped media (for albums)
+
 ## Example 
-```ts highlight=2
+```ts highlight="2"
 bot.command("getLink", async (ctx) => {
     let results = await ctx.telegram.exportMessageLink(ctx.chat.id,ctx.id) 
     return console.log(results)

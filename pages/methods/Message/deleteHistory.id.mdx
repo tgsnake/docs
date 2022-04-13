@@ -1,27 +1,29 @@
 ---
 title : deleteHistory
 ---
-## Gambaran
+# deleteHistory
 Metode ini memungkinkan Anda untuk menghapus riwayat komunikasi.
 ## Parameter
 ```ts
 ctx.telegram.deleteHistory(chatId, more)
 ```
-- `chatId` (_number|string|bigint_)
-    - Pengguna atau obrolan, riwayat komunikasi yang akan dihapus.
-- `more` (_objek_)
-    - `maxId` (_number_)
-        - ID maksimum pesan yang akan dihapus.
-    - `revoke` (_boolean_)
-        - Apakah akan menghapus riwayat pesan untuk semua peserta obrolan.
-    - `justClear` (_boolean_)
-        - Cukup hapus riwayat untuk pengguna saat ini, tanpa benar-benar menghapus pesan untuk setiap pengguna obrolan.
+| parameter | tipe | diperlukan | deskripsi | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | Ya | Chat/Groups/Channel id/username. |
+| more | JSON object dari [Parameter Tambahan](#parameter-tambahan) | opsional | Parameter tambahan yang akan di gunakan untuk menjalankan fungsi ini | 
+
+### Parameter Tambahan
+| parameter | tipe | deskripsi | 
+| :----: | :---: | :---------: |
+| maxId | number | ID maksimum pesan yang akan dihapus. | 
+| revoke | boolean | Apakah akan menghapus riwayat pesan untuk semua peserta obrolan. | 
+| justClear | boolean | Cukup hapus riwayat untuk pengguna saat ini, tanpa benar-benar menghapus pesan untuk setiap pengguna obrolan. | 
 
 ## Contoh
-```ts highlight= 2
+```ts highlight="2"
 bot.command("hapus", async (ctx) => {
     let hasil = await ctx.telegram.deleteHistory(ctx.chat.id)
-    kembali console.log(hasil)
+    return console.log(hasil)
 })
 ```
 ## Kemungkinan Kesalahan
@@ -31,4 +33,5 @@ bot.command("hapus", async (ctx) => {
 | 400 | MESSAGE_ID_INVALID | ID pesan yang diberikan tidak valid |
 | 400 | MSG_ID_INVALID | ID pesan yang diberikan tidak valid |
 | 400 | PEER_ID_INVALID | ID rekan yang diberikan tidak valid |
+
 ## Bot tidak dapat menggunakan metode ini.

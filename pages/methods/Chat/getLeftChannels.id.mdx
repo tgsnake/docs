@@ -1,18 +1,20 @@
 ---
 title : getLeftChannels
 ---
-## Gambaran
+# getLeftChannels
 Dapatkan daftar saluran/grup super yang kami tinggalkan.
 ## Parameter
 ```ts
 ctx.telegram.getLeftChannels(offset)
 ```
-- `offset` (_number_)
-     - offset pagination.
+| parameter | tipe | diperlukan | deskripsi | 
+| :----: | :---: | :-----: | :---------: |
+| offset | number | Opsional | offset pagination. | 
+
 ## Contoh
-```ts highlight=2
+```ts highlight="2"
 bot.command("getLeftChannels",async (ctx) => {
-     biarkan hasil = menunggu ctx.telegram.getLeftChannels()
+     let hasil = await ctx.telegram.getLeftChannels()
      console.log(hasil)
 })
 ```

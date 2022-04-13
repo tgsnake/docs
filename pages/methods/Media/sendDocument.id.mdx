@@ -1,23 +1,39 @@
----
+--- 
 title : sendDocument
----
-## Gambaran
-Mengirim lokasi file Dokumen/url/buffer.
-## Parameter
-```ts
+--- 
+# sendDocument
+Mengirim Dokumen dengan lokasi file/url/buffer/fileId/[TypeMediaDocument](/beta/modules/Utils.Medias.html#TypeMessageMediaDocument). 
+## Parameters 
+```ts  
 ctx.telegram.sendDocument(chatId,document,more)
 ```
-- `chatId` (_angka|string_)
-     - Obrolan/Grup/Id Saluran.
-- `document` (_string|Buffer_)
-     - Lokasi File/Url/Buffer
-- `more` (_[sendMediaMoreParams](/en/telegram/media/SendMedia#parameters)_)
-## Contoh
-```ts highlight= 2
+
+| parameter | tipe | dibutuhkan | deskripsi | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | Ya | Chat/Groups/Channel id. |
+| document | `string` or `Buffer` or [TypeMediaDocument](/beta/modules/Utils.Medias.html#TypeMessageMediaDocument) | Ya | Dokumen yang akan di kirimkan |
+| more | JSON objek dari [Parameter Tambahan](#parameter-tambahan) | opsional | Parameter tambahan yang akan di gunakan untuk menjalankan fungsi ini. | 
+
+### Parameter Tambahan
+Parameter ini memperpanjang [sendMediaMoreParams](/methods/Media/sendMedia#parameter-tambahan).
+
+| params | type | description | 
+| :----: | :---: | :---------: |
+| workers | number | Berapa banyak pekerja yang digunakan untuk mengunggah file. apa pun di atas 16 tidak stabil. |
+| mimeType | string | Mime type dari documen |
+| filename | string | Kustom nama file dokumen | 
+| forceDocument |  boolean | paksa kirim sebagai dokumen, defaultnya adalah `true` | 
+| onProgress | [onProgress](/beta/interfaces/Telegram.Media.onProgress.html) | progress callback saat mengunggah dokumen | 
+| download | boolean | Ketika dokumen adalah url, paksa untuk mengunduh file itu terlebih dahulu sebelum mengunggah ke telegram. defaultnya adalah `false` | 
+| thumbnail | `Buffer` or `string` | Atur thumbnail dokumen, itu tidak akan berfungsi jika Anda mengisinya dengan fileId. | 
+
+
+## Example 
+```ts headlight="2"
 bot.command("doc",async (ctx) => {
-     let hasil = await ctx.telegram.sendDocument(ctx.chat.id,"https://tgsnake.js.org/images/tgsnake.jpg")
+    let results = await ctx.telegram.sendDocument(ctx.chat.id,"https://tgsnake.js.org/images/tgsnake.jpg")
 })
 ```
 ## Kemungkinan Kesalahan
-Sama seperti [sendMedia](/methods/Media/sendMedia#possibleerror)
-## Bot dapat menggunakan metode ini.
+Sama seperti [sendMedia](/methods/Media/sendMedia#possible-error)
+## Bot dapat menggunakan method ini

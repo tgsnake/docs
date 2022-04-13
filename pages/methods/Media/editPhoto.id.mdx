@@ -1,18 +1,20 @@
 ---
 title : editPhoto
 ---
-## Gambaran
+# editPhoto
 Ubah gambar profil obrolan.
 ## Parameter
 ```ts
 ctx.telegram.editFoto(chatId,foto)
 ```
-- `chatId` (_number|string|bigint_)
-    - Obrolan/Grup/Channel yang akan mengubah gambar profil.
-- `foto` (_string|Penyangga_)
-    - Lokasi file berada/Url/Buffer file.
+
+| parameter | tipe | diperlukan | deskripsi | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | Ya | Obrolan/Grup/Channel yang akan diubah photo profilnya. |
+| photo | `string` or `Buffer` | Ya | Lokasi file/Url/Buffer  |
+
 ## Contoh
-```ts highlight=3
+```ts highlight="3"
 bot.command("editPhoto", async (ctx)=>{
     if(!ctx.chat.private){
         let hasil = await ctx.telegram.editPhoto(ctx.chat.id,"https://tgsnake.js.org/images/tgsnake.jpg")

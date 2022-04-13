@@ -4,6 +4,14 @@
 /node_modules
 /.pnp
 .pnp.js
+/.yarn/*
+!/.yarn/patches
+!/.yarn/plugins
+!/.yarn/releases
+!/.yarn/sdks
+# Swap the comments on the following lines if you don't wish to use zero-installs
+# Documentation here: https://yarnpkg.com/features/zero-installs
+!/.yarn/cache
 
 # testing
 /coverage
@@ -32,3 +40,13 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# public 
+/public/*
+# images
+!/public/images
+# google site verification
+!/public/google971037164a284114.html
+
+# tgsnake 
+/tgsnake

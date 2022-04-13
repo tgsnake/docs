@@ -1,6 +1,6 @@
 {
   "index": {
-    "title": "Perkenalan"
+    "title": "Selamat datang di tgsnake"
   },
   "release": {
     "title": "Catatan Perubahan"
@@ -10,5 +10,8 @@
   },
   "methods": {
     "title": "Metode"
+  },
+  "faq" : {
+    "title" : "Pertanyaan yang Sering Diajukan"
   }
 }

@@ -1,34 +1,39 @@
 --- 
 title : editMessage 
 ---
-## Overview 
+# editMessage
 This method allow you to edit a message. 
 ## Parameters 
 ```ts 
 ctx.telegram.editMessage(chatId,messageId,text,more)
 ```
-- `chatId` (_number|string|bigint_) 
-    - Chat/Groups/Channel id.
-- `messageId` (_number_)  
-    - Message id to be edited.
-- `text` (_string_)  
-    - New Message/Caption. You can pass with blank string (`""`) if you want to edit media.
-- `more` (_object_)  
-    - `noWebpage` (_boolean_) 
-        - Disable webpage preview
-    - `media` (_[Api.TypeInputMedia](https://gram.js.org/beta/modules/tl_api.api.html#typeinputmedia)_) 
-        - New attached media
-    - `replyMarkup` (_TypeReplyMarkup_)
-        - Reply markup for inline keyboards.
-    - `entities` (_Entities[]_)
-        - Message Entities
-    - `scheduleDate` (_number_)
-        - Scheduled message date for scheduled messages.
-    - `parseMode` (_string_) 
-        - Parse mode. 
-## Example 
-_Example not found!_ 
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Target chat | 
+| messageId | number | true | Message id to be edited. | 
+| text | string | true | New Message/Caption. You can pass with blank string (`""`) if you want to edit media. | 
+| more | JSON object of [More Parameters](#more-parameters) | optional | More parametes will use to execute this function. | 
 
+### More Parameters
+| params | type | description | 
+| :----: | :---: | :---------: |
+| noWebpage | boolean | Disable webpage preview | 
+| media | [Api.TypeInputMedia](https://gram.js.org/beta/modules/tl_api.api.html#typeinputmedia) | New attached media
+| replyMarkup | [TypeReplyMarkup](/beta/modules/Utils.html#TypeReplyMarkup) | Reply markup for sending bot buttons. | 
+| entities | [Entities[]](https://github.com/tgsnake/parser/blob/5f4497d7fcd7bae610328005d411fd91bf37d7af/src/Entities.ts#L37) | message entities to style text. | 
+| scheduleDate | number | Scheduled message date for scheduled messages. | 
+| parseMode | string | parse mode to style the caption. see [tgsnake@parser](https://github.com/tgsnake/parser#available-parsemode) for formatting options |
+
+## Example 
+```ts highlight="3" 
+bot.command("editMessage",async (ctx)=>{
+    let msg = await ctx.reply("Hello") 
+    setTimeout(()=>{
+        return ctx.telegram.editMessage(msg.message.chat.id,msg.message.id,"Hohoho")
+    },5000)
+    return console.log(msg)
+})
+```
 ## Possible Error 
 | code | type | description | 
 | :---: | :---: | :------:| 

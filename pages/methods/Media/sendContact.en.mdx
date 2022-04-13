@@ -1,0 +1,40 @@
+---
+title : sendContact
+---
+# sendContact
+Sending contact
+## Parameters 
+```ts 
+ctx.telegram.sendContact(chatId, contact,more)
+```
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Chat/Groups/Channel id. |
+| contact | JSON object of [Contact](#venue) or [MediaContact](/beta/modules/Utils.Medias.html#MediaContact) | true | Contact will be sending | 
+| more | JSON Object of [defaultSendMediaMoreParams](/methods/Media/sendMedia#default-parameters) | Optional | More parametes will use to execute this function. | 
+
+### Venue 
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| firstName | string | true | first name of user | 
+| lastName | string | true | last name of user | 
+| phoneNumber | string | true | phone number of user | 
+| vcard | string | true | vcard | 
+
+## Example 
+```ts highlight="2-7"
+bot.command("contact",async (ctx) => {
+    let results = await ctx.telegram.sendContact(ctx.chat.id,{
+        firstName : "someone",
+        lastName : "",
+        phoneNumber : "1234567890",
+        vcard : "something info"
+    })
+    console.log(results)
+})
+```
+## Possible Error 
+Same as [sendMedia](/methods/Media/sendMedia#possible-error)
+## Bot can use this method.

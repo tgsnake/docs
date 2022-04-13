@@ -1,7 +1,7 @@
 ---
 title : getChatMembersCount
 ---
-## Gambaran
+# getChatMembersCount
 Dapatkan jumlah anggota dalam obrolan.
 
 ## Parameter
@@ -9,11 +9,12 @@ Dapatkan jumlah anggota dalam obrolan.
 ctx.telegram.getChatMembersCount(chatId)
 ```
 
-- `obrolan` (_number|string|bigint_)
-     - Obrolan atau id saluran untuk mendapatkan jumlah anggota.
+| parameter | tipe | diperlukan | deskripsi | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | Ya | Chat/Groups/Channel id/username. |
 
 ## Contoh
-```ts highlight= 2
+```ts highlight="2"
 bot.command("getChatMembersCount",async (ctx) => {
      let hasil = await ctx.telegram.getChatMembersCount(ctx.chat.id)
      console.log(hasil)

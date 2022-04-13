@@ -1,7 +1,17 @@
 {
-  "editPhoto": "editPhoto",
-  "sendDocument": "sendDocument",
-  "sendPhoto": "sendPhoto",
-  "sendSticker": "sendSticker",
-  "sendMedia": "sendMedia"
+  "sendAudio" : "telegram.sendAudio",
+  "sendAnimation" : "telegram.sendAnimation",
+  "sendContact" : "telegram.sendContact",
+  "sendDocument" : "telegram.sendDocument",
+  "sendDice" : "telegram.sendDice",
+  "editPhoto" : "telegram.editPhoto",
+  "sendLocation" : "telegram.sendLocation",
+  "sendMedia" : "telegram.sendMedia",
+  "sendPhoto" : "telegram.sendPhoto",
+  "sendPoll" : "telegram.sendPoll",
+  "sendSticker" : "telegram.sendSticker",
+  "sendVenue" : "telegram.sendVenue",
+  "sendVoice" : "telegram.sendVoice",
+  "sendVideo" : "telegram.sendVideo",
+  "sendVideoNote" : "telegram.sendVideoNote"
 }

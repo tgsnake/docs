@@ -1,0 +1,37 @@
+---
+title : sendLocation
+---
+# sendLocation
+Sending location
+## Parameters 
+```ts 
+ctx.telegram.sendLocation(chatId,location,more)
+```
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Chat/Groups/Channel id. |
+| location | JSON object of [Location](#location) or [MediaLocation](/beta/modules/Utils.Medias.html#MediaLocation) | true | Location will be sending | 
+| more | JSON Object of [defaultSendMediaMoreParams](/methods/Media/sendMedia#default-parameters) | Optional | More parametes will use to execute this function. | 
+
+### Location
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| latitude | number | true | Latitude |
+| longitude | number | true | Longitude | 
+| accuracyRadius | number | Optional | The estimated horizontal accuracy of the location, in meters; as defined by the sender. |
+
+## Example 
+```ts highlight="2-5"
+bot.command("location",async (ctx) => {
+    let results = await ctx.telegram.sendLocation(ctx.chat.id,{
+        latitude : 0,
+        longitude : 0
+    })
+    console.log(results)
+})
+```
+## Possible Error 
+Same as [sendMedia](/methods/Media/sendMedia#possible-error)
+## Bot can use this method.

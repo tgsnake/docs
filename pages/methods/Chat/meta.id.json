@@ -1,15 +1,15 @@
 {
-  "editAdmin": "editAdmin",
-  "editBanned": "editBanned",
-  "editTitle": "editTitle",
-  "getAdminedPublicChannels": "getAdminedPublicChannels",
-  "getAdminLog": "getAdminLog",
-  "getChannels": "getChannels",
-  "getFullChat": "getFullChat",
-  "getGroupsForDiscussion": "getGroupsForDiscussion",
-  "getInactiveChannels": "getInactiveChannels",
-  "getLeftChannels": "getLeftChannels",
-  "getChatMember": "getChatMember",
-  "getChatMembers": "getChatMembers",
-  "getChatMembersCount": "getChatMembersCount"
+  "editAdmin": "telegram.editAdmin",
+  "editBanned": "telegram.editBanned",
+  "editTitle": "telegram.editTitle",
+  "getAdminedPublicChannels": "telegram.getAdminedPublicChannels",
+  "getAdminLog": "telegram.getAdminLog",
+  "getChannels": "telegram.getChannels",
+  "getFullChat": "telegram.getFullChat",
+  "getGroupsForDiscussion": "telegram.getGroupsForDiscussion",
+  "getInactiveChannels": "telegram.getInactiveChannels",
+  "getLeftChannels": "telegram.getLeftChannels",
+  "getChatMember": "telegram.getChatMember",
+  "getChatMembers": "telegram.getChatMembers",
+  "getChatMembersCount": "telegram.getChatMembersCount"
 }

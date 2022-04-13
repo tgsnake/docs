@@ -1,0 +1,41 @@
+--- 
+title : sendVideo
+--- 
+# sendVideo
+Sending Video with file location/url/buffer/fileId/[MediaVideo](/beta/modules/Utils.Medias.html#MediaVideo). 
+## Parameters 
+```ts  
+ctx.telegram.sendVideo(chatId,video,more)
+```
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Chat/Groups/Channel id. |
+| video | `string` or `Buffer` or [MediaVideo](/beta/modules/Utils.Medias.html#MediaVideo) | true | Video will sending |
+| more | JSON object of [More Parameters](#more-parameters) | optional | More parametes will use to execute this function. | 
+
+### More Parametes 
+This parameter is extending [sendMediaMoreParams](/methods/Media/sendMedia#more-parameters).
+
+| params | type | description | 
+| :----: | :---: | :---------: |
+| workers | number | How many workers to use to upload the file. anything above 16 is unstable. |
+| mimeType | string | Mime type of video |
+| onProgress | [onProgress](/beta/interfaces/Telegram.Media.onProgress.html) | progress callback when uploading video | 
+| download | boolean | When video is url, force to downloading that file first before uploading to telegram. default is `false` | 
+| thumbnail | `Buffer` or `string` | Set the thumbnail of document, it won't work if you pass with fileId. | 
+| width | number | width the video |
+| height | number | height the video | 
+| duration | number | duration the video | 
+| supportsStreaming | boolean | make the video support streaming. | 
+
+## Example 
+```ts hightlight="2"
+bot.command("vid",async (ctx) => {
+    let results = await ctx.telegram.sendVideo(ctx.chat.id,"https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4")
+    return console.log(results)
+})
+```
+## Possible Error 
+Same as [sendMedia](/methods/Media/sendMedia#possible-error)
+## Bot can use this method.

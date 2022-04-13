@@ -1,0 +1,26 @@
+---
+title : sendDice 
+---
+# sendDice
+Sending media dice
+## Parameters 
+```ts 
+ctx.telegram.sendVenue(chatId,dice,more)
+```
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Chat/Groups/Channel id. |
+| dice | `string` or [MediaDice](/beta/modules/Utils.Medias.html#MediaDice) | true | Emoji dice will be sending | 
+| more | JSON Object of [defaultSendMediaMoreParams](/methods/Media/sendMedia#default-parameters) | Optional | More parametes will use to execute this function. | 
+
+## Example 
+```ts highlight="2"
+bot.command("dice",async (ctx) => {
+    let results = await ctx.telegram.sendDice(ctx.chat.id,"🎯")
+    console.log(results)
+})
+```
+## Possible Error 
+Same as [sendMedia](/methods/Media/sendMedia#possible-error)
+## Bot can use this method.

@@ -1,25 +1,28 @@
 --- 
 title : pinMessage 
 ---
-## Overview 
+# pinMessage
 Pin or unpin a message.
 ## Parameters 
 ```ts 
 ctx.telegram.pinMessage(chatId,messageId,more)
 ```
-- `chatId` (_number|string|bigint_) 
-    - where to pin or unpin the message.
-- `messageId` (_number_) 
-    - The message to pin or unpin 
-- `more` (_object_) 
-    - `silent` (_boolean_) 
-        - Pin the message silently, without triggering a notification.
-    - `unpin` (_boolean_) 
-        - Whether the message should unpinned or pinned.
-    - `pmOneside` (_boolean_) 
-        - Whether the message should only be pinned on the local side of a one-to-one chat.
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | where to pin or unpin the message. |
+| messageId | number | true | The message to pin or unpin |
+| more | JSON object of [More Parameters](#more-parameters) | optional | More parametes will use to execute this function. | 
+
+### More Parameters 
+
+| params | type | description | 
+| :----: | :---: | :---------: | 
+| silent | boolean | Pin the message silently, without triggering a notification. | 
+| unpin | boolean | Whether the message should unpinned or pinned. | 
+| pmOneside | boolean | Whether the message should only be pinned on the local side of a one-to-one chat. | 
+
 ## Example 
-```ts headlight=2,8
+```ts highlight="2,8"
 bot.command("pin",async (ctx)=>{
     let results = await ctx.telegram.pinMessage(ctx.chat.id,ctx.id) 
     console.log(results) 

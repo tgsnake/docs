@@ -1,16 +1,18 @@
 ---
 title : readMessageContents
 ---
-## Gambaran
+# readMessageContents
 Memberi tahu pengirim tentang penerima yang telah mendengarkan pesan suara atau menonton video.
 ## Parameter
 ```ts
 ctx.telegram.readMessageContents(messageId)
 ```
-- `messageId` (_number[]_)
-     - ID Pesan
+| parameter | tipe | diperlukan | deskripsi | 
+| :----: | :---: | :-----: | :---------: |
+| messageId | Array&lt;number&gt; | Ya | List ID Pesan | 
+
 ## Contoh
-```ts highlight=3
+```ts highlight="3"
 bot.on("message",async (ctx)=>{
      if(ctx.media){
          let hasil = await ctx.telegram.readMessageContents([ctx.id])

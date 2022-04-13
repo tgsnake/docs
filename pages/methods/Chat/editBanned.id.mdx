@@ -1,51 +1,54 @@
 ---
 title : editBanned
 ---
-## Gambaran
+# editBanned
 Melarang/membatalkan larangan/menendang pengguna di grup/saluran super.
 ## Parameters
 ```ts
 ctx.telegram.editBanned(chatId,userId,more)
 ```
-- `chatId` (_number|string|bigint_)
-    - Id Obrolan/Grup/Saluran.
-- `userId` (_number|string|bigint_)
-    - Identitas pengguna.
-- `more` (_objek_)
-    - `untilDate` (_number_)
-      - Validitas izin tersebut (dianggap selamanya nilai apa pun kurang dari 30 detik atau lebih dari 366 hari).
-    - `viewMessages` (_boolean_)
-      - Jika disetel, tidak mengizinkan pengguna melihat pesan di grup super/saluran/obrolan.
-    - `sendMessage` (_boolean_)
-      - Jika disetel, tidak mengizinkan pengguna mengirim pesan dalam supergrup/obrolan.
-    - `sendMedia` (_boolean_)
-      - Jika disetel, tidak mengizinkan pengguna mengirim media apa pun dalam supergrup/obrolan.
-    - `sendStickers` (_boolean_)
-      - Jika disetel, tidak mengizinkan pengguna mengirim stiker di supergrup/obrolan.
-    - `sendGifs` (_boolean_)
-      - Jika disetel, tidak mengizinkan pengguna mengirim gif di grup super/obrolan.
-    - `sendGames` (_boolean_)
-      - Jika disetel, tidak mengizinkan pengguna mengirim game dalam supergrup/obrolan.
-    - `sendInline` (_boolean_)
-      - Jika disetel, tidak mengizinkan pengguna untuk menggunakan bot sebaris dalam supergrup/obrolan.
-    - `sendPolls` (_boolean_)
-      - Jika disetel, tidak mengizinkan pengguna mengirim stiker di supergrup/obrolan.
-    - `changeInfo` (_boolean_)
-      - Jika disetel, tidak mengizinkan pengguna mengubah deskripsi supergrup/obrolan.
-    - `inviteUsers` (_boolean_)
-      - Jika disetel, tidak mengizinkan pengguna mana pun untuk mengundang pengguna di grup super/obrolan.
-    - `pinMessages` (_boolean_)
-      - Jika disetel, tidak mengizinkan pengguna mana pun untuk menyematkan pesan di grup super/obrolan.
-    - `embedLinks` (_boolean_)
-      - Jika disetel, tidak mengizinkan pengguna untuk menyematkan tautan dalam pesan grup super/obrolan.
+| parameter | tipe | diperlukan | deskripsi | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | Ya | Chat/Groups/Channel id/username. |
+| userd | `string` or `bigint` | Ya | User id/username. |
+| more | JSON object dari [Parameter Tambahan](#parameter-tambahan) | opsional | Parameter tambahan yang akan di gunakan untuk menjalankan fungsi ini | 
+
+### Parameter Tambahan
+| parameter | tipe | deskripsi | 
+| :----: | :---: | :---------: |
+| untilDate | number | Validitas izin tersebut (dianggap selamanya nilai apa pun kurang dari 30 detik atau lebih dari 366 hari). | 
+| viewMessages | boolean | Jika disetel, tidak mengizinkan pengguna melihat pesan di grup super/saluran/obrolan. | 
+| sendMessage | boolean | Jika disetel, tidak mengizinkan pengguna mengirim pesan dalam supergrup/obrolan. | 
+| sendMedia | boolean | Jika disetel, tidak mengizinkan pengguna mengirim media apa pun dalam supergrup/obrolan. | 
+| sendStickers | boolean | Jika disetel, tidak mengizinkan pengguna mengirim stiker di supergrup/obrolan. | 
+| sendGifs | boolean | Jika disetel, tidak mengizinkan pengguna mengirim gif di grup super/obrolan. | 
+| sendGames | boolean | Jika disetel, tidak mengizinkan pengguna mengirim game dalam supergrup/obrolan. | 
+| sendInline | boolean | Jika disetel, tidak mengizinkan pengguna untuk menggunakan bot sebaris dalam supergrup/obrolan. | 
+| sendPolls | boolean | Jika disetel, tidak mengizinkan pengguna mengirim stiker di supergrup/obrolan. | 
+| changeInfo | boolean | Jika disetel, tidak mengizinkan pengguna mengubah deskripsi supergrup/obrolan. | 
+| inviteUsers | boolean | Jika disetel, tidak mengizinkan pengguna mana pun untuk mengundang pengguna di grup super/obrolan. | 
+| pinMessages | boolean | Jika disetel, tidak mengizinkan pengguna mana pun untuk menyematkan pesan di grup super/obrolan. | 
+| embedLinks | boolean | Jika disetel, tidak mengizinkan pengguna untuk menyematkan tautan dalam pesan grup super/obrolan. | 
+
 ## Contoh
-```ts highlight=3
+```ts highlight="3"
 bot.command("ban",async (ctx) => {
   if((!ctx.chat.private) && ctx.replyToMessage){
    let hasil = await ctx.telegram.editBanned(ctx.chat.id,ctx.replyToMessage.from.id)
     console.log(hasil)
   }
 })
+```
+## Shorthand function 
+```ts 
+// banChatMember 
+ctx.telegram.banChatMember(chatId,userId)
+// kickChatMember 
+ctx.telegram.kickChatMember(chatId,userId)
+// unbanChatMember 
+ctx.telegram.unbanChatMember(chatId,userId)
+// restrictChatMember 
+ctx.telegram.restrictChatMember(chatId,userId,more)
 ```
 ## Kemungkinan Kesalahan
 

@@ -1,60 +1,42 @@
 // Tgsnake - Telegram MTProto framework developed based on gram.js.
-// Copyright (C) 2021 Butthx <https://guthub.com/butthx>
+// Copyright (C) 2022 Butthx <https://github.com/butthx>
 //
 // This file is part of Tgsnake
 //
 // Tgsnake is a free software : you can redistribute it and/or modify
 //  it under the terms of the MIT License as published.
-import {useEffect,useState} from "react"
-export function TabGroup({children}){
-  const [key,setKey] = useState(children[0].props.name)
-  return (
-      <div className="tabGroup">
-        <div className="tabList mb-2 pb-2 overflow-x-auto flex">
-          {
-            children.map((el,i)=>(
-              <span 
-                key={`${el.props.name}_title_${i}`} 
-                id= {`${el.props.name}_title_${i}`} 
-                className={`
-                  tabName px-2 mx-1 mt-2 text-md w-auto hover:border-opacity-100 hover:text-blue-500 hover:border-b-2 hover:border-blue-500 hover:transition-all hover:duration-500 ${
-                    key == el.props.name 
-                      ? `border-blue-500 border-opacity-100 text-blue-500 border-b-2 transition-all duration-500` 
-                      : `border-gray-500 border-b-2 border-opacity-50 transition-all duration-500`
-                  }
-                `}
-                onClick={
-                  (e) => {
-                    e.preventDefault();
-                    setKey(el.props.name);
-                  }
-                }
-              >
-              {el.props.name}
-              </span>
-            ))
-          }
-        </div>
-        <div className="tabContent"> 
-          {
-            children.map((el,i)=>(
-              <span 
-                key={`${el.props.name}_content_${i}`} 
-                id= {`${el.props.name}_content_${i}`}
-                className={
-                  key == el.props.name 
-                    ? "" 
-                    : "hidden"
-                }
-              >
-                {el.props.children}
-              </span>
-            ))
-          }
-        </div>
-      </div>
-    )
+import { Tab } from '@headlessui/react';
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ');
 }
-export function TabContent ({children}){
-  return <>{children}</>
+export function TabGroup({ children }) {
+  return (
+    <Tab.Group>
+      <Tab.List className='mb-2 pb-2 overflow-x-auto flex'>
+        {children.map((el, i) => (
+          <Tab
+            key={`tab_${el.props.name}`}
+            className={({ selected }) =>
+              classNames(
+                `px-2 mx-1 mt-2 text-md w-auto hover:border-opacity-100 hover:text-blue-500 hover:border-b-2 hover:border-blue-500 hover:transition-all hover:duration-500`,
+                selected
+                  ? `border-blue-500 border-opacity-100 text-blue-500 border-b-2 transition-all duration-500`
+                  : `border-gray-500 border-b-2 border-opacity-50 transition-all duration-500`
+              )
+            }
+          >
+            {el.props.name}
+          </Tab>
+        ))}
+      </Tab.List>
+      <Tab.Panels>
+        {children.map((el, i) => (
+          <Tab.Panel key={`panel_${el.props.name}`}>{el.props.children}</Tab.Panel>
+        ))}
+      </Tab.Panels>
+    </Tab.Group>
+  );
+}
+export function TabContent({ children }) {
+  return <>{children}</>;
 }

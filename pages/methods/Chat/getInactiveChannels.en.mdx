@@ -1,20 +1,20 @@
 --- 
 title : getInactiveChannels 
 --- 
-## Overview 
+# getInactiveChannels
 Get inactive channels and supergroups.
 ## Parameters 
 ```ts 
 ctx.telegram.getInactiveChannels()
 ```
-- 
+No required parameters
 ## Example 
-```ts headlight=2
+```ts highlight="2"
 bot.command("getInactiveChannels",async (ctx) => {
     let results = await ctx.telegram.getInactiveChannels() 
     console.log(results)
 })
 ```
 ## Possible Error 
-- 
+No Possible Error
 ## Bot can't use this method.

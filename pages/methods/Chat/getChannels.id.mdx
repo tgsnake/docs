@@ -1,16 +1,18 @@
 ---
 title : getChannels
 ---
-## Gambaran
+# getChannels
 Dapatkan info tentang saluran/supergrup.
 ## Parameter
 ```ts
 ctx.telegram.getChannels(chatId)
 ```
-- `chatId` (_number[]|string[]|bigint[]_)
-     - Daftar id saluran.
+| parameter | type | diperlukan | deskripsi |
+| :----: | :---: | :-----: | :---------: |
+| chatId | Array&lt;`string` atau `bigint`&gt; | Ya | Daftar id saluran. | 
+
 ## Contoh
-```ts highlight=2
+```ts highlight="2"
 bot.command("getChannels",async (ctx) => {
      let hasil = await ctx.telegram.getChannels([ctx.chat.id])
      console.log(hasil)

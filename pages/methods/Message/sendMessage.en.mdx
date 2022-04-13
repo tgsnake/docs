@@ -1,41 +1,50 @@
 --- 
 title : sendMessage 
 --- 
-## Overview 
+# sendMessage
 Sending a message text. 
 ## Parameters 
 ```ts 
 ctx.telegram.sendMessage(chatId,text,more)
 ```
-- `chatId` (_number|string_) 
-    - Destinations.
-- `text` (_string_) 
-    - Message.
-- `more` (_object_)
-    - `noWebpage` (_boolean_) 
-        - disable web page preview.
-    - `silent` (_boolean_) 
-        - send message with silent.
-    - `background` (_boolean_) 
-        - send as background message.
-    - `parseMode` (_string_) 
-        - parse mode to style the text.
-    - `clearDraft` (_boolean_) 
-        - clear the draf field.
-    - `replyToMsgId` (_number_) 
-        - send with reply a message.
-    - `replyMarkup` (_TypeReplyMarkup_) 
-        - Reply markup for sending bot buttons.
-    - `entities` (_Entities[]_) 
-        - message entities to style the text.
-    - `scheduleDate` (_number_) 
-        - create a schedule message. 
+
+| params | type | required | description | 
+| :----: | :---: | :-----: | :---------: |
+| chatId | `string` or `bigint` | true | Destinations. | 
+| text | string | true | Message. | 
+| more | JSON object of [More Parameters](#more-parameters) | optional | More parametes will use to execute this function. | 
+
+### More Parameters 
+
+| params | type | description | 
+| :----: | :---: | :---------: |
+| noWebpage | boolean | disable web page preview. | 
+| silent | boolean | send message with silent. | 
+| background | boolean | send as background message. | 
+| parseMode | string | parse mode to style the caption. see [tgsnake@parser](https://github.com/tgsnake/parser#available-parsemode) for formatting options | 
+| clearDraft | boolean | clear the draf field. | 
+| replyToMsgId | number | send with reply a message. | 
+| replyMarkup | [TypeReplyMarkup](/beta/modules/Utils.html#TypeReplyMarkup) | Reply markup for sending bot buttons. | 
+| entities | [Entities[]](https://github.com/tgsnake/parser/blob/5f4497d7fcd7bae610328005d411fd91bf37d7af/src/Entities.ts#L37) | message entities to style the caption. | 
+| scheduleDate | number | create a schedule message. | 
+| sendAs | string | send as channel | 
+| noforwards | boolean | Only for bots, disallows forwarding and saving of the messages, even if the destination chat doesn't have content protection enabled |
+
 ## Example 
-```ts highlight=2
+```ts highlight="2"
 bot.command("sendMessage",async (ctx)=>{
     let results = await ctx.telegram.sendMessage(ctx.chat.id,"hello")
     console.log(results)
 })
+```
+## Shorthand function
+```ts
+MessageContext.reply(text,more);
+MessageContext.replyWithHTML(text,more);
+MessageContext.replyWithMarkdown(text,more);
+MessageContext.replyToMessage.reply(text,more)
+MessageContext.replyToMessage.replyWithHTML(text,more) 
+MessageContext.replyToMessage.replyWithMarkdown(text,more) 
 ```
 ## Possible Error 
 | code | type | description | 
