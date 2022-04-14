@@ -11,11 +11,6 @@ center {
 body {
   @apply transition duration-500
 }
-details > summary {
-  list-style: none;
+footer {
+  @apply break-all
 }
-/**
-details > summary::marker {
-  display: none;
-}
-*/
