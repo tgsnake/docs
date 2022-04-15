@@ -132,46 +132,46 @@ Composer.use((ctx, next) => {
 <TabGroup>
   <TabContent name="typescript">
 
-    ```typescript
-    // index.ts
-    // import the composer first from tgsnake.
-    import { Composer, Snake } from 'tgsnake';
-    //      ^^^^^^^^
-    // You have successfully imported, the next step is to create a new composer
-    const new_composer = new Composer();
-    //    ^^^^^^^^^^^^
-    // You can rename with anything.
-    const bot = new Snake();
-    //    ^^^^^^^^^^^^^^^^^
-    // Make sure you already have a client.
-    bot.use(new_composer.middleware());
-    //      ^^^^^^^^^^^^^^^^^^^^^^^^^
-    // Running the Composer using middleware. Well this is a required part to make a composer work.
-    bot.run();
+```typescript
+// index.ts
+// import the composer first from tgsnake.
+import { Composer, Snake } from 'tgsnake';
+//      ^^^^^^^^
+// You have successfully imported, the next step is to create a new composer
+const new_composer = new Composer();
+//    ^^^^^^^^^^^^
+// You can rename with anything.
+const bot = new Snake();
+//    ^^^^^^^^^^^^^^^^^
+// Make sure you already have a client.
+bot.use(new_composer.middleware());
+//      ^^^^^^^^^^^^^^^^^^^^^^^^^
+// Running the Composer using middleware. Well this is a required part to make a composer work.
+bot.run();
 
-    ```
+```
 
   </TabContent>
   <TabContent name="javascript">
 
-    ```typescript
-    // index.js
-    // import the composer first from tgsnake.
-    const { Composer, Snake } = required('tgsnake');
-    //      ^^^^^^^^
-    // You have successfully imported, the next step is to create a new composer
-    const new_composer = new Composer();
-    //    ^^^^^^^^^^^^
-    // You can rename with anything.
-    const bot = new Snake();
-    //    ^^^^^^^^^^^^^^^^^
-    // Make sure you already have a client.
-    bot.use(new_composer.middleware());
-    //      ^^^^^^^^^^^^^^^^^^^^^^^^^
-    // Running the Composer using middleware. Well this is a required part to make a composer work.
-    bot.run();
+```typescript
+// index.js
+// import the composer first from tgsnake.
+const { Composer, Snake } = required('tgsnake');
+//      ^^^^^^^^
+// You have successfully imported, the next step is to create a new composer
+const new_composer = new Composer();
+//    ^^^^^^^^^^^^
+// You can rename with anything.
+const bot = new Snake();
+//    ^^^^^^^^^^^^^^^^^
+// Make sure you already have a client.
+bot.use(new_composer.middleware());
+//      ^^^^^^^^^^^^^^^^^^^^^^^^^
+// Running the Composer using middleware. Well this is a required part to make a composer work.
+bot.run();
 
-    ```
+```
 
   </TabContent>
 </TabGroup><br/>

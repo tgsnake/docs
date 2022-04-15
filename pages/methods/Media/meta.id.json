@@ -2,6 +2,7 @@
   "sendAudio" : "telegram.sendAudio",
   "sendAnimation" : "telegram.sendAnimation",
   "sendContact" : "telegram.sendContact",
+  "download" : "telegram.download",
   "sendDocument" : "telegram.sendDocument",
   "sendDice" : "telegram.sendDice",
   "editPhoto" : "telegram.editPhoto",
