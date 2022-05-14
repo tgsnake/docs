@@ -30,6 +30,7 @@ async function Typedoc() {
     });
   }
   if (!fs.existsSync(path.join(dir, 'node_modules'))) {
+    if(fs.existsSync(path.join(dir,'yarn.lock'))) await fs.unlinkSync(path.join(dir,'yarn.lock'));
     console.log('installing dependencies and Building typedoc');
     await exec(
       'yarn install && yarn typedoc && mv ./beta ../public/beta',
