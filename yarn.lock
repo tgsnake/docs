@@ -3652,7 +3652,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked@npm:^4.0.12":
+"marked@npm:4.0.12":
   version: 4.0.12
   resolution: "marked@npm:4.0.12"
   bin:
@@ -6877,7 +6877,7 @@ __metadata:
     gray-matter: 4.0.3
     htmlparser2: 7.2.0
     isomorphic-git: 1.17.0
-    marked: ^4.0.12
+    marked: 4.0.12
     next: 12.0.4
     next-sitemap: 2.5.14
     nextjs: 0.0.3
