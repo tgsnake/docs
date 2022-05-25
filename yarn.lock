@@ -4786,7 +4786,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-localstorage@npm:^2.1.6":
+"node-localstorage@npm:^2.2.1":
   version: 2.2.1
   resolution: "node-localstorage@npm:2.2.1"
   dependencies:
@@ -5968,7 +5968,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"socks@npm:^2.6.1":
+"socks@npm:^2.6.1, socks@npm:^2.6.2":
   version: 2.6.2
   resolution: "socks@npm:2.6.2"
   dependencies:
@@ -6378,9 +6378,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"telegram@npm:2.5.22":
-  version: 2.5.22
-  resolution: "telegram@npm:2.5.22"
+"telegram@npm:2.8.4":
+  version: 2.8.4
+  resolution: "telegram@npm:2.8.4"
   dependencies:
     "@cryptography/aes": ^0.1.1
     async-mutex: ^0.3.0
@@ -6389,10 +6389,10 @@ __metadata:
     bufferutil: ^4.0.3
     htmlparser2: ^6.1.0
     mime: ^3.0.0
-    node-localstorage: ^2.1.6
+    node-localstorage: ^2.2.1
     pako: ^2.0.3
     path-browserify: ^1.0.1
-    socks: ^2.6.1
+    socks: ^2.6.2
     store2: ^2.12.0
     ts-custom-error: ^3.2.0
     utf-8-validate: ^5.0.5
@@ -6402,7 +6402,7 @@ __metadata:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: e3cfb255cb0998d30a55741e6f4cda4b4fae850244c493050044a1fc8798715c2df46f2e383f1ef425e4c2fba6149c3fa86ebc71ba5d61162f7bfd56d81bd9bd
+  checksum: 7dd1bf1d3e2467d4cd5b4d6fc1cb247768fe6239636552f96505c578f557fbdc50b3ede2396654b65ee70b97f27c1e7943949236ca831a36af7697df01d342d8
   languageName: node
   linkType: hard
 
@@ -6888,7 +6888,7 @@ __metadata:
     react: 17.0.2
     react-dom: 17.0.2
     tailwindcss: 3.0.24
-    telegram: 2.5.22
+    telegram: 2.8.4
   languageName: unknown
   linkType: soft
 
