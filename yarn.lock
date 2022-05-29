@@ -4550,9 +4550,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-sitemap@npm:2.5.14":
-  version: 2.5.14
-  resolution: "next-sitemap@npm:2.5.14"
+"next-sitemap@npm:2.5.28":
+  version: 2.5.28
+  resolution: "next-sitemap@npm:2.5.28"
   dependencies:
     "@corex/deepmerge": ^2.6.148
     minimist: ^1.2.6
@@ -4560,7 +4560,7 @@ __metadata:
     next: "*"
   bin:
     next-sitemap: bin/next-sitemap
-  checksum: 097a158f3fdb0d9784c1b83b959dec7c8f757ac57d78154817b3d71ea33418ea3e3a97ba663de04d6e5fcfdc425f32ae4b1045bd85613bc5534d7693dff2ce95
+  checksum: 8d60a645df3e67da68a649bec0e839f4308124286456f051513ef74103bf6914ab370ebb2b57ff79db1f685988b6c35053fd6679324edd9a9426ca9f7d1c84bd
   languageName: node
   linkType: hard
 
@@ -6879,7 +6879,7 @@ __metadata:
     isomorphic-git: 1.17.0
     marked: 4.0.12
     next: 12.0.4
-    next-sitemap: 2.5.14
+    next-sitemap: 2.5.28
     nextjs: 0.0.3
     nextra: beta
     nextra-theme-docs: beta
