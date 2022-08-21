@@ -13,5 +13,11 @@
   },
   "faq" : {
     "title" : "Frequently Asked Questions"
+  },
+  "typedocs" : {
+    "title" : "Typedocs Version ↗",
+    "type" : "page",
+    "href" : "/beta/index.html",
+    "newWindow" : true
   }
 }

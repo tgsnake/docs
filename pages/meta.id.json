@@ -13,5 +13,11 @@
   },
   "faq" : {
     "title" : "Pertanyaan yang Sering Diajukan"
+  },
+  "typedocs" : {
+    "title" : "Versi Typedocs ↗",
+    "type" : "page",
+    "href" : "/beta/index.html",
+    "newWindow" : true
   }
 }
