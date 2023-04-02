@@ -12,9 +12,18 @@ To prevent this , try to take the following actions:
 
 - Use an account on the official Telegram for at least one month of interaction _(sending messages, joining groups, etc...)_.
 - Setting **deviceModel**, **appVersion** and **systemVersion** manually. This is intended when you create a local session and want to use it on any VPS or cloud host so that it is not declared as abuse.
-- The platform is must be same with you app when creating on [my.telegram.org](https://my.telegram.org/).
+- The **deviceModel** platform is must be same with your **platform** app when creating on [my.telegram.org](https://my.telegram.org/).
 - Do not login and logout too often. Because it can cause a telegram marked your account as abuse.
 
+```js {3-5} filename="tgsnake.config.js" 
+const config = {
+  // your config 
+  clientOptions : {
+    deviceModel : 'Android'
+  }
+}
+module.exports = config
+```
 ## Can i install on termux?
 Yeah of course, different from v2 which requires installing python, in this v3 you can directly install without having to install python first.
 ```bash 
