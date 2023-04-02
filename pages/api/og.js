@@ -24,7 +24,7 @@ export default function (req) {
       >
         <div tw='flex justify-center'>
           <img
-            src='http://localhost:3000/images/tgsnake.png'
+            src={`${req.nextUrl.origin}/images/tgsnake.png`}
             width={320 * 2.5}
             height={180 * 2.5}
           />

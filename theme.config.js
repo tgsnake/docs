@@ -20,7 +20,8 @@ export default {
   head : () => { 
     const { title } = useConfig() 
     const { route } = useRouter() 
-    const socialCard = `http://localhost:3000/api/og?title=${title ?? ''}`
+    const origin = typeof window !== 'undefined' && window.location.origin ? window.location.origin : '';
+    const socialCard = `${origin}/api/og?title=${title ?? ''}`
     return (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
