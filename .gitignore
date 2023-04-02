@@ -49,4 +49,4 @@ yarn-error.log*
 !/public/google971037164a284114.html
 
 # tgsnake 
-/tgsnake
+./tgsnake

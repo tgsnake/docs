@@ -10,6 +10,9 @@
   "guide" : {
     "title" : "Guide"
   },
+  "tgsnake" : {
+    "title" : "@tgsnake"
+  },
   "-- resources" : {
     "type" : "separator",
     "title" : "Resources"
