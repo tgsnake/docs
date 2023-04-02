@@ -9,7 +9,7 @@ const { IV } = require('./IV');
 const { Rss } = require('./rss');
 const { Typedoc } = require('./typedoc');
 (async () => {
-  if(!process.env.VERCEL && !process.env.VERCEL_ENV){
+  if (!process.env.VERCEL && !process.env.VERCEL_ENV) {
     return false;
   }
   console.log('Generating Rss');

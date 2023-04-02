@@ -1,0 +1,25 @@
+--- 
+title: Frequently Asked Questions
+---
+
+# Frequently Asked Questions 
+## Why my account is banned after logined?
+The problem with the banned account is still ambiguous. In every MTProto framework, there will always be this problem and of course there is no definite reason.  
+> Due to excessive abuse of the Telegram API, all accounts that sign up or log in using unofficial Telegram API clients are automatically put under observation to avoid violations of the Terms of Service. ([obtaining_api_id](https://core.telegram.org/api/obtaining_api_id#using-the-api-id))  
+  
+To prevent this , try to take the following actions: 
+> Maybe it's not completely working, but what's the harm in trying :)
+
+- Use an account on the official Telegram for at least one month of interaction _(sending messages, joining groups, etc...)_.
+- Setting **deviceModel**, **appVersion** and **systemVersion** manually. This is intended when you create a local session and want to use it on any VPS or cloud host so that it is not declared as abuse.
+- Do not login and logout too often. Because it can cause a telegram marked your account as abuse.
+
+## Can i install on termux?
+Yeah of course, different from v2 which requires installing python, in this v3 you can directly install without having to install python first.
+```bash 
+npx create-tgsnake-app myapp
+```
+## Can i use webhook?
+Sadly no, MTProto use a long polling for handle and recive update from telegram. That different with bot api which is can use webhook for handle and receive update from telegram.
+## Can i use on browser?
+Maybe nope for this time, we are not testing on browser. Maybe soon we will try to make a browser support. But don't worry, some of our frameworks are supported on Deno!

@@ -1,0 +1,42 @@
+{
+  "index" : {
+    "type" : "page",
+    "title" : "Welcome",
+    "display" : "hidden"
+  },
+  "getting-started" : {
+    "title" : "Getting Started"
+  },
+  "guide" : {
+    "title" : "Guide"
+  },
+  "-- resources" : {
+    "type" : "separator",
+    "title" : "Resources"
+  },
+  "faq" : {
+    "title" : "Frequently Asked Questions",
+    "type" : "page",
+    "navigation" : false
+  },
+  "blog" : {
+    "title" : "Blog",
+    "type" : "page",
+    "navigation" : false
+  },
+  "support" : {
+    "title" : "Support",
+    "type" : "page",
+    "navigation" : false
+  },
+  "chat_link" : {
+    "title" : "Telegram Chat",
+    "href" : "https://t.me/tgsnakechat",
+    "newWindow" : "true"
+  },
+  "channel_link" : {
+    "title" : "Telegram Channel",
+    "href" : "https://t.me/tgsnake",
+    "newWindow" : "true"
+  }
+}

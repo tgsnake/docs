@@ -73,7 +73,7 @@ async function Parser(content, filename) {
       }
     },
     ontext: (text) => {
-      text = text.replace(/\</gm,"&lt;").replace(/\>/gm,"&gt;");
+      text = text.replace(/\</gm, '&lt;').replace(/\>/gm, '&gt;');
       let fragment = stack[stack.length - 1];
       if (fragment) fragment.text += text;
       if (fragment && remove.includes(fragment.tag)) {

@@ -27,22 +27,34 @@ async function Rss() {
   const feed = new Feed({
     title: 'tgsnake rss',
     description: 'Rss feed for tgsnake!',
-    id: (process.env.VERCEL_URL && process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production") ? `https://${process.env.VERCEL_URL}` : "https://tgsnake.js.org",
-    link: (process.env.VERCEL_URL && process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production") ? `https://${process.env.VERCEL_URL}` : "https://tgsnake.js.org",
+    id:
+      process.env.VERCEL_URL && process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production'
+        ? `https://${process.env.VERCEL_URL}`
+        : 'https://tgsnake.js.org',
+    link:
+      process.env.VERCEL_URL && process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production'
+        ? `https://${process.env.VERCEL_URL}`
+        : 'https://tgsnake.js.org',
     language: 'en',
     image: 'https://tgsnake.js.org/images/tgsnake.jpg',
     copyright: `MIT ${new Date().getFullYear()} © butthx.`,
     feedLinks: {
       json: path.join(
-        (process.env.VERCEL_URL && process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production") ? `https://${process.env.VERCEL_URL}` : "https://tgsnake.js.org",
+        process.env.VERCEL_URL && process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production'
+          ? `https://${process.env.VERCEL_URL}`
+          : 'https://tgsnake.js.org',
         'rss/feed.json'
       ),
       atom: path.join(
-        (process.env.VERCEL_URL && process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production") ? `https://${process.env.VERCEL_URL}` : "https://tgsnake.js.org",
+        process.env.VERCEL_URL && process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production'
+          ? `https://${process.env.VERCEL_URL}`
+          : 'https://tgsnake.js.org',
         'rss/atom.xml'
       ),
       rss2: path.join(
-        (process.env.VERCEL_URL && process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production") ? `https://${process.env.VERCEL_URL}` : "https://tgsnake.js.org",
+        process.env.VERCEL_URL && process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production'
+          ? `https://${process.env.VERCEL_URL}`
+          : 'https://tgsnake.js.org',
         'rss/feed.xml'
       ),
     },
@@ -82,11 +94,15 @@ async function Rss() {
     feed.addItem({
       title: data.title ?? 'tgsnake',
       id: path.join(
-        (process.env.VERCEL_URL && process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production") ? `https://${process.env.VERCEL_URL}` : "https://tgsnake.js.org",
+        process.env.VERCEL_URL && process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production'
+          ? `https://${process.env.VERCEL_URL}`
+          : 'https://tgsnake.js.org',
         route
       ),
       link: path.join(
-        (process.env.VERCEL_URL && process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production") ? `https://${process.env.VERCEL_URL}` : "https://tgsnake.js.org",
+        process.env.VERCEL_URL && process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production'
+          ? `https://${process.env.VERCEL_URL}`
+          : 'https://tgsnake.js.org',
         route
       ),
       description: 'Telegram MTProto Framework for Typescript/Javascript based on gramjs.',

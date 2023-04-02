@@ -1,0 +1,31 @@
+--- 
+title: Getting Started
+---
+import { Callout } from 'nextra-theme-docs'
+
+# tgsnake
+**tgsnake** is a MTProto framework for javascript or typescript with some special features and experience that you might not find in other frameworks.
+
+<Callout>
+**Warning!**   
+Before logging in using a telegram account, I warn you that there is a possibility that your account will be suspended or banned by telegram! Do with your own risk!
+</Callout>
+
+## Quick Start
+```bash
+npx create-tgsnake-app myapp --ts
+```
+The command above will create a tgsnake app that is in the `myapp` folder using the typescript language.
+```bash 
+create-tgsnake-app location [options]
+```
+`location` is where the tgsnake will be created. The location must be an empty folder. Otherwise it will fail to build the app.
+
+| Option Name | Parameter | Description | 
+| :---: | :----: | :---: |
+| `--ts` or `--typescript` | | Create a tgsnake application using the typescript language. |
+| `--yarn` or `--use-yarn` | | Use yarn to install the required dependencies. | 
+| `--npm` or `--use-npm` | | Use npm to install the required dependencies. | 
+| `--pnpm` or `--use-pnpm` | | Use pnpm to install the required dependencies. | 
+| `--rds` or `--use-redis-session` | | Create tgsnake app using `@tgsnake/redis-session` framework instead of built-in session. | 
+| `--template` | `simple` or `composer` or `git(hub)?` url | Use template provided or use `git(hub)?` url which will be cloned into that directory. | 
