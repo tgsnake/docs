@@ -1,0 +1,24 @@
+---
+title: Available methods
+---
+
+# Available methods
+
+You can directly use the methods here in the `TLObject` or `Snake` derived classes.
+
+```ts {2,5}
+const client = new Snake();
+client.api; //.<method_name>
+// or
+bot.on('message.text', (update) => {
+  update.api; //.<method_name>
+});
+```
+
+## getMessages
+
+Get a message according to the given chat id and message id.
+
+## getParticipants
+
+## sendMessage

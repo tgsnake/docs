@@ -1,45 +1,61 @@
---- 
-title: Using config file 
---- 
+---
+title: Using config file
+---
+
 # Using config file
+
 A config file is a file that contains important credentials in it. Therefore, so that unwanted things don't happen, this config file is created. Add `tgsnake.config.js` in `.gitignore` so that this file doesn't get pushed to github.
-```js 
+
+```js
 /** @type {import('tgsnake').Options} */
 const config = {
-  apiHash : 'abcdefgh',
-  apiId : 0123455,
-  logLevel : 'error',
-  plugins : [],
-  clientOptions : {},
-  login : {
-    sessionName : 'myapp',
-    forceDotSession : true,
-    botToken : ''
-  }
-}
-module.exports = { config }
+  apiHash: 'abcdefgh',
+  apiId: 0123455,
+  logLevel: 'error',
+  plugins: [],
+  clientOptions: {},
+  login: {
+    sessionName: 'myapp',
+    forceDotSession: true,
+    botToken: '',
+  },
+};
+module.exports = { config };
 ```
+
 The code snippet above is an example of its implementation and the following is an explanation of each parameter.
 
-## apiHash 
+## apiHash
+
 **type**: <span className="text-green-600 dark:text-green-300">string</span>  
 When you create your app on [my.telegram.org](https://my.telegram.org/) you will eventually get an api hash and an api id. Fill this section with the api hash you got.
+
 ## apiId
+
 **type**: <span className="text-blue-600 dark:text-blue-300">number</span>  
 When you create your app on [my.telegram.org](https://my.telegram.org/) you will eventually get an api hash and an api id. Fill this section with the api id you got.
+
 ## logLevel
-**type**: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-green-600 dark:text-green-300">string</span>\></span>   
+
+**type**: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-green-600 dark:text-green-300">string</span>\></span>  
 Option to set the level of the log to be displayed on the terminal. You can fill it with an Array from the level log so you can manage 2 or more levels at once.
+
 ## plugins
+
 **type**: <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-purple-600 dark:text-purple-300">Function</span>\></span>  
 Collection of plugins that will be created the first time `.run()` is called. Read guide to create plugin [here](/guide/create-plugin)
+
 ## clientOptions
+
 **type**: <span className="text-orange-600 dark:text-orange-300">ClientOptions</span>  
 Additional options required to create a client. This option is the option that `@tgsnake/core` will use later.
+
 ## login
+
 **type**: <span className="text-orange-600 dark:text-orange-300">LoginWithSession</span>  
 Option to complete the login action. The option must be an object that satisfies type.
-```ts 
+
+```ts
 interface LoginWithSession {
   /**
    * String session or import your session class.
@@ -64,15 +80,23 @@ interface LoginWithSession {
   sessionName?: string;
 }
 ```
-### session 
+
+### session
+
 **type**: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-orange-600 dark:text-orange-300">Storages.AbstractSession</span> | <span className="text-lime-600 dark:text-lime-300">undefined</span>  
 Session is a class that will be used to store login info. The session can be a `string session` or an instance of the `Storages.AbstractSession` class from `@tgsnake/core`.
+
 ### botToken
+
 **type**: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-lime-600 dark:text-lime-300">undefined</span>  
 If you want to log in using the bot token you got from the botfather, you can fill in this section with the token.
+
 ### forceDotSession
+
 **type**: <span className="text-amber-600 dark:text-amber-300">boolean</span> | <span className="text-lime-600 dark:text-lime-300">undefined</span>  
 This option will be used to create files ending in `.session` and `.cache`. The file name will match the given in `sessionName`. Default is <span className="text-amber-600 dark:text-amber-300">true</span>
+
 ### sessionName
+
 **type**: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-lime-600 dark:text-lime-300">undefined</span>  
 The name of the current session that will later be used to login. Default is <span className="text-green-600 dark:text-green-300">tgsnake</span>

@@ -1,17 +1,21 @@
---- 
-title: Creating plugin 
---- 
-# Creating plugin 
+---
+title: Creating plugin
+---
+
+# Creating plugin
+
 In order to make a plugin compatible with tgsnake, your plugin must comply with our guide.
+
 - Plugins must be functions.
 - For the login plugin, give the `Login` prefix to your function name and it should return a result from getMe.
 
-## Example 
-```ts 
-import { type Snake } from 'tgsnake'
-import { Clients } from '@tgsnake/core'
-export async function LoginWithA(client:Snake){
+## Example
+
+```ts
+import { type Snake } from 'tgsnake';
+import { Clients } from '@tgsnake/core';
+export async function LoginWithA(client: Snake) {
   // you code
-  return await Clients.Auth.getMe(client._client)
+  return await Clients.Auth.getMe(client._client);
 }
 ```

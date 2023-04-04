@@ -1,12 +1,15 @@
---- 
-title: Handle updates 
---- 
+---
+title: Handle updates
+---
 
-# Handle updates 
-For handling updates, we use `Composer`. By default the `Snake` class is 
+# Handle updates
+
+For handling updates, we use `Composer`. By default the `Snake` class is
 
 ## on
-**Composer.on(**  
+
+**Composer.on(**
+
 <span className="ml-4">filter: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-green-600 dark:text-green-300">string</span>\></span>,</span>   
 <span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
 **)**  
@@ -21,7 +24,8 @@ client.on('message.text',(ctx)=>{
 ## command
 > shorthand is cmd
 
-**Composer.command(**  
+**Composer.command(**
+
 <span className="ml-4">cmd: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-green-600 dark:text-green-300">string</span>\></span>,</span>   
 <span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
 **)**  
@@ -34,7 +38,8 @@ client.cmd('start',(ctx)=>{
 ## hears 
 > shorthand is hear
 
-**Composer.hears(**  
+**Composer.hears(**
+
 <span className="ml-4">text: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-green-600 dark:text-green-300">string</span>\></span>,</span>   
 <span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
 **)**  

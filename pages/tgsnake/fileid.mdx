@@ -1,6 +1,7 @@
---- 
-title: \@tgsnake\/fileid
 ---
+title: '@tgsnake/fileid'
+---
+
 # FileId
 
 Core framework for creating fileId for tgsnake.
@@ -65,7 +66,7 @@ console.log(fileId);
 This options is using for generating unique file id or file id. Pass this options when you create a new class from FileId.
 
 | field | type | required | description |
-| :------: | :-----: | :----: | :-----: | 
+| :-: | :-: | :-: | :-: |
 | `version` | number | true | The major version of bot api file id. Usually is `4`. |
 | `subVersion` | number | true | The minor version of bot api file id. Usually same with tdlib version or `32`. |
 | `dcId` | number | true | The data center id, where that file is stored. |
@@ -80,7 +81,7 @@ This options is using for generating unique file id or file id. Pass this option
 | `chatId` | bigint | optional | If you want to make a file id of photo profil, fill this with BigInt of chatId. |
 | `chatAccessHash` | bigint | optional | If you want to make a file id of photo profil, fill this with BigInt of accessHash that chat, or `BigInt(0)` it must be work when you doesn't have a accessHash of that chat. |
 | `stickerSetId` | bigint | optional | The id of that sticker set. |
-| `stickerSetAccessHash` | bigint | optional | The accessHash of that sticker set. `BigInt(0)` it must be work when you doesn't have a accessHash of that sticker set. | 
+| `stickerSetAccessHash` | bigint | optional | The accessHash of that sticker set. `BigInt(0)` it must be work when you doesn't have a accessHash of that sticker set. |
 | `thumbnailSource` | enum/number of ThumbnailSource | optional | The enum/number of ThumbnailSource. recommended to use enum. |
 | `thumbnailFileType` | enum/number of FileType | optional | The enum/number of FileType. recommend to use enum. |
 | `thumbnailSize` | string | optional | The size of that thumbnail. |

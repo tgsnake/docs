@@ -1,0 +1,94 @@
+---
+title: '@tgsnake/core/client'
+---
+
+# Client
+
+This is a telegram client class.
+
+```ts
+import { Client } from '@tgsnake/core`
+```
+
+## Constructor
+
+<div className="block mt-4">
+  <span className="font-light">new</span>
+  Client (  
+    <span className="ml-4">session : <span className="text-orange-600 dark:text-orange-300">AbstractSession</span></span>,  
+    <span className="ml-4">apiHash : <span className="text-green-600 dark:text-green-300">string</span></span>,  
+    <span className="ml-4">apiId : <span className="text-blue-600 dark:text-blue-300">number</span></span>,  
+    <span className="ml-4">clientOptions : <span className="text-orange-600 dark:text-orange-300">ClientOptions</span></span>  
+  )
+</div>
+- **session** : <span className="text-orange-600 dark:text-orange-300">AbstractSession</span>   
+What the session will be used for login to telegram.
+- **apiHash** : <span className="text-green-600 dark:text-green-300">string</span>   
+When you create your app on [my.telegram.org](https://my.telegram.org/) you will eventually get an api hash and an api id. Fill this section with the api hash you got.
+- **apiId** : <span className="text-blue-600 dark:text-blue-300">number</span>   
+When you create your app on [my.telegram.org](https://my.telegram.org/) you will eventually get an api hash and an api id. Fill this section with the api id you got.
+- **clientOptions** : <span className="text-orange-600 dark:text-orange-300">ClientOptions</span>   
+Client options for initializing client.
+### exportSession 
+<div className="block mt-4">
+  client.**exportSession**() : <span className="text-red-600 dark:text-red-300">Promise\<<span className="text-green-600 dark:text-green-300">string</span>\></span>
+</div>
+Exporting current session to string, this will use full when you want a backup your session.
+### invoke
+<div className="block mt-4">
+  client.**invoke**(   
+    <span className="ml-4">query : <span className="text-orange-600 dark:text-orange-300">Raw.TypesTLRequest</span></span>,  
+    <span className="ml-4">retries : <span className="text-blue-600 dark:text-blue-300">number</span> | <span className="text-blue-600 dark:text-blue-300">5</span></span>,  
+    <span className="ml-4">timeout : <span className="text-blue-600 dark:text-blue-300">number</span> | <span className="text-blue-600 dark:text-blue-300">15000</span></span>,  
+    <span className="ml-4">sleepTreshold: <span className="text-blue-600 dark:text-blue-300">number</span> | <span className="text-blue-600 dark:text-blue-300">10000</span></span>  
+  ) : <span className="text-red-600 dark:text-red-300">Promise\<<span className="text-orange-600 dark:text-orange-300">TLObject</span>\></span>
+</div>
+Send a request form Raw function to telegram. It will be return a Raw class when success and return error when failed.
+- **query** : <span className="text-orange-600 dark:text-orange-300">Raw.TypesTLRequest</span>   
+A class function which will be sent to telegram.
+- **retries** : <span className="text-blue-600 dark:text-blue-300">number</span> | <span className="text-blue-600 dark:text-blue-300">5</span>   
+How many times must it be repeated to send a request to Telegram if an error occurs.
+- **timeout** : <span className="text-blue-600 dark:text-blue-300">number</span> | <span className="text-blue-600 dark:text-blue-300">15000</span>   
+How long to wait for a response from telegram. If it exceeds the specified timeout, it will return a TimeoutError.
+- **sleepTreshold** : <span className="text-blue-600 dark:text-blue-300">number</span> | <span className="text-blue-600 dark:text-blue-300">10000</span>   
+If hit by a flood wait, the framework will wait according to the specified time to resend the request.
+### logout 
+<div className="block mt-4">
+  client.**logout**() : <span className="text-red-600 dark:text-red-300">Promise\<any\></span>
+</div>
+Logout the account from the telegram server. Sessions that have been logged out will no longer be used.
+### start 
+<div className="block mt-4">
+  client.**start**(auth : <span className="text-orange-600 dark:text-orange-300">SigInBot</span> | <span className="text-orange-600 dark:text-orange-300">SigInUser</span> | <span className="text-lime-600 dark:text-lime-300">undefined</span> ) : <span className="text-red-600 dark:text-red-300">Promise\<<span className="text-orange-600 dark:text-orange-300">Raw.users.UserFull</span>\></span>
+</div>
+Login to the telegram server and run the client.
+- **auth** : <span className="text-orange-600 dark:text-orange-300">SigInBot</span> | <span className="text-orange-600 dark:text-orange-300">SigInUser</span> | <span className="text-lime-600 dark:text-lime-300">undefined</span>  
+Object that contains a `botToken` if you want to login as a bot. Contains a `phoneNumber` if you want to login as user.
+### handleUpdate
+<div className="block mt-4">
+  client.**handleUpdate**(update : <span className="text-orange-600 dark:text-orange-300">Raw.Updates</span>) : <span className="text-red-600 dark:text-red-300">Promise\<<span className="text-orange-600 dark:text-orange-300">Raw.Updates</span>\></span>
+</div>
+Handle new updates from telegram server.
+- **update** : <span className="text-orange-600 dark:text-orange-300">Raw.Updates</span>  
+A class update that will be processed later.
+### addHandler 
+<div className="block mt-4">
+  client.**addHandler**(handler : <span className="text-purple-600 dark:text-purple-300">Function</span>) : <span className="text-red-600 dark:text-red-300">Promise\<any\></span>
+</div>
+Add a handler to handle updates from telegram.
+- **handler** : <span className="text-purple-600 dark:text-purple-300">Function</span>  
+The handler function you want to add.
+### fetchPeers
+<div className="block mt-4">
+  client.**fetchPeers**(peers : <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-orange-600 dark:text-orange-300">Raw.TypeUser</span> | <span className="text-orange-600 dark:text-orange-300">Raw.TypeChat</span>\></span>) : <span className="text-red-600 dark:text-red-300">Promise\<<span className="text-amber-600 dark:text-amber-300">boolean</span>\></span>
+</div>
+Add peers to the database of the currently used session.
+- **peers** : <span className="text-orange-600 dark:text-orange-300">Raw.TypeUser</span> | <span className="text-orange-600 dark:text-orange-300">Raw.TypeChat</span>  
+Peers that will be stored in the database.
+### resolvePeer
+<div className="block mt-4">
+  client.**resolvePeer**(peer : <span className="text-teal-600 dark:text-teal-300">bigint</span> | <span className="text-green-600 dark:text-green-300">string</span> ) : <span className="text-red-600 dark:text-red-300">Promise\<<span className="text-orange-600 dark:text-orange-300">Raw.TypeInputPeer</span>\></span>
+</div>
+Get peer input from currently used database session.
+- **peer** : <span className="text-teal-600 dark:text-teal-300">bigint</span> | <span className="text-green-600 dark:text-green-300">string</span>  
+username or id from peer which will be retrieved from the database.

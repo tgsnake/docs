@@ -1,6 +1,6 @@
-{ 
-  "core" : "core",
-  "log" : "log",
-  "fileid" : "fileid",
-  "parser" : "parser"
+{
+  "core": "core",
+  "log": "log",
+  "fileid": "fileid",
+  "parser": "parser"
 }
