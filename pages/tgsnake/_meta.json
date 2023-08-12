@@ -1,6 +1,26 @@
 {
-  "core": "core",
-  "log": "log",
-  "fileid": "fileid",
-  "parser": "parser"
+  "core": {
+    "type": "page",
+    "title": "Core API",
+    "href": "https://deno.land/x/tgsnake_core",
+    "newWindow": "true"
+  },
+  "log": {
+    "type": "page",
+    "title": "Logger API",
+    "href": "https://deno.land/x/tgsnake_log",
+    "newWindow": "true"
+  },
+  "fileid": {
+    "type": "page",
+    "title": "File Id API",
+    "href": "https://deno.land/x/tgsnake_fileid",
+    "newWindow": "true"
+  },
+  "parser": {
+    "type": "page",
+    "title": "Parser API",
+    "href": "https://deno.land/x/tgsnake_parser",
+    "newWindow": "true"
+  }
 }
