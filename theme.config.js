@@ -50,6 +50,8 @@ export default {
         />
         <meta name="twitter:image" content={socialCard} />
         <meta name="article:author" content="tgsnake" />
+        <meta property="telegram:channel" content="@tgsnake" />
+        <meta property="tg:site_verification" content="" />
       </>
     );
   },
@@ -78,10 +80,19 @@ export default {
             year: 'numeric',
             month: 'long',
             day: 'numeric',
-          })
+          }),
         );
       } catch (e) {}
     }, []);
     return <p>Last updated on {date}</p>;
+  },
+  banner: {
+    key: '01-version-2',
+    text: (
+      <a target="_blank" href="https://tgsnake-cgksywsyy-butthx.vercel.app/">
+        Read Documentation Version 2
+      </a>
+    ),
+    dismissible: false,
   },
 };

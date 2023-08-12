@@ -31,6 +31,6 @@ export default function (req) {
         </div>
         <h1 tw="text-center mb-16 mt-2 font-extrabold text-black text-4xl">{title}</h1>
       </div>
-    )
+    ),
   );
 }
