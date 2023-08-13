@@ -32,6 +32,7 @@ async function Parser(content, filename) {
   };
   let results = '';
   let tempResults = '';
+  let heading = false;
   let parser = new htmlparser.Parser({
     onopentag: (tag, attr) => {
       let fragment = new Fragment(tag, attr);
@@ -59,7 +60,10 @@ async function Parser(content, filename) {
             if (remove.includes(tag)) {
               return (tempResults = '');
             }
-            tempResults += `<${tag}`;
+            if (/h[2-6]/.test(tag)) {
+              heading = true;
+            }
+            tempResults += `<${tag === 'link' ? 'a' : tag}`;
             for (let [key, value] of Object.entries(attr)) {
               if (/^(\/|\.\.?\/|~\/)/i.test(String(value))) {
                 let d = path.join(Array(filename.split('/').length).fill('..').join('/'), value);
@@ -83,7 +87,11 @@ async function Parser(content, filename) {
         return (tempResults = '');
       }
       if (!filter(fragment)) {
-        tempResults += text;
+        tempResults += heading
+          ? `<a href="#${text.replace(/\s+/gm, '-').toLowerCase()}">#</a><span id="${text
+              .replace(/\s+/gm, '-')
+              .toLowerCase()}"></span> ${text}`
+          : text;
       }
     },
     onclosetag: (tag) => {
@@ -104,6 +112,9 @@ async function Parser(content, filename) {
           case 'detailsgroup':
             tagname = 'details';
             break;
+          case 'link':
+            tagname = 'a';
+            break;
           default:
             tagname = tag;
         }
@@ -115,6 +126,7 @@ async function Parser(content, filename) {
         }
       }
       tempResults = '';
+      heading = false;
     },
   });
   await parser.write(content);

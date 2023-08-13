@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build:rss": "node ./generator/rss/rss",
     "build:site-map": "next-sitemap",
-    "build": "node ./generator/rss/rss && next build --debug && next-sitemap",
+    "build:iv": "node ./generator/iv",
+    "build": "node ./generator/iv && node ./generator/rss/rss && next build --debug && next-sitemap",
     "start": "next start",
     "export": "next export -o ../docs",
     "prettier": "prettier -w ."
