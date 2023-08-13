@@ -1,0 +1,104 @@
+---
+title: Using config file
+---
+
+import * as types from '@/components/types';
+
+# Using config file
+
+A config file is a file that contains important credentials in it. Therefore, so that unwanted things don't happen, this config file is created. Add `tgsnake.config.js` in `.gitignore` so that this file doesn't get pushed to github.
+
+```js
+/** @type {import('tgsnake').Options} */
+const config = {
+  apiHash: 'abcdefgh',
+  apiId: 0123455,
+  logLevel: 'error',
+  plugins: [],
+  clientOptions: {},
+  login: {
+    sessionName: 'myapp',
+    forceDotSession: true,
+    botToken: '',
+  },
+};
+module.exports = { config };
+```
+
+The code snippet above is an example of its implementation and the following is an explanation of each parameter.
+
+## apiHash
+
+**type**: <types.TypeString />  
+When you create your app on [my.telegram.org](https://my.telegram.org/) you will eventually get an api hash and an api id. Fill this section with the api hash you got.
+
+## apiId
+
+**type**: <types.TypeNumber/>  
+When you create your app on [my.telegram.org](https://my.telegram.org/) you will eventually get an api hash and an api id. Fill this section with the api id you got.
+
+## logLevel
+
+**type**: <types.TypeString /> | <types.TypeArray><types.TypeString /></types.TypeArray>  
+Option to set the level of the log to be displayed on the terminal. You can fill it with an Array from the level log so you can manage 2 or more levels at once.
+
+## plugins
+
+**type**: <types.TypeArray><types.TypeFunction/></types.TypeArray>  
+Collection of plugins that will be created the first time `.run()` is called. Read guide to create plugin [here](/guide/create-plugin)
+
+## clientOptions
+
+**type**: <types.TypeObject text="ClientOptions" />  
+Additional options required to create a client. This option is the option that `@tgsnake/core` will use later.
+
+## login
+
+**type**: <types.TypeObject text="LoginWithSession" />  
+Option to complete the login action. The option must be an object that satisfies type.
+
+```ts
+interface LoginWithSession {
+  /**
+   * String session or import your session class.
+   */
+  session?: string | Storages.AbstractSession;
+  /**
+   * Login as bot using bot auth token from bot father. <br/>
+   * Only effected when selected session is blank.
+   */
+  botToken?: string;
+  /**
+   * Force session to .session file, If session field passed as string. <br/>
+   *
+   * default is true.
+   */
+  forceDotSession?: boolean;
+  /**
+   * The name of session, it will be using to read .session file. <br/>
+   *
+   * default is "tgsnake"
+   */
+  sessionName?: string;
+}
+```
+
+### session
+
+**type**: <types.TypeString /> | <types.TypeObject text="Storages.AbstractSession" /> | <types.TypeUndefined/>  
+Session is a class that will be used to store login info. The session can be a `string session` or an instance of the `Storages.AbstractSession` class from `@tgsnake/core`.
+
+### botToken
+
+**type**: <types.TypeString /> | <types.TypeUndefined />  
+If you want to log in using the bot token you got from the botfather, you can fill in this section with the token.
+
+### forceDotSession
+
+**type**: <types.TypeBoolean /> | <types.TypeUndefined />  
+This option will be used to create files ending in `.session` and `.cache`. The file name will match the given in `sessionName`. Default is <span className="text-amber-600 dark:text-amber-300">true</span>
+
+### sessionName
+
+**type**: <types.TypeString /> | <types.TypeUndefined />  
+The name of the current session that will later be used to login. Default is <types.TypeString text="tgsnake" />

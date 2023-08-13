@@ -1,0 +1,41 @@
+---
+title: Available methods
+---
+
+# Available methods
+
+You can directly use the methods here in the `TLObject` or `Snake` derived classes.
+
+```ts {2,5}
+const client = new Snake();
+client.api; //.<method_name>
+// or
+bot.on('message.text', (update) => {
+  update.api; //.<method_name>
+});
+```
+
+## getMessages
+
+Get a message according to the given chat id and message id.
+
+## getParticipants
+
+## invoke
+
+Send a raw api from @tgsnake/core
+
+```ts {5-7}
+import { Raw } from '@tgsnake/core';
+const client = new Snake();
+
+async function sendMessage(chatId: bigint, text: string) {
+  return await client.invoke(
+    new Raw.messages.SendMessage({
+      // ... arguments
+    }),
+  );
+}
+```
+
+## sendMessage

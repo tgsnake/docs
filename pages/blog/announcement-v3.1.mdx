@@ -1,0 +1,68 @@
+---
+title: Announcement Tgsnake Wayang Kulit
+description: An information regarding the renewal of tgsnake version 3.0 which has the code name wayang kulit.
+date: July 8, 2023
+banner: /images/wayang.jpg
+---
+
+import Link from 'next/link';
+
+<Link className="text-sm font-semibold cursor-pointer" href="/blog">
+  ← Back to Blog
+</Link>
+
+# Announcement Tgsnake Wayang Kulit
+
+<div className="flex items-center mt-2">
+  <p className="font-light mr-2">July 8, 2023</p>
+  <p className="font-semibold cursor-pointer">
+    <a href="https://github.com/butthx" target="_blank">
+      by butthx
+    </a>
+  </p>
+</div>
+
+![banner](/images/wayang.jpg)
+
+## Lore
+
+Wayang kulit is a traditional form of puppet-shadow play originally found in the cultures of Java and Bali in Indonesia. In a wayang kulit performance, the puppet figures are rear-projected on a taut linen screen with a coconut-oil light. [Wikipedia](https://en.m.wikipedia.org/wiki/Wayang_kulit)
+
+We carry the name of wayang kulit as our codename so that this culture is known by the wider community and is not lost. Wayang Kulit very popular in Indonesian society in ancient times before modernization.
+
+## Change
+
+The changes that we have made in version 3.0 are very significant.We know that there are a lot of annoying bugs in version 2. Therefore, we completely revamped this source code to make those bugs go away.
+
+One of the biggest changes is that we use our **own framework** for connecting to telegram instead of using gramjs like in v2.
+
+Apart from that, we also make all JSON follow **bot api style**. Because we want people to not have to adapt when moving from api bot to MTProto
+
+Apart from that, we also changed our cache system. We are improving and optimizing so that there are no errors during the reading process like in version 2.
+
+### Deno and Bun
+
+We want tgsnake to be compatible on all platforms. In v3.0 we tested our framework on Deno and Bun. On both platforms, the framework can run smoothly without any problems.
+
+For browsers, we haven't tried it but we inserted a simple algorithm to make tgsnake also compatible on browsers.
+
+### One Command and Installed
+
+We wanted to make tgsnake installation easy, that's why we created a cli framework to handle the installation process.
+
+We created `create-tgsnake-app` to make it easier for you to create an application project from tgsnake. With just one command, your application is digable.
+
+```bash
+npx create-tgsnake-app myapp
+```
+
+### Conclusion
+
+End of this post. In essence we made a change:
+
+- Ease installing using `create-tgsnake-app`.
+- Migrating to own MTProto framework.
+- Goodbye v2 bugs.
+- Looks like bot api style, but camelCase.
+- New source code, more efficient.
+- Better logger with `@tgsnake/log`.

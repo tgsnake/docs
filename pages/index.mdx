@@ -1,0 +1,42 @@
+---
+title: Make your own telegram client
+---
+
+import Link from 'next/link';
+
+# Make your own telegram client
+
+Simple and Powerful MTProto framework for javascript or typescript.
+
+<div className="block my-5">
+  <Link href="/getting-started" className="p-4 bg-green-200 dark:bg-green-700 font-bold rounded-2xl dark:hover:ring-green-500 hover:ring-green-100 hover:ring-4">Getting Started</Link>
+</div>
+   
+# Migrate from your favorite framework  
+We are supported migration from several popular frameworks using their string session.
+```ts
+{
+  session : 'BVWbaAAAofRAahZitBY8oe....'
+}
+```  
+# Handle all messages with ease
+```ts
+client.cmd('start',(update) => {
+  return update.message.respond('Yo Man! This message is writen from tgsnake.')
+})
+```
+   
+<div className="flex flex-col block my-4 py-2">
+  <p className="text-right">
+    <span className="bg-gradient-to-br from-green-200 to-green-400 text-blue-400 py-2 px-4 rounded-3xl">/start</span>
+  </p>
+  <div className="mt-4 flex items-end">
+    <div className="rounded-full font-bold bg-gradient-to-tr from-green-300 to-green-400 py-3 px-4 text-black">🐍</div>
+    <div className="mx-4 text-black py-2 px-5 rounded-3xl bg-gradient-to-tr from-green-200 to-green-400">
+      <p className="font-bold">tgsnake</p>
+      <p>Yo Man! This message is writen from tgsnake.</p>
+    </div>
+  </div>
+</div>
+   
+What are you waiting for? Let's <Link href="/getting-started"><b>Get Started!</b></Link>
