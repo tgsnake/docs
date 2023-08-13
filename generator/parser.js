@@ -88,7 +88,7 @@ async function Parser(content, filename) {
       }
       if (!filter(fragment)) {
         tempResults += heading
-          ? `<a href="#${text.replace(/\s+/gm, '-').toLowerCase()}">#</a><span id="${text
+          ? `<span id="${text
               .replace(/\s+/gm, '-')
               .toLowerCase()}"></span> ${text}`
           : text;
