@@ -88,9 +88,7 @@ async function Parser(content, filename) {
       }
       if (!filter(fragment)) {
         tempResults += heading
-          ? `<span id="${text
-              .replace(/\s+/gm, '-')
-              .toLowerCase()}"></span> ${text}`
+          ? `<span id="${text.replace(/\s+/gm, '-').toLowerCase()}"></span> ${text}`
           : text;
       }
     },
