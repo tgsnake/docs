@@ -1,0 +1,106 @@
+---
+title: Использование конфигурационного файла
+---
+
+import * as types from '@/components/types';
+
+# Использование конфигурационного файла
+
+A config file is a file that contains important credentials in it. Therefore, so that unwanted things don't happen, this config file is created. Add `tgsnake.config.js` in `.gitignore` so that this file doesn't get pushed to github.
+
+Файл конфигурации – это свод важных настроек. Вот почему создается этот файл, словно тайна в бездне времени. Для того чтобы избежать нежеланных инцидентов, добавьте `tgsnake.config.js` в файл `.gitignore`, как будто печать великой тайны, чтобы этот свиток не попал в объятия GitHub, несущего свою тайну в бескрайний океан кода.
+
+```js
+/** @type {import('tgsnake').Options} */
+const config = {
+  apiHash: 'abcdefgh',
+  apiId: 0123455,
+  logLevel: 'error',
+  plugins: [],
+  clientOptions: {},
+  login: {
+    sessionName: 'myapp',
+    forceDotSession: true,
+    botToken: '',
+  },
+};
+module.exports = { config };
+```
+
+Кодовый отрывок выше представляет собой пример его реализации, и ниже приведено пояснение к каждому параметру.
+
+## apiHash
+
+**type**: <types.TypeString />  
+Когда вы создаете свое приложение на [my.telegram.org](https://my.telegram.org/), в конечном итоге вы получите API Hash и API ID. Заполните этот параметр полученным API Hash.
+
+## apiId
+
+**type**: <types.TypeNumber/>  
+Когда вы создаете свое приложение на [my.telegram.org](https://my.telegram.org/), в конечном итоге вы получите API Hash и API ID. Заполните этот параметр полученным API ID.
+
+## logLevel
+
+**type**: <types.TypeString /> | <types.TypeArray><types.TypeString /></types.TypeArray> 
+Параметр для установки уровней логирования отображающихся в терминале. Заполните его массивом уровней, чтобы можно было управлять двумя или более уровнями одновременно.
+
+## plugins
+
+**type**: <types.TypeArray><types.TypeFunction/></types.TypeArray>  
+Список плагинов, которые будут созданы при первом вызове `.run()`. Ознакомьтесь с руководством по созданию плагина [здесь](/guide/create-plugin).
+
+## clientOptions
+
+**type**: <types.TypeObject text="ClientOptions" />
+Дополнительные параметры, необходимые для создания клиента. Этот вариант - параметр, который позднее будет использоваться `@tgsnake/core`.
+
+## login
+
+**type**: <types.TypeObject text="LoginWithSession" />
+Параметр для завершения действия входа. Этот параметр должен быть объектом, соответствующим заданному типу.
+
+```ts
+interface LoginWithSession {
+  /**
+   * String session or import your session class.
+   */
+  session?: string | Storages.AbstractSession;
+  /**
+   * Login as bot using bot auth token from bot father. <br/>
+   * Only effected when selected session is blank.
+   */
+  botToken?: string;
+  /**
+   * Force session to .session file, If session field passed as string. <br/>
+   *
+   * default is true.
+   */
+  forceDotSession?: boolean;
+  /**
+   * The name of session, it will be using to read .session file. <br/>
+   *
+   * default is "tgsnake"
+   */
+  sessionName?: string;
+}
+```
+
+### session
+
+**type**: <types.TypeString /> | <types.TypeObject text="Storages.AbstractSession" /> | <types.TypeUndefined/>
+Класс Session предназначен для хранения информации о входе. Сессия может представлять собой `string session` или экземпляр класса `Storages.AbstractSession` из `@tgsnake/core`.
+
+### botToken
+
+**type**: <types.TypeString /> | <types.TypeUndefined />  
+Если вы хотите войти, используя токен бота, полученный от BotFather, вы можете добавить в этот параметр токен.
+
+### forceDotSession
+
+**type**: <types.TypeBoolean /> | <types.TypeUndefined />  
+Этот параметр будет использоваться для создания файлов с расширениями `.session` и `.cache`. Имя файла будет соответствовать указанному в `sessionName`. Значение по умолчанию - <span className="text-amber-600 dark:text-amber-300">true</span>.
+
+### sessionName
+
+**type**: <types.TypeString /> | <types.TypeUndefined />  
+Имя текущей сессии, которое затем будет использоваться для входа. Значение по умолчанию - <types.TypeString text="tgsnake" />.

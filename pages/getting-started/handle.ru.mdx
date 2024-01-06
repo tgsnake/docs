@@ -1,0 +1,62 @@
+---
+title: Получение уведомлений
+---
+
+# Получение уведомлений
+
+Для Получение уведомлений мы используем `Composer`. По умолчанию это класс `Snake`
+
+## on
+
+**Composer.on(**
+
+<span className="ml-4">filter: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-green-600 dark:text-green-300">string</span>\></span>,</span>   
+<span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
+**)**  
+Эта функция будет фильтровать уведомления в соответствии с предоставленными аргументами `filter`.
+### Доступные фильтры
+`any`, `message`, `editedMessage`, `channelPost`, `editedChannelPost`, `inlineQuery`, `callbackQuery`, `chosenInlineResult`, `callbackQuery`, `shippingQuery`, `preCheckoutQuery`, `poll`, `pollAnswer`, `chatJoinRequest`, `message.text`, `message.caption`, `message.from`, `message.animation`, `message.audio`, `message.document`, `message.photo`, `message.sticker`, `message.video`, `message.videoNote`, `message.voice`, `message.webpage`, `message.replyToMessage`, `message.replyToMessageId`, `message.replyToTopMessageId`
+```js
+client.on('message.text',(ctx)=>{
+  console.log(ctx)
+})
+```
+## command
+> сокращение - cmd
+
+**Composer.command(**
+
+<span className="ml-4">cmd: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-green-600 dark:text-green-300">string</span>\></span>,</span>   
+<span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
+**)**  
+Эта функция будет фильтровать сообщение, соответствующее аргументу `cmd`. Префикс по умолчанию - `.!/`.
+```js
+client.cmd('start',(ctx)=>{
+  console.log(ctx)
+})
+```
+## hears 
+> сокращение - hear
+
+**Composer.hears(**
+
+<span className="ml-4">text: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-green-600 dark:text-green-300">string</span>\></span>,</span>   
+<span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
+**)**  
+Эта функция будет отфильтровать сообщение, которое содержит `text`.
+```js
+client.hear('hei',(ctx)=>{
+  console.log(ctx)
+})
+```
+## use 
+**Composer.use(**  
+<span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
+**)**  
+Эта функция будет выполнена перед другими функциями. Она полезна для создания кода обрабатывающегося до всех команд.
+```js
+client.use((ctx,next)=>{
+  console.log(ctx)
+  return next()
+})
+```
