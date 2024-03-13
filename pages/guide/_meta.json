@@ -1,3 +1,4 @@
 {
-  "create-plugin": "Creating plugin"
+  "create-plugin": "Creating plugin",
+  "shutdown": "Gracefully Stop"
 }

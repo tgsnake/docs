@@ -66,7 +66,7 @@ export default {
     text: <span>Edit this page</span>,
   },
   footer: {
-    text: <p>MIT {new Date().getFullYear()} © butthx.</p>,
+    text: <p>MIT {new Date().getFullYear()} © tgsnake.</p>,
   },
   gitTimestamp: ({ timestamp }) => {
     const [date, setDate] = useState(timestamp.toISOString());
@@ -84,7 +84,7 @@ export default {
     }, []);
     return <p>Last updated on {date}</p>;
   },
-  banner: {
+  /*banner: {
     key: '01-version-2',
     text: (
       <a target="_blank" href="https://tgsnake-cgksywsyy-butthx.vercel.app/">
@@ -92,7 +92,7 @@ export default {
       </a>
     ),
     dismissible: false,
-  },
+  },*/
   toc: {
     float: true,
   },

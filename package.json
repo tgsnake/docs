@@ -15,7 +15,6 @@
   "dependencies": {
     "@telegram-auth/react": "1.0.3",
     "@telegram-auth/server": "1.0.3",
-    "@vercel/og": "0.6.2",
     "aws-sdk": "2.1575.0",
     "iron-session": "8.0.1",
     "md-editor-rt": "4.12.1",

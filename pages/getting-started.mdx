@@ -36,3 +36,21 @@ create-tgsnake-app location [options]
 | `--pnpm` or `--use-pnpm` |  | Use pnpm to install the required dependencies. |
 | `--rds` or `--use-redis-session` |  | Create tgsnake app using `@tgsnake/redis-session` framework instead of built-in session. |
 | `--template` | `simple` or `composer` or `git(hub)?` url | Use template provided or use `git(hub)?` url which will be cloned into that directory. |
+
+## Example Code
+
+```ts filename="index.ts"
+import { Snake, shutdown } from 'tgsnake';
+
+// we no need to pass the option here, because we will use config file (tgsnake.config.js)
+const client = new Snake();
+
+client.on('message.text', (update) => {
+  return update.msg?.reply('I hear You!');
+});
+
+client.run();
+shutdown(client); // mandatory, read grateful stop
+```
+
+Simple things, when a 'client' receives updates in the form of a text message, the 'client' will reply with the message 'I hear you!' It work both for deno and nodejs.
