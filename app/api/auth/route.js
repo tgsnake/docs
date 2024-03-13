@@ -22,7 +22,7 @@ export async function POST(req) {
   session.logined = true;
   session.id = user.id;
   session.name = [user.first_name, user.last_name || ''].join(' ').trim();
-  session.photo = user.photo_url || '/images/tgsnake.jpg';
+  session.photo = user.photo_url || '/images/avatar.png';
   session.username = user.username;
   // check user is admin or not
   try {

@@ -15,27 +15,12 @@ bot.on('message.text', (update) => {
 });
 ```
 
-## getMessages
+You can find a list of methods in deno docs version.
 
-Get a message according to the given chat id and message id.
+### Example
 
-## getParticipants
-
-## invoke
-
-Send a raw api from @tgsnake/core
-
-```ts {5-7}
-import { Raw } from '@tgsnake/core';
-const client = new Snake();
-
-async function sendMessage(chatId: bigint, text: string) {
-  return await client.invoke(
-    new Raw.messages.SendMessage({
-      // ... arguments
-    }),
-  );
-}
+```ts
+client.command('start', (update) => {
+  return update.api.sendMessage(update.message.chat.id, 'hello');
+});
 ```
-
-## sendMessage
