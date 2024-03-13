@@ -9,39 +9,46 @@ import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import { getIronSession } from 'iron-session';
 
+// export const dynamic = 'force-static';
+
 async function getSource(slug) {
-  await MongooseClient();
-  const source = await BlogModel.findOne({ slug });
-  const date = new Date(
-    source.updatedAt !== source.createdAt ? source.updatedAt : source.createdAt,
-  );
-  const now = new Date();
-  let pdate = date.toLocaleString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-  if (date.getDate() === now.getDate()) {
-    if (now.getHours() - date.getHours() > 0) {
-      pdate = `${now.getHours() - date.getHours()}h ago`;
-    } else if (now.getMinutes() - date.getMinutes() > 0) {
-      pdate = `${now.getMinutes() - date.getMinutes()}m ago`;
-    } else if (now.getSeconds() - date.getSeconds() > 0) {
-      pdate = `${now.getSeconds() - date.getSeconds()}s ago`;
-    } else {
-      pdate = 'now';
+  if (slug) {
+    await MongooseClient();
+    const source = await BlogModel.findOne({ slug });
+    if (source !== null) {
+      const date = new Date(
+        source.updatedAt !== source.createdAt ? source.updatedAt : source.createdAt,
+      );
+      const now = new Date();
+      let pdate = date.toLocaleString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+      if (date.getDate() === now.getDate()) {
+        if (now.getHours() - date.getHours() > 0) {
+          pdate = `${now.getHours() - date.getHours()}h ago`;
+        } else if (now.getMinutes() - date.getMinutes() > 0) {
+          pdate = `${now.getMinutes() - date.getMinutes()}m ago`;
+        } else if (now.getSeconds() - date.getSeconds() > 0) {
+          pdate = `${now.getSeconds() - date.getSeconds()}s ago`;
+        } else {
+          pdate = 'now';
+        }
+      }
+      return {
+        key: source.slug,
+        title: source.title,
+        description: source.description,
+        content: source.content,
+        thumbnail: source.thumbnail,
+        author: source.author,
+        date: pdate,
+      };
     }
   }
-  return {
-    key: source.slug,
-    title: source.title,
-    description: source.description,
-    content: source.content,
-    thumbnail: source.thumbnail,
-    author: source.author,
-    date: pdate,
-  };
+  return redirect('/404');
 }
 export async function deletePost(form) {
   await MongooseClient();
@@ -177,12 +184,4 @@ export default async function Page({ params }) {
       </div>
     </>
   );
-}
-
-export async function generateStaticParams() {
-  await MongooseClient();
-  const posts = (await BlogModel.find({})) || [];
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
 }
