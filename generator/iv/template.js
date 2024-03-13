@@ -25,7 +25,7 @@ const html = `<!DOCTYPE html>
     />
     <meta
       property="og:image"
-      content="https://tgsnake-butthx.vercel.app/api/og?title={{title}}"
+      content="https://tgsnake.js.org/images/tgsnake.jpg"
       key="https://tgsnake.js.org/images/tgsnake.jpg"
     />
     <meta name="twitter:card" content="summary_large_image" />
@@ -34,7 +34,7 @@ const html = `<!DOCTYPE html>
       name="twitter:description"
       content="Telegram MTProto framework for typescript or javascript."
     />
-    <meta name="twitter:image" content="https://tgsnake-butthx.vercel.app/api/og?title={{title}}" />
+    <meta name="twitter:image" content="https://tgsnake.js.org/images/tgsnake.jpg" />
     <meta name="article:author" content="tgsnake" />
     <meta property="telegram:channel" content="@tgsnake" />
     <meta property="al:android:app_name" content="Medium" />

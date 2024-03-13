@@ -20,9 +20,7 @@ export default {
   head: () => {
     const { title } = useConfig();
     const { route } = useRouter();
-    const origin =
-      typeof window !== 'undefined' && window.location.origin ? window.location.origin : '';
-    const socialCard = `${origin}/api/og?title=${title ?? ''}`;
+    const socialCard = `/images/tgsnake.jpg`;
     return (
       <>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
