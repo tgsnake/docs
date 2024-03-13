@@ -6,4 +6,22 @@ const withNextra = require('nextra')({
     remarkPlugins: [],
   },
 });
-module.exports = withNextra();
+module.exports = withNextra({
+  i18n: {
+    locales: ['en', 'ru'],
+    defaultLocale: 'en',
+  },
+  experimental: {
+    serverActions: true,
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'ipfs.filebase.io',
+        port: '',
+        pathname: '/ipfs/**',
+      },
+    ],
+  },
+});

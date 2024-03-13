@@ -41,8 +41,7 @@ module.exports = { config };
 
 ## logLevel
 
-**type**: <types.TypeString /> | <types.TypeArray><types.TypeString /></types.TypeArray> 
-Параметр для установки уровней логирования отображающихся в терминале. Заполните его массивом уровней, чтобы можно было управлять двумя или более уровнями одновременно.
+**type**: <types.TypeString /> | <types.TypeArray><types.TypeString /></types.TypeArray> Параметр для установки уровней логирования отображающихся в терминале. Заполните его массивом уровней, чтобы можно было управлять двумя или более уровнями одновременно.
 
 ## plugins
 
@@ -51,13 +50,11 @@ module.exports = { config };
 
 ## clientOptions
 
-**type**: <types.TypeObject text="ClientOptions" />
-Дополнительные параметры, необходимые для создания клиента. Этот вариант - параметр, который позднее будет использоваться `@tgsnake/core`.
+**type**: <types.TypeObject text="ClientOptions" /> Дополнительные параметры, необходимые для создания клиента. Этот вариант - параметр, который позднее будет использоваться `@tgsnake/core`.
 
 ## login
 
-**type**: <types.TypeObject text="LoginWithSession" />
-Параметр для завершения действия входа. Этот параметр должен быть объектом, соответствующим заданному типу.
+**type**: <types.TypeObject text="LoginWithSession" /> Параметр для завершения действия входа. Этот параметр должен быть объектом, соответствующим заданному типу.
 
 ```ts
 interface LoginWithSession {
@@ -87,8 +84,7 @@ interface LoginWithSession {
 
 ### session
 
-**type**: <types.TypeString /> | <types.TypeObject text="Storages.AbstractSession" /> | <types.TypeUndefined/>
-Класс Session предназначен для хранения информации о входе. Сессия может представлять собой `string session` или экземпляр класса `Storages.AbstractSession` из `@tgsnake/core`.
+**type**: <types.TypeString /> | <types.TypeObject text="Storages.AbstractSession" /> | <types.TypeUndefined/> Класс Session предназначен для хранения информации о входе. Сессия может представлять собой `string session` или экземпляр класса `Storages.AbstractSession` из `@tgsnake/core`.
 
 ### botToken
 

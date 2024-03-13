@@ -1,5 +1,5 @@
 module.exports = {
-  content: ['./styles/global.css', './pages/**', './components/**'],
+  content: ['./styles/global.css', './pages/**', './components/**', './app/**'],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
@@ -11,5 +11,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('rippleui'), require('@tailwindcss/typography')],
 };

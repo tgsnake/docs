@@ -27,7 +27,7 @@
   "blog": {
     "title": "Blog",
     "type": "page",
-    "navigation": false
+    "href": "/blog"
   },
   "support": {
     "title": "Support",

@@ -95,4 +95,17 @@ export default {
     ),
     dismissible: false,
   },
+  toc: {
+    float: true,
+  },
+  i18n: [
+    {
+      locale: 'en',
+      text: 'English',
+    },
+    {
+      locale: 'ru',
+      text: 'Russia',
+    },
+  ],
 };
