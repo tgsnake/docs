@@ -27,12 +27,7 @@
   "blog": {
     "title": "Blog",
     "type": "page",
-    "navigation": false
-  },
-  "support": {
-    "title": "Support",
-    "type": "page",
-    "navigation": false
+    "href": "/blog"
   },
   "chat_link": {
     "type": "page",
@@ -44,6 +39,12 @@
     "type": "page",
     "title": "Telegram Channel ↗",
     "href": "https://t.me/tgsnake",
+    "newWindow": "true"
+  },
+  "api_link": {
+    "type": "page",
+    "title": "Api Refference ↗",
+    "href": "https://deno.land/x/tgsnake/src/index.ts",
     "newWindow": "true"
   }
 }

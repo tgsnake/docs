@@ -20,9 +20,7 @@ export default {
   head: () => {
     const { title } = useConfig();
     const { route } = useRouter();
-    const origin =
-      typeof window !== 'undefined' && window.location.origin ? window.location.origin : '';
-    const socialCard = `${origin}/api/og?title=${title ?? ''}`;
+    const socialCard = `/images/tgsnake.jpg`;
     return (
       <>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -68,7 +66,7 @@ export default {
     text: <span>Edit this page</span>,
   },
   footer: {
-    text: <p>MIT {new Date().getFullYear()} © butthx.</p>,
+    text: <p>MIT {new Date().getFullYear()} © tgsnake.</p>,
   },
   gitTimestamp: ({ timestamp }) => {
     const [date, setDate] = useState(timestamp.toISOString());
@@ -86,7 +84,7 @@ export default {
     }, []);
     return <p>Last updated on {date}</p>;
   },
-  banner: {
+  /*banner: {
     key: '01-version-2',
     text: (
       <a target="_blank" href="https://tgsnake-cgksywsyy-butthx.vercel.app/">
@@ -94,5 +92,18 @@ export default {
       </a>
     ),
     dismissible: false,
+  },*/
+  toc: {
+    float: true,
   },
+  i18n: [
+    {
+      locale: 'en',
+      text: 'English',
+    },
+    {
+      locale: 'ru',
+      text: 'Russia',
+    },
+  ],
 };

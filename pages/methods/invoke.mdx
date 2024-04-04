@@ -1,0 +1,36 @@
+---
+title: Requesting function using raw api.
+---
+
+import { Callout } from 'nextra/components';
+
+# Invoke
+
+Requesting function using raw api.  
+Raw api is a function constructor which is declared in the telegram schema.
+
+## Usage
+
+```ts
+import { Raw } from 'tgsnake'; // '@tgsnake/core'
+
+client.api.invoke(query, retries, timeout, sleepTreshold);
+```
+
+| name | required | type | description |
+| :-: | :-: | :-: | :-- |
+| query | Yes | Object | Constructor (object) which will be sent to the Telegram server. |
+| retries | No | Integer | If the function fails, how many attempts should it run. |
+| timeout | No | Integer | The maximum time limit for running the `query` function. |
+| sleepTreshold | No | Integer | Pause sleep time if a flood occurs. |
+
+<Callout type="info">
+  Not all classes contained in Raw Api can be executed, only classes that are functions can be
+  executed. See [»](https://deno.land/x/tgsnake_core/src/index.ts?s=Raw.TypesTLRequest)
+</Callout>{' '}
+
+## Reference
+
+- [Telegram schema](https://corefork.telegram.org/schema)
+- [Raw Api documentation](https://deno.land/x/tgsnake_core/src/index.ts?s=Raw)
+- [List of possible error](https://github.com/tgsnake/core/blob/master/generator/error/source/errors.tsv)

@@ -5,5 +5,5 @@ module.exports = {
       : 'https://tgsnake.js.org',
   generateRobotsTxt: true,
   sitemapSize: 7000,
-  exclude: ['/login', '/api', '/pages/*', '/beta/*'],
+  exclude: ['/login', '/api', '/pages/*', '/beta/*', '/blog/*'],
 };

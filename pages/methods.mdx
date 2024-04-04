@@ -15,27 +15,11 @@ bot.on('message.text', (update) => {
 });
 ```
 
-## getMessages
+## Invoking raw api
 
-Get a message according to the given chat id and message id.
-
-## getParticipants
-
-## invoke
-
-Send a raw api from @tgsnake/core
-
-```ts {5-7}
-import { Raw } from '@tgsnake/core';
-const client = new Snake();
-
-async function sendMessage(chatId: bigint, text: string) {
-  return await client.invoke(
-    new Raw.messages.SendMessage({
-      // ... arguments
-    }),
-  );
-}
+```ts
+import { Raw } from 'tgsnake';
+client.api.invoke(new Raw.messages.SendMessage({}));
 ```
 
-## sendMessage
+For a list of Raw Api, you can find it in [deno documentation version](https://deno.land/x/tgsnake_core/src/index.ts?s=Raw) and as a supporter, you can read more in the official [telegram documentation.](https://corefork.telegram.org/schema)

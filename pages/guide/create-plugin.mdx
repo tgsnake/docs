@@ -2,22 +2,76 @@
 title: Creating plugin
 ---
 
+import { Callout } from 'nextra/components';
+import { FileTree } from 'nextra/components';
+
 # Creating plugin
 
-In order to make a plugin compatible with tgsnake, your plugin must comply with our guide.
+Plugins are one of the supporting elements in tgsnake. You can modify this framework according to your needs.
 
-- Plugins must be functions.
-- For the login plugin, give the `Login` prefix to your function name and it should return a result from getMe.
+<Callout type="warning">
+  Make sure you really understand this plugin and that you believe in the plugin you want to
+  install. Each plugin must have its own effect on your code, we are not responsible
+</Callout>
 
-## Example
+The plugin must be a function that registers each event to be handled. These functions will receive a parameter in the form of the `TgsnakeApi` class which can be used to register handlers
 
-```ts
-import { type Snake } from 'tgsnake';
-import { Clients } from '@tgsnake/core';
-export async function LoginWithA(client: Snake) {
-  // you code
-  return await Clients.Auth.getMe(client._client);
+```js
+function plugin(tgsnakeapi) {
+  // do something
 }
 ```
 
-This procedure may change in the future, according to the needs and efficiency of the code.
+Available events include:
+
+| event name | type callback fn | description |
+| :-: | :-- | :-- |
+| beforeStart | ({'{'} client {'}'}) : any | Register the handler before the client running. When the client will be run, this listener will be run first, therefore you cannot make requests to the Telegram server in this listener function. |
+| afterStart | ({'{'} client {'}'}) : any | Register the handler function to run after the client successfully connects to the Telegram server. |
+| onLogin | ({'{'} client {'}'}) : Raw.users.UserFull | Register the handler function to modified the default login logic. If you have more than 1 plug-in for this, then only the last plugin will be used _(maybe this will change in the future)_. In this event, the listener function must return a result in the form of `Raw.users.UserFull`, otherwise the login process will never complete. |
+| gracefullyStop | ({'{'} client {'}'}) : any | Register the handler function that will be executed when the client is terminated and after the session is saved. You don't need to do process.exit() in the handler. This function only works if the `shutdown` function is also executed. [Read more](/guide/shutdown) |
+| beforeParseUpdate | ({'{'} client, update {'}'}) : any | When receiving the latest update from Telegram and before being executed by the 'default parser' the registered function will be called. |
+| onParseUpdate | ({'{'} client, update {'}'}) : Array of Update | The registered function will replace the 'default parser', so the handler function must return an object. The returned object must be an extension of the Update class or one of the Raw.TypeUpdates objects |
+| afterParseUpdate | ({'{'} client, update {'}'}) : any | When receiving the latest update from Telegram and after being executed by the 'default parser' or 'onParseUpdate plugin' the registered function will be called. |
+
+Now you understand about the available events. Now we will see an example of its application.
+
+Imagine we have a file structure like this:
+
+<FileTree>
+  <FileTree.Folder name="project" defaultOpen>
+    <FileTree.File name="tgsnake.config.js" />
+    <FileTree.File name="package.json" />
+    <FileTree.File name="yarn.lock" />
+    <FileTree.Folder name="src">
+      <FileTree.File name="index.js" />
+    </FileTree.Folder>
+    <FileTree.Folder name="plugins">
+      <FileTree.File name="plugin.js" />
+    </FileTree.Folder>
+  </FileTree.Folder>
+</FileTree>
+
+plugin.js is where we work on creating plugins for tgsnake and we will use in config file.
+
+```js filename='plugins/plugin.js'
+function init(event) {
+  event.addEventHandler('afterStart', ({ client }) => {
+    console.log("Wohoho, I'm called");
+  });
+}
+module.exports = { init };
+```
+
+Then we will apply this simple plugin to our config file.
+
+```js filename='tgsnake.config.js'
+const config = {
+  // we only focus on plugin parameters.
+  plugins: [require('./plugins/plugin.js').init],
+};
+
+module.exports = config;
+```
+
+Now you just need to run your client and see what happens.

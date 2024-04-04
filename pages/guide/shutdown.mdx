@@ -1,0 +1,39 @@
+---
+title: Gracefully Stop
+---
+
+# Gracefully Stop
+
+Gracefully stop or shutdown is a function where when a kill signal is received, the program will complete its final mission before the program stops completely.  
+This can ensure that the client has been disconnected completely and all sessions and cache have been stored in the database.  
+Therefore, you must install the `shutdown` function.
+
+```ts
+import { shutdown } from 'tgsnake';
+
+shutdown(client);
+```
+
+In this shutdown function, you can install more than 1 client.
+
+```ts
+shutdown(client1, client2, client3);
+```
+
+In v2 this function is integrated directly into the Snake class and can't be disable, which will take up a lot of resources (memory leak) because each client has its own event listener for `SIGTERM` and `SIGINT` signals.
+    
+```js filename="tgsnake.config.js" 
+{
+  experimental : {
+    shutdown: false // to disable built-in event listener 
+  }
+}
+```   
+    
+If you don't install this function for the client, what will happen is:
+
+- Your cache is not updated to database of session you are using, for example you use `@tgsnake/redis-session`
+- It is possible that your login session is not saved in the database of the session you are using, for example you use `@tgsnake/redis-session`.
+- Your connection with the Telegram server is not completely closed. This may cause Telegram to ban you.
+
+You can create your own shutdown function by adding an event handler to the SIGTERM or SIGINT signals. Then call the `stop` function in the client.
