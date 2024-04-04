@@ -6,9 +6,7 @@ import * as types from '@/components/types';
 
 # Использование конфигурационного файла
 
-A config file is a file that contains important credentials in it. Therefore, so that unwanted things don't happen, this config file is created. Add `tgsnake.config.js` in `.gitignore` so that this file doesn't get pushed to github.
-
-Файл конфигурации – это свод важных настроек. Вот почему создается этот файл, словно тайна в бездне времени. Для того чтобы избежать нежеланных инцидентов, добавьте `tgsnake.config.js` в файл `.gitignore`, как будто печать великой тайны, чтобы этот свиток не попал в объятия GitHub, несущего свою тайну в бескрайний океан кода.
+Файл конфигурации — это файл, содержащий важные учетные данные. Добавьте `tgsnake.config.js` в `.gitignore`, чтобы этот файл не попал в GitHUb.
 
 ```js
 /** @type {import('tgsnake').Options} */
@@ -27,7 +25,7 @@ const config = {
 module.exports = { config };
 ```
 
-Кодовый отрывок выше представляет собой пример его реализации, и ниже приведено пояснение к каждому параметру.
+Отрывок кода выше представляет собой пример его реализации, и ниже приведено пояснение к каждому параметру.
 
 ## apiHash
 
