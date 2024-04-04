@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 # Создайте свой собственный клиент Telegram
 
-Простая и мощная платформа MTProto для JavaScript или TypeScript.
+Простая и мощная оболочка MTProto для JavaScript или TypeScript.
 
 <div className="block my-5">
   <Link href="/getting-started" className="p-4 bg-green-200 dark:bg-green-700 font-bold rounded-2xl dark:hover:ring-green-500 hover:ring-green-100 hover:ring-4">Getting Started</Link>
@@ -22,7 +22,7 @@ import Link from 'next/link';
 # Легко обрабатывайте все сообщения
 ```ts
 client.cmd('start',(update) => {
-  return update.message.respond('Йоу, чувак! Это сообщение написано с использованием tgsnake.')
+  return update.message.respond('Йоу, чувак! Это сообщение написано используя tgsnake.')
 })
 ```
    
@@ -34,7 +34,7 @@ client.cmd('start',(update) => {
     <div className="rounded-full font-bold bg-gradient-to-tr from-green-300 to-green-400 py-3 px-4 text-black">🐍</div>
     <div className="mx-4 text-black py-2 px-5 rounded-3xl bg-gradient-to-tr from-green-200 to-green-400">
       <p className="font-bold">tgsnake</p>
-      <p>Йоу, чувак! Это сообщение написано с использованием tgsnake.</p>
+      <p>Йоу, чувак! Это сообщение написано используя tgsnake.</p>
     </div>
   </div>
 </div>
