@@ -20,8 +20,16 @@ In this shutdown function, you can install more than 1 client.
 shutdown(client1, client2, client3);
 ```
 
-In v2 this function is integrated directly into the Snake class, which will take up a lot of resources (memory leak) because each client has its own event listener for `SIGTERM` and `SIGINT` signals.
-
+In v2 this function is integrated directly into the Snake class and can't be disable, which will take up a lot of resources (memory leak) because each client has its own event listener for `SIGTERM` and `SIGINT` signals.
+    
+```js filename="tgsnake.config.js" 
+{
+  experimental : {
+    shutdown: false // to disable built-in event listener 
+  }
+}
+```   
+    
 If you don't install this function for the client, what will happen is:
 
 - Your cache is not updated to database of session you are using, for example you use `@tgsnake/redis-session`

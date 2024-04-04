@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import Model from '@/models/blog.model';
 import { MongooseClient } from '@/libs/mongoose.lib';
 import { uploadImage } from '@/components/handlePostContent';
+import { cookies } from 'next/headers';
+import { getIronSession } from 'iron-session';
 
 export const dynamic = 'force-dynamic';
 
@@ -82,9 +84,21 @@ export async function GET(req) {
 }
 
 export async function POST(req) {
-  await MongooseClient();
-  const form = await req.formData();
-  const files = form.getAll('files');
-  const urls = await uploadImage(files);
-  return NextResponse.json({ url: urls });
+  const session = await getIronSession(cookies(), {
+    password: [process.env.PWD_1, process.env.PWD_2, process.env.PWD_3],
+    cookieName: process.env.COOKIE_NAME,
+    cookieOptions: {
+      secure: true,
+      sameSite: 'strict',
+      path: '/',
+    },
+  });
+  if (session.logined && session.admin) {
+    await MongooseClient();
+    const form = await req.formData();
+    const files = form.getAll('files');
+    const urls = await uploadImage(files);
+    return NextResponse.json({ url: urls });
+  }
+  return NextResponse.json({ urls: [] }, { status: 401 });
 }

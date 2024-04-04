@@ -22,6 +22,7 @@ const config = {
     forceDotSession: true,
     botToken: '',
   },
+  experimental: {}
 };
 module.exports = config;
 ```
@@ -41,6 +42,7 @@ const config = {
     forceDotSession: true,
     botToken: '',
   },
+  experimental: {}
 };
 export default config;
 ```
@@ -138,3 +140,27 @@ This option will be used to create files ending in `.session` and `.cache`. The 
 
 **type**: <types.TypeString /> | <types.TypeUndefined />  
 The name of the current session that will later be used to login. Default is <types.TypeString text="tgsnake" />
+
+## experimental  
+  
+**type**: <types.TypeObject text="ExperimentalOptions" />  
+Experimental option that may be unstable, we do not recommend using this option. You must bear every risk that might occur.   
+   
+| params | required | type | description |   
+| :-----: | :----: | :-------: | :------: |    
+| `alwaysOnline` | false | boolean | When a user is offline state, the user will automatically be forced to go back online. Default false. |   
+| `alwaysSync` | false | boolean | For supergroups/channels that send messages too often so that after 2 minutes the client is running there are no more updates from Telegram. You can use this option to force the client to synchronize with predefined intervals and delays. Default false.|    
+| `customPath` | false | [CustomPath](#custompath) | Apply custom paths for some configurations such as login info and cache. |    
+| `onlineOnStart` | false | When the new client is started, will it display a status user is online. Default false. |    
+| `shutdown` | false | boolean | Implement the shutdown function by default into the client class. By default this option is true. [Read shutdown guide](/guide/shutdown). |    
+| `syncEvery` | false | number | Check the channel every time given. If no updates are received after the 'syncTimeout' timeout it will call the getChannelDifference function for synchronization. Default 10000. |   
+| `syncTimeout` | false | number | For supergroups/channels that send messages too often so that after 2 minutes the client is running there are no more updates from Telegram. You can use this option to force the client to synchronize with predefined intervals and delays. Default 30000 |   
+   
+### customPath   
+   
+| params | required | type | description |   
+| :-----: | :----: | :-------: | :------: |    
+| `loginDir` | false | string | The location or folder where all login information will be stored. This option only works when forceDotSession is active. And don't use special sessions like RedisSession. Default is `process.cwd()` |      
+| `loginExt` | false | string | File extension of saved login info. By default the file extension is 'session'. This option only works when forceDotSession is active. And don't use special sessions like RedisSession. default is `session` |      
+| `cacheDir` | false | string | The location or folder where all cache will be stored. This option only works when forceDotSession is active. And don't use special sessions like RedisSession. Default is `process.cwd()` |    
+| `cacheExt` | false | string | File extension of saved cache. By default the file extension is 'cache'. This option only works when forceDotSession is active. And don't use special sessions like RedisSession. Default is `cache` |     

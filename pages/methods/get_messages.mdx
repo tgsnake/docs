@@ -1,0 +1,43 @@
+---
+title: Get Messages
+---
+
+import { Callout } from 'nextra/components';
+
+# Get Messages
+
+File: [src/Methods/Messages/GetMessages.ts](https://github.com/tgsnake/tgsnake/blob/wayang-kulit/src/Methods/Messages/GetMessages.ts)  
+Schema: [channels.GetMessages](https://core.telegram.org/method/channels.getMessages) & [messages.getMessages](https://core.telegram.org/method/messages.getMessages)
+
+Get one or more messages from a chat by using message identifiers.
+
+## Usage
+
+```ts
+client.api.invoke(chatId, messageIds, replyToMessageIds, replies);
+```
+
+| name | required | type | description |
+| :-: | :-: | :-: | :-- |
+| chatId | true | [bigint](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt) or [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | Unique identifier or username of the target chat. |
+| messageIds | true | [array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) of [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | Message identifier to get the content of the message. You can pass with [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Undefined) if you want to use `replyToMessageIds` parameter. |
+| replyToMessageIds | true | [array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) of [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | Message identifier to get the content of the previous message which is replied by current messages. You can pass with [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Undefined) if you want to use `messageIds` parameter. |
+| replies | true | [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | The number of subsequent replies to get for each message. Pass 0 for no reply at all or -1 for unlimited replies. Defaults to 1. |
+
+<Callout type="info">
+  You cannot use the `messageIds` parameter at the same time as `replyToMessageIds`, if the
+  `messageIds` parameter is available then we will prioritize using the `messageIds` parameter over
+  `replyToMessageIds`.
+</Callout>
+
+## Possible Error
+
+| code | error                  | description                                                  |
+| :--: | :--------------------- | :----------------------------------------------------------- |
+| 400  | CHANNEL_INVALID        | The provided channel is invalid.                             |
+| 406  | CHANNEL_PRIVATE        | You haven't joined this channel/supergroup.                  |
+| 400  | MESSAGE_IDS_EMPTY      | No message ids were provided.                                |
+| 400  | MSG_ID_INVALID         | Invalid message ID provided.                                 |
+| 400  | USER_BANNED_IN_CHANNEL | You're banned from sending messages in supergroups/channels. |
+
+## Bots can use
