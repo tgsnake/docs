@@ -3,12 +3,13 @@ title: Использование конфигурационного файла
 ---
 
 import * as types from '@/components/types';
+import { FileTree } from 'nextra/components';
 
 # Использование конфигурационного файла
 
 Файл конфигурации — это файл, содержащий важные учетные данные. Добавьте `tgsnake.config.js` в `.gitignore`, чтобы этот файл не попал в GitHUb.
 
-```js
+```js filename="tgsnake.config.js"
 /** @type {import('tgsnake').Options} */
 const config = {
   apiHash: 'abcdefgh',
@@ -21,11 +22,48 @@ const config = {
     forceDotSession: true,
     botToken: '',
   },
+  experimental: {}
 };
-module.exports = { config };
+module.exports = config;
 ```
 
-Отрывок кода выше представляет собой пример его реализации, и ниже приведено пояснение к каждому параметру.
+Для платформы Deno ситуация может быть немного иной, поскольку Deno полностью использует ESM. Поэтому необходимо настроить конфигурацию так:
+
+```ts filename="tgsnake.config.js"
+/** @type {import('tgsnake').Options} */
+const config = {
+  apiHash: 'abcdefgh',
+  apiId: 0123455,
+  logLevel: 'error',
+  plugins: [],
+  clientOptions: {},
+  login: {
+    sessionName: 'myapp',
+    forceDotSession: true,
+    botToken: '',
+  },
+  experimental: {}
+};
+export default config;
+```
+
+Вам нужно использовать только 1 файл конфигурации в вашем проекте. Убедитесь, что файл конфигурации находится в корневом каталоге вашего проекта.
+
+<FileTree>
+  <FileTree.Folder name="project" defaultOpen>
+    <FileTree.File name="tgsnake.config.js" />
+    <FileTree.File name="package.json" />
+    <FileTree.File name="yarn.lock" />
+    <FileTree.Folder name="src">
+      <FileTree.File name="index.js" />
+    </FileTree.Folder>
+  </FileTree.Folder>
+</FileTree>
+
+Если конфигурация не найдена и вы не создавали конфигурацию при создании клиента, появится ошибка.
+Приведенный выше фрагмент кода является примером его реализации, а ниже приводится объяснение каждого параметра.
+
+
 
 ## apiHash
 
@@ -40,6 +78,7 @@ module.exports = { config };
 ## logLevel
 
 **type**: <types.TypeString /> | <types.TypeArray><types.TypeString /></types.TypeArray> Параметр для установки уровней логирования отображающихся в терминале. Заполните его массивом уровней, чтобы можно было управлять двумя или более уровнями одновременно.
+По умолчанию он будет читать `env`, [подробнее](https://deno.land/x/tgsnake_log)
 
 ## plugins
 
@@ -52,29 +91,28 @@ module.exports = { config };
 
 ## login
 
-**type**: <types.TypeObject text="LoginWithSession" /> Параметр для завершения действия входа. Этот параметр должен быть объектом, соответствующим заданному типу.
+**type**: <types.TypeObject text="LoginWithSession" />  
+Параметр для завершения действия входа. Этот параметр должен быть объектом, соответствующим заданному типу.
 
 ```ts
 interface LoginWithSession {
   /**
-   * String session or import your session class.
+   * Строка сессии или импортируйте класс сессии.
    */
   session?: string | Storages.AbstractSession;
   /**
-   * Login as bot using bot auth token from bot father. <br/>
-   * Only effected when selected session is blank.
+   * Войдите в систему как бот, используя токен от Bot Father. <br/>
+   * Действует только в том случае, если `session` нет.
    */
   botToken?: string;
   /**
-   * Force session to .session file, If session field passed as string. <br/>
-   *
-   * default is true.
+   * Принудительно перенести сессию в файл .session, если поле сессии передано в виде строки. <br/>
+   * По умолчанию true.
    */
   forceDotSession?: boolean;
   /**
-   * The name of session, it will be using to read .session file. <br/>
-   *
-   * default is "tgsnake"
+   * Имя сеанса, которое будет использоваться для чтения файла .session. <br/>
+   * По умолчанию "tgsnake"
    */
   sessionName?: string;
 }
@@ -82,7 +120,8 @@ interface LoginWithSession {
 
 ### session
 
-**type**: <types.TypeString /> | <types.TypeObject text="Storages.AbstractSession" /> | <types.TypeUndefined/> Класс Session предназначен для хранения информации о входе. Сессия может представлять собой `string session` или экземпляр класса `Storages.AbstractSession` из `@tgsnake/core`.
+**type**: <types.TypeString /> | <types.TypeObject text="Storages.AbstractSession" /> | <types.TypeUndefined/> 
+Класс Session предназначен для хранения информации о входе. Сессия может представлять собой `string session` или экземпляр класса `Storages.AbstractSession` из `@tgsnake/core`.
 
 ### botToken
 
@@ -98,3 +137,28 @@ interface LoginWithSession {
 
 **type**: <types.TypeString /> | <types.TypeUndefined />  
 Имя текущей сессии, которое затем будет использоваться для входа. Значение по умолчанию - <types.TypeString text="tgsnake" />.
+
+## experimental  
+  
+**type**: <types.TypeObject text="ExperimentalOptions" />  
+Экспериментальный параметр, которая может работать нестабильно. Мы не рекомендуем использовать эту опцию. Вы должны понимать каждый риск, который может возникнуть.     
+   
+| Параметры | Обязательный | Тип | Описание |   
+| :-------: | :----------: | :----: | :------: |    
+| `alwaysOnline` | false | boolean | Когда пользователь находится не в сети, он автоматически вернётся в онлайн. По умолчанию false. |
+| `alwaysSync` | false | boolean | Для супергрупп/каналов, которые слишком часто отправляют сообщения, чтобы через 2 минуты работы клиента обновлений от Telegram больше не было. Вы можете использовать эту опцию, чтобы заставить клиент синхронизироваться с заранее заданными интервалами и задержками. По умолчанию false. |
+| `customPath` | false | [CustomPath](#custompath) | Примените собственные пути для некоторых конфигураций, таких как данные для входа и кеш. |    
+| `onlineOnStart` | false | При запуске нового клиента будет ли он отображать статус, что пользователь находится в сети. По умолчанию false. |    
+| `shutdown` | false | boolean | Сделайте функцию завершения работы по умолчанию в классе client. По умолчанию этот параметр true. [Читать руководство по выключению](/guide/shutdown). |    
+| `syncEvery` | false | number | Проверяйте канал каждый раз. Если по истечении таймаута syncTimeout обновления не получены, для синхронизации будет вызвана функция getChannelDifference. По умолчанию 10000. |   
+| `syncTimeout` | false | number | Для супергрупп/каналов, которые слишком часто отправляют сообщения, чтобы через 2 минуты работы клиента обновлений от Telegram больше не было. Вы можете использовать эту опцию, чтобы заставить клиент синхронизироваться с заранее заданными интервалами и задержками. По умолчанию 30000. |
+   
+### customPath   
+   
+| Параметры | Обязательный | Тип | Описание |  
+| :-----: | :----: | :-------: | :------: |    
+| `loginDir` | false | string | Директория, в которой будут храниться все данные для входа. Эта опция работает только тогда, когда активен forceDotSession. И не используйте специальные сессии, такие как RedisSession. По умолчанию используется `process.cwd()`. |      
+| `loginExt` | false | string | Расширение файла сохраненной информации для входа. По умолчанию расширение файла — session. Эта опция работает только тогда, когда активен forceDotSession. И не используйте специальные сессии, такие как RedisSession. По умолчанию — `session` |      
+| `cacheDir` | false | string | Директория, в которой будет храниться весь кэш. Эта опция работает только тогда, когда активен forceDotSession. И не используйте специальные сеансы, такие как RedisSession. По умолчанию используется `process.cwd()`. |    
+| `cacheExt` | false | string | Расширение файла сохраненного кеша. По умолчанию расширение файла — 'cache'. Эта опция работает только тогда, когда активен forceDotSession. И не используйте специальные сеансы, такие как RedisSession. По умолчанию – `cache`. |     
+
