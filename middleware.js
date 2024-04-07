@@ -30,9 +30,13 @@ export async function middleware(req) {
   }
   let userAgent = req.headers.get('user-agent');
   if (userAgent == 'TelegramBot (like TwitterBot)' && !regex.test(req.nextUrl.pathname)) {
-    let home = ['/'];
+    let locale = req.nextUrl.locale == 'default' ? 'en' : req.nextUrl.locale;
+    console.log(locale);
+    let home = ['/', locale, `/${locale}`, `/${locale}/`];
     let paths = `/pages${
-      home.includes(req.nextUrl.pathname) ? `/index.html` : `${req.nextUrl.pathname}.html`
+      home.includes(req.nextUrl.pathname)
+        ? `/index.${locale}.html`
+        : `${req.nextUrl.pathname}.${locale}.html`
     }`;
     let url =
       process.env.VERCEL_URL && process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production'
