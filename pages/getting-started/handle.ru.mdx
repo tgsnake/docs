@@ -67,9 +67,9 @@ title: Получение уведомлений
 - shippingQuery.from
 
 ```js
-client.on('message.text',(ctx)=>{
-  console.log(ctx)
-})
+client.on('message.text', (ctx) => {
+  console.log(ctx);
+});
 ```
 
 ## command
@@ -84,12 +84,12 @@ client.on('message.text',(ctx)=>{
 Эта функция будет фильтровать сообщение, соответствующее аргументу `cmd`. Префикс по умолчанию - `.!/`.
 
 ```js
-client.cmd('start',(ctx)=>{
-  console.log(ctx)
-})
+client.cmd('start', (ctx) => {
+  console.log(ctx);
+});
 ```
 
-## hears 
+## hears
 
 > сокращение - hear
 
@@ -97,29 +97,32 @@ client.cmd('start',(ctx)=>{
 
 <span className="ml-4">text: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-green-600 dark:text-green-300">string</span>\></span>,</span>   
 <span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
-**)**  
+**)**
 
 Эта функция будет отфильтровать сообщение, которое содержит `text`.
 
 ```js
-client.hear('hei',(ctx)=>{
-  console.log(ctx)
-})
+client.hear('hei', (ctx) => {
+  console.log(ctx);
+});
 ```
 
-## use 
+## use
 
-**Composer.use(**  
-<span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
-**)**  
+**Composer.use(**
+
+<span className="ml-4">
+  handler: <span className="text-purple-600 dark:text-purple-300">Function</span>
+</span>
+**)**{' '}
 
 Эта функция будет выполнена перед другими функциями. Она полезна для создания кода обрабатывающегося до всех команд.
 
 ```js
-client.use((ctx,next)=>{
-  console.log(ctx)
-  return next()
-})
+client.use((ctx, next) => {
+  console.log(ctx);
+  return next();
+});
 ```
 
 ## action
@@ -128,14 +131,14 @@ client.use((ctx,next)=>{
 
 <span className="ml-4">callbackData: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-green-600 dark:text-green-300">string</span>\></span>,</span>   
 <span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
-**)**  
+**)**
 
 Эта функция будет фильтровать callbackQuery, который соответствует заданным callbackData.
 
 ```js
-client.action('start', (ctx)=>{
-  console.log(ctx)
-})
+client.action('start', (ctx) => {
+  console.log(ctx);
+});
 ```
 
 ## inlineQuery
@@ -144,12 +147,12 @@ client.action('start', (ctx)=>{
 
 <span className="ml-4">query: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-green-600 dark:text-green-300">string</span>\></span>,</span>   
 <span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
-**)**  
+**)**
 
 Эта функция будет фильтровать любой запрос, отправленный пользователями, и соответствовать данному query.
 
 ```js
-client.inlineQuery('start', (ctx)=>{
-  console.log(ctx)
-})
+client.inlineQuery('start', (ctx) => {
+  console.log(ctx);
+});
 ```
