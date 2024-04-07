@@ -14,14 +14,66 @@ title: Получение уведомлений
 <span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
 **)**  
 Эта функция будет фильтровать уведомления в соответствии с предоставленными аргументами `filter`.
+
 ### Доступные фильтры
-`any`, `message`, `editedMessage`, `channelPost`, `editedChannelPost`, `inlineQuery`, `callbackQuery`, `chosenInlineResult`, `callbackQuery`, `shippingQuery`, `preCheckoutQuery`, `poll`, `pollAnswer`, `chatJoinRequest`, `message.text`, `message.caption`, `message.from`, `message.animation`, `message.audio`, `message.document`, `message.photo`, `message.sticker`, `message.video`, `message.videoNote`, `message.voice`, `message.webpage`, `message.replyToMessage`, `message.replyToMessageId`, `message.replyToTopMessageId`
+
+- any
+- message
+- editedMessage
+- channelPost
+- editedChannelPost
+- inlineQuery
+- chosenInlineResult
+- callbackQuery
+- shippingQuery
+- preCheckoutQuery
+- poll
+- pollAnswer
+- chatJoinRequest
+- myChatMember
+- chatMember
+- secretChat
+- msg.text
+- msg.caption
+- msg.chat
+- msg.from
+- msg.animation
+- msg.audio
+- msg.document
+- msg.photo
+- msg.sticker
+- msg.video
+- msg.videoNote
+- msg.voice
+- msg.webpage
+- msg.replyToMessage
+- msg.replyToMessageId
+- msg.replyToTopMessageId
+- msg.newChatMembers
+- msg.leftChatMember
+- msg.pinnedMessage
+- cb.data
+- cb.message
+- editMsg.text
+- editMsg.caption
+- editPost.text
+- editPost.caption
+- inlineQuery.from
+- inlineQuery.location
+- inlineQuery.chatType
+- chosenInlineResult.from
+- chosenInlineResult.location
+- chosenInlineResult.inlineMessageId
+- shippingQuery.from
+
 ```js
 client.on('message.text',(ctx)=>{
   console.log(ctx)
 })
 ```
+
 ## command
+
 > сокращение - cmd
 
 **Composer.command(**
@@ -30,12 +82,15 @@ client.on('message.text',(ctx)=>{
 <span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
 **)**  
 Эта функция будет фильтровать сообщение, соответствующее аргументу `cmd`. Префикс по умолчанию - `.!/`.
+
 ```js
 client.cmd('start',(ctx)=>{
   console.log(ctx)
 })
 ```
+
 ## hears 
+
 > сокращение - hear
 
 **Composer.hears(**
@@ -43,20 +98,58 @@ client.cmd('start',(ctx)=>{
 <span className="ml-4">text: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-green-600 dark:text-green-300">string</span>\></span>,</span>   
 <span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
 **)**  
+
 Эта функция будет отфильтровать сообщение, которое содержит `text`.
+
 ```js
 client.hear('hei',(ctx)=>{
   console.log(ctx)
 })
 ```
+
 ## use 
+
 **Composer.use(**  
 <span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
 **)**  
+
 Эта функция будет выполнена перед другими функциями. Она полезна для создания кода обрабатывающегося до всех команд.
+
 ```js
 client.use((ctx,next)=>{
   console.log(ctx)
   return next()
+})
+```
+
+## action
+
+**Composer.action(**
+
+<span className="ml-4">callbackData: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-green-600 dark:text-green-300">string</span>\></span>,</span>   
+<span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
+**)**  
+
+Эта функция будет фильтровать callbackQuery, который соответствует заданным callbackData.
+
+```js
+client.action('start', (ctx)=>{
+  console.log(ctx)
+})
+```
+
+## inlineQuery
+
+**Composer.inlineQuery(**
+
+<span className="ml-4">query: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-green-600 dark:text-green-300">string</span>\></span>,</span>   
+<span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
+**)**  
+
+Эта функция будет фильтровать любой запрос, отправленный пользователями, и соответствовать данному query.
+
+```js
+client.inlineQuery('start', (ctx)=>{
+  console.log(ctx)
 })
 ```

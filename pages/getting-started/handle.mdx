@@ -14,6 +14,7 @@ For handling updates, we use `Composer`. By default the `Snake` class is
 <span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
 **)**  
 This function will filter updates according to the `filter` arguments provided.
+
 ### Available filters
 
 - any
@@ -80,13 +81,16 @@ client.on('message.text', (ctx) => {
 <span className="ml-4">cmd: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-green-600 dark:text-green-300">string</span>\></span>,</span>   
 <span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
 **)**  
+
 This function will filter a message that matches the `cmd` argument. Prefix default is `.!/`.
 ```js
-client.cmd('start',(ctx)=>{
+client.cmd('start', (ctx)=>{
   console.log(ctx)
 })
 ```
+
 ## hears 
+
 > shorthand is hear
 
 **Composer.hears(**
@@ -94,23 +98,29 @@ client.cmd('start',(ctx)=>{
 <span className="ml-4">text: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-green-600 dark:text-green-300">string</span>\></span>,</span>   
 <span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
 **)**  
+
 This function will filter a message that contains the `text` argument.
+
 ```js
-client.hear('hei',(ctx)=>{
+client.hear('hei', (ctx)=>{
   console.log(ctx)
 })
 ```
+
 ## use 
+
 **Composer.use(**  
 <span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
 **)**  
 This function will be executed before the other functions. This function is useful for creating middleware.
+
 ```js
 client.use((ctx,next)=>{
   console.log(ctx)
   return next()
 })
 ```
+
 ## action
 
 **Composer.action(**
@@ -118,12 +128,15 @@ client.use((ctx,next)=>{
 <span className="ml-4">callbackData: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-green-600 dark:text-green-300">string</span>\></span>,</span>   
 <span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
 **)**  
+
 This function will filter a callbackQuery which is matched with given callbackData
+
 ```js
-client.action('start',(ctx)=>{
+client.action('start', (ctx)=>{
   console.log(ctx)
 })
 ```
+
 ## inlineQuery
 
 **Composer.inlineQuery(**
@@ -131,9 +144,11 @@ client.action('start',(ctx)=>{
 <span className="ml-4">query: <span className="text-green-600 dark:text-green-300">string</span> | <span className="text-yellow-600 dark:text-yellow-300">Array\<<span className="text-green-600 dark:text-green-300">string</span>\></span>,</span>   
 <span className="ml-4">handler: <span className="text-purple-600 dark:text-purple-300">Function</span></span>   
 **)**  
+
 This function will filter any query submitted by users and matches with given query.
+
 ```js
-client.inlineQuery('start',(ctx)=>{
+client.inlineQuery('start', (ctx)=>{
   console.log(ctx)
 })
 ```
