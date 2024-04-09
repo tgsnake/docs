@@ -21,16 +21,10 @@
     "title": "Ресурсы"
   },
   "faq": {
-    "title": "Часто-задаваемые вопросы",
-    "navigation": false
+    "title": "Часто-задаваемые вопросы"
   },
   "blog": {
     "title": "Блог",
-    "type": "page",
-    "navigation": false
-  },
-  "support": {
-    "title": "Поддержка",
     "type": "page",
     "navigation": false
   },

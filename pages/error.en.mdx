@@ -1,0 +1,27 @@
+---
+title: Error Reference
+---
+
+import { TableData } from '@/components/errorTable';
+
+export const getStaticProps = ({ params }) => {
+  return fetch(
+    `https://raw.githubusercontent.com/tgsnake/core/master/generator/error/source/errors.json`,
+  )
+    .then((res) => res.json())
+    .then((list) => ({
+      props: {
+        ssg: {
+          list: list,
+        },
+      },
+      revalidate: 60,
+    }));
+};
+
+# Error Reference
+
+There may be some unknown errors, if you got unknown error, you can report to us.  
+Source: [generator/error/source/errors.tsv](https://github.com/tgsnake/core/blob/master/generator/error/source/errors.tsv)
+
+<TableData />

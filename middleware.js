@@ -28,7 +28,8 @@ export async function middleware(req) {
       return NextResponse.redirect(new URL('/blog', req.url));
     }
   }
-  let userAgent = req.headers.get('user-agent');
+  // instant view
+  /*let userAgent = req.headers.get('user-agent');
   if (userAgent == 'TelegramBot (like TwitterBot)' && !regex.test(req.nextUrl.pathname)) {
     let locale = req.nextUrl.locale == 'default' ? 'en' : req.nextUrl.locale;
     console.log(locale);
@@ -48,7 +49,7 @@ export async function middleware(req) {
     if (json.includes(paths.replace(/\.html$/, ''))) {
       return NextResponse.rewrite(`${url}/${paths}`);
     }
-  }
+  }*/
   if (!/^\/blog/.test(req.nextUrl.pathname)) {
     return localeMiddleware(req);
   }

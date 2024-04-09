@@ -21,8 +21,10 @@
     "title": "Resources"
   },
   "faq": {
-    "title": "Frequently Asked Questions",
-    "navigation": false
+    "title": "Frequently Asked Questions"
+  },
+  "error": {
+    "title": "Error Reference"
   },
   "blog": {
     "title": "Blog",
