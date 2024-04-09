@@ -24,7 +24,8 @@
     "title": "Frequently Asked Questions"
   },
   "error": {
-    "title": "Error Reference"
+    "title": "Error Reference",
+    "type": "page"
   },
   "blog": {
     "title": "Blog",
