@@ -2,6 +2,7 @@
 title: Error Reference
 ---
 
+import { Callout } from 'nextra/components';
 import { TableData } from '@/components/errorTable';
 
 export const getStaticProps = ({ params }) => {
@@ -21,7 +22,14 @@ export const getStaticProps = ({ params }) => {
 
 # Error Reference
 
-There may be some unknown errors, if you got unknown error, you can report to us.  
-Source: [generator/error/source/errors.tsv](https://github.com/tgsnake/core/blob/master/generator/error/source/errors.tsv)
+<Callout type="info">
+  There may be some unknown errors, if you got unknown error, you can report to us.
+</Callout>
+<Callout emoji="💡">
+  **Tip** You can search error by error message or error code or error description or from TL
+  function. You can also search using regex.
+</Callout>
+Source:
+[generator/error/source/errors.tsv](https://github.com/tgsnake/core/blob/master/generator/error/source/errors.tsv)
 
 <TableData />
