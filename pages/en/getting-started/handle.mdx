@@ -1,0 +1,164 @@
+---
+title: Handle updates
+---
+
+# Handle updates
+
+For handling updates, we use `Composer`. By default the `Snake` class is
+
+## on
+
+```ts
+Composer.on(
+  filter: string | Array<string>,
+  handler: (ctx:TypeUpdate, next: () => MaybePromise<any>) => MaybePromise<any>
+)
+```
+
+This function will filter updates according to the `filter` arguments provided.
+
+### Available filters
+
+- any
+- message
+- editedMessage
+- channelPost
+- editedChannelPost
+- inlineQuery
+- chosenInlineResult
+- callbackQuery
+- shippingQuery
+- preCheckoutQuery
+- poll
+- pollAnswer
+- chatJoinRequest
+- myChatMember
+- chatMember
+- secretChat
+- msg.text
+- msg.caption
+- msg.chat
+- msg.from
+- msg.animation
+- msg.audio
+- msg.document
+- msg.photo
+- msg.sticker
+- msg.video
+- msg.videoNote
+- msg.voice
+- msg.webpage
+- msg.replyToMessage
+- msg.replyToMessageId
+- msg.replyToTopMessageId
+- msg.newChatMembers
+- msg.leftChatMember
+- msg.pinnedMessage
+- cb.data
+- cb.message
+- editMsg.text
+- editMsg.caption
+- editPost.text
+- editPost.caption
+- inlineQuery.from
+- inlineQuery.location
+- inlineQuery.chatType
+- chosenInlineResult.from
+- chosenInlineResult.location
+- chosenInlineResult.inlineMessageId
+- shippingQuery.from
+
+```js filename="example.js"
+client.on('message.text', (ctx) => {
+  console.log(ctx);
+});
+```
+
+## command
+
+> shorthand is cmd
+
+```ts
+Composer.command(
+  cmd: string | Array<string>,
+  handler: (ctx:TypeUpdate, next: () => MaybePromise<any>) => MaybePromise<any>
+)
+```
+
+This function will filter a message that matches the `cmd` argument. Prefix default is `.!/`.
+
+```js filename="example.js"
+client.cmd('start', (ctx) => {
+  console.log(ctx);
+});
+```
+
+## hears
+
+> shorthand is hear
+
+```ts
+Composer.hears(
+  text: string | Array<string>,
+  handler: (ctx:TypeUpdate, next: () => MaybePromise<any>) => MaybePromise<any>
+)
+```
+
+This function will filter a message that contains the `text` argument.
+
+```js filename="example.js"
+client.hear('hei', (ctx) => {
+  console.log(ctx);
+});
+```
+
+## use
+
+```ts
+Composer.use(
+  middleware: (ctx:TypeUpdate, next: () => MaybePromise<any>) => MaybePromise<any>
+)
+```
+
+This function will be executed before the other functions. This function is useful for creating middleware.
+
+```js filename="example.js"
+client.use((ctx, next) => {
+  console.log(ctx);
+  return next();
+});
+```
+
+## action
+
+```ts
+Composer.action(
+  callbackData: string | Array<string>,
+  handler: (ctx:TypeUpdate, next: () => MaybePromise<any>) => MaybePromise<any>
+)
+```
+
+This function will filter a callbackQuery which is matched with given callbackData
+
+```js filename="example.js"
+client.action('start', (ctx) => {
+  console.log(ctx);
+});
+```
+
+## inlineQuery
+
+```ts
+Composer.inlineQuery(
+  query: string | Array<string>,
+  handler: (ctx:TypeUpdate, next: () => MaybePromise<any>) => MaybePromise<any>
+)
+```
+
+This function will filter any query submitted by users and matches with given query.
+
+```js filename="example.js"
+client.inlineQuery('start', (ctx) => {
+  console.log(ctx);
+});
+```

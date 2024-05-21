@@ -10,7 +10,7 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { getIronSession } from 'iron-session';
-import { locales as localeMiddleware } from 'nextra/locales';
+// import { locales as localeMiddleware } from 'nextra/locales';
 
 let regex = /^\/?((pages|api)|((.*\/)?images))/i;
 export async function middleware(req) {
@@ -50,9 +50,9 @@ export async function middleware(req) {
       return NextResponse.rewrite(`${url}/${paths}`);
     }
   }*/
-  if (!/^\/blog/.test(req.nextUrl.pathname)) {
+  /*if (!/^\/blog/.test(req.nextUrl.pathname)) {
     return localeMiddleware(req);
-  }
+  }*/
   return;
 }
 export const config = {

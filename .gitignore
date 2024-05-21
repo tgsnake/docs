@@ -51,5 +51,5 @@ yarn-error.log*
 # tgsnake 
 ./tgsnake
 
-./pages/tgsnake/core/raw/*
-!./pages/tgsnake/core/raw/_meta.json
+tgsnake/core/raw/*
+# !./pages/tgsnake/core/raw/_meta.json

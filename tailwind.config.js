@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   content: ['./styles/global.css', './pages/**', './components/**', './app/**'],
   darkMode: 'class', // or 'media' or 'class'
   theme: {

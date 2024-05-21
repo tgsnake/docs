@@ -151,7 +151,7 @@ Experimental option that may be unstable, we do not recommend using this option.
 | `alwaysOnline` | false | boolean | When a user is offline state, the user will automatically be forced to go back online. Default false. |
 | `alwaysSync` | false | boolean | For supergroups/channels that send messages too often so that after 2 minutes the client is running there are no more updates from Telegram. You can use this option to force the client to synchronize with predefined intervals and delays. Default false. |
 | `customPath` | false | [CustomPath](#custompath) | Apply custom paths for some configurations such as login info and cache. |
-| `onlineOnStart` | false | When the new client is started, will it display a status user is online. Default false. |
+| `onlineOnStart` | false | boolean | When the new client is started, will it display a status user is online. Default false. |
 | `shutdown` | false | boolean | Implement the shutdown function by default into the client class. By default this option is true. [Read shutdown guide](/guide/shutdown). |
 | `syncEvery` | false | number | Check the channel every time given. If no updates are received after the 'syncTimeout' timeout it will call the getChannelDifference function for synchronization. Default 10000. |
 | `syncTimeout` | false | number | For supergroups/channels that send messages too often so that after 2 minutes the client is running there are no more updates from Telegram. You can use this option to force the client to synchronize with predefined intervals and delays. Default 30000 |

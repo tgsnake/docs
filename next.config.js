@@ -1,4 +1,5 @@
-const withNextra = require('nextra')({
+import nextra from 'nextra';
+const withNextra = nextra({
   theme: 'nextra-theme-docs',
   themeConfig: './theme.config.js',
   defaultShowCopyCode: true,
@@ -6,7 +7,7 @@ const withNextra = require('nextra')({
     remarkPlugins: [],
   },
 });
-module.exports = withNextra({
+export default withNextra({
   i18n: {
     locales: ['en', 'ru'],
     defaultLocale: 'en',
@@ -24,4 +25,16 @@ module.exports = withNextra({
       },
     ],
   },
+  redirects: () => [
+    {
+      source: '/',
+      destination: '/en',
+      permanent: true,
+    },
+    {
+      source: '/getting-started',
+      destination: '/en/getting-started',
+      permanent: true,
+    },
+  ],
 });

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useConfig } from 'nextra-theme-docs';
+import { useConfig, LocaleSwitch } from 'nextra-theme-docs';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
@@ -60,13 +60,18 @@ export default {
     loading: 'Finding a snake...',
   },
   sidebar: {
+    autoCollapse: true,
+    defaultMenuCollapseLevel: 1,
     toggleButton: true,
   },
+  navbar: {
+    extraContent: LocaleSwitch,
+  },
   editLink: {
-    text: <span>Edit this page</span>,
+    content: <span>Edit this page</span>,
   },
   footer: {
-    text: <p>MIT {new Date().getFullYear()} © tgsnake.</p>,
+    content: <p>MIT {new Date().getFullYear()} © tgsnake.</p>,
   },
   gitTimestamp: ({ timestamp }) => {
     const [date, setDate] = useState(timestamp.toISOString());
@@ -99,11 +104,11 @@ export default {
   i18n: [
     {
       locale: 'en',
-      text: 'English',
+      name: 'English',
     },
     {
       locale: 'ru',
-      text: 'Russia',
+      name: 'Russia',
     },
   ],
 };

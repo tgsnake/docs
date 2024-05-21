@@ -44,3 +44,15 @@ Sadly no, MTProto use a long polling for handle and receive update from telegram
 ## Can i use on browser?
 
 Maybe nope for this time, we are not testing on browser. Maybe soon we will try to make a browser support. But don't worry, some of our frameworks are supported on Deno!
+
+## What difference between @tgsnake/core and tgsnake?
+
+`@tgsnake/core` role as a connection bridge between the client (us) and the Telegram server. So everything is still raw and unprocessed. `tgsnake` using `@tgsnake/core` as a base and processing it to look like a fire bot.
+
+## I didn't get any messages from the big channels after 2 minutes or more.
+
+If you join a channel that is busy in the sense of frequently sending messages, try following the solution from [this issue](https://github.com/tgsnake/tgsnake/issues/134). If the solution to [this issue](https://github.com/tgsnake/tgsnake/issues/134) doesn't work, please leave a comment with a log and we will reopen the issue.
+
+## Does it have an auto reconnect feature if the connection is interrupted?
+
+Yes, we have auto reconnect when connection interrupted. Client will make 3 reconnection attempts to the Telegram server, then the application will stop with an error in the terminal. You can change `maxReconnectRetries` in client options to set how many attempt for reconnecting.
