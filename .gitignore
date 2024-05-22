@@ -52,4 +52,5 @@ yarn-error.log*
 ./tgsnake
 
 tgsnake/core/raw/*
+tgsnake/core/raw.mdx
 # !./pages/tgsnake/core/raw/_meta.json
