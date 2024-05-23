@@ -8,7 +8,7 @@
     "build:site-map": "next-sitemap",
     "build:iv": "node ./generator/iv",
     "build:raw": "node ./generator/raw",
-    "build": "build:raw && next build --debug && next-sitemap",
+    "build": "node ./generator/raw && next build --debug && next-sitemap",
     "start": "next start",
     "export": "next export -o ../docs",
     "prettier": "prettier -w ."
