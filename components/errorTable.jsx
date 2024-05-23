@@ -1,4 +1,4 @@
-import { useData } from 'nextra/data';
+import { useData } from 'nextra/hooks';
 import { useState, createElement, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 
