@@ -31,10 +31,5 @@ export default withNextra({
       destination: '/en',
       permanent: true,
     },
-    {
-      source: '/getting-started',
-      destination: '/en/getting-started',
-      permanent: true,
-    },
   ],
 });

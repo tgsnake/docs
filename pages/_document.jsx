@@ -16,6 +16,12 @@ export default function Document() {
         gtag('js', new Date());
         gtag('config', 'G-BND311EG8K');`}
         </Script>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3424740270102050"
+          crossorigin="anonymous"
+          strategy="afterInteractive"
+        />
         <Main />
         <NextScript />
       </body>
