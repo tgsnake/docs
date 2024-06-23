@@ -1,5 +1,0 @@
-export class {{ constructor-name }} {
-  constructor(params: {
-{{ interface }}
-  }){}
-}

@@ -13,9 +13,6 @@ export default {
   guide: {
     title: 'Guide',
   },
-  tgsnake: {
-    title: '@tgsnake',
-  },
   '-- resources': {
     type: 'separator',
     title: 'Resources',
@@ -46,8 +43,8 @@ export default {
   },
   api_link: {
     type: 'page',
-    title: 'Api Refference ↗',
-    href: 'https://deno.land/x/tgsnake/src/index.ts',
+    title: 'TL Refference ↗',
+    href: 'https://tl.tgsnake.org',
     newWindow: 'true',
   },
 };

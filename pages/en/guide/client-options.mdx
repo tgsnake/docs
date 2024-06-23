@@ -1,0 +1,234 @@
+---
+title: Client Options
+---
+
+# Client Options
+
+| Name | Type | Description |
+| :-: | :-: | :-- |
+| proxy | [ProxyInterface](#proxy-interface) | Connect to telegram using MTProto proxy or Socks proxy. |
+| testMode | Boolean | Connecting to telegram test server. |
+| ipv6 | Boolean | Connecting using ipv6. Default is `false` |
+| deviceModel | String | The device model which is using for login. |
+| systemVersion | String | The system version which is using for login. |
+| appVersion | String | The App version which is using for login. Default same with tgsnake version |
+| systemVersion | String | A two-letter ISO 639-1 language code which is used by the system. Default is `en` |
+| langCode | String | A two-letter ISO 639-1 language code that you use. Default is `en` |
+| sleepTreshold | Integer | Sleep treshold when flood wait reached. Default is `10000` |
+| maxRetries | Integer | Max retries when execution is fail. Default is `5` |
+| isCdn | Boolean | Connenting to cdn telegram server. Default is `false` |
+| noUpdates | Boolean | Pass true to disable incoming updates. Default is `false` |
+| takeout | Boolean | Pass true to let the client use a takeout session instead of a normal one, implies `noUpdates : true`. Default is `false` |
+| tcp | [TCP](#tcp) | TCP modes. See [»](https://corefork.telegram.org/mtproto/mtproto-transports) |
+| local | Boolean | Only for browser platform! Set false when you deployed your app offside the local machine. it wil use `ws://` in local machine and `wss://` in deployment. |
+| maxConcurrentTransmissions | Integer | Set the maximum amount of concurrent transmissions (uploads & downloads). Default is `1` |
+| maxReconnectRetries | Integer | How many attempts to connect to the telegram server when the connection is interrupted. Default is `3` |
+
+## Proxy Interface
+
+### Socks Proxy
+
+Connecting to Telegram server using Socks Proxy. This proxy won't work on browser platform.
+
+| Name | Type | Required | Description |
+| :-: | :-: | :-: | :-- |
+| hostname | String | True | IP destination for socks proxy. |
+| port | Integer | True | Port destination for socks proxy. |
+| socks | Integer (`4` or `5`) | True | Socks version. It should be 4 or 5. It marks using Socks4 or Socks5. |
+| username | String | False | If the proxy uses authentication, enter this using the authentication username. |
+| password | String | False | If the proxy uses authentication, enter this using the authentication password of given username. |
+
+### Mtproto Proxy
+
+| Name | Type | Required | Description |
+| :-: | :-: | :-: | :-- |
+| server | String | True | Destination hostname or server for connecting MTProto Proxy server. |
+| port | Integer | True | Destination port for connecting to MTProto Proxy server. |
+| secret | String or Bytes | True | Secret of MTProto Proxy, can be encoded as hex string or buffer. |
+
+## TCP
+
+```ts
+import { TCP } from '@tgsnake/core';
+```
+
+Available TCPs:
+
+- TCPFull
+
+```js
+TCP.TCPFull;
+```
+
+Connecting to Telegram server using TCP Full. See [»](https://corefork.telegram.org/mtproto/mtproto-transports#full).
+
+- TCPAbridged
+
+```js
+TCP.TCPAbridged;
+```
+
+Connecting to Telegram server using TCP Abridged. See [»](https://corefork.telegram.org/mtproto/mtproto-transports#abridged).
+
+- TCPIntermediate
+
+```js
+TCP.TCPIntermediate;
+```
+
+Connecting to Telegram server using TCP Intermediate. See [»](https://corefork.telegram.org/mtproto/mtproto-transports#intermediate).
+
+- TCPPaddedIntermediate
+
+```js
+TCP.TCPPaddedIntermediate;
+```
+
+Connecting to Telegram server using TCP Padded Intermediate. See [»](https://corefork.telegram.org/mtproto/mtproto-transports#padded-intermediate).
+
+- TCPAbridgedO
+
+```js
+TCP.TCPAbridgedO;
+```
+
+Connecting to Telegram server using TCP Obfuscation by using TCP Abridged as a packet sender-reader. In the browser platform or when you use MTProto proxy, you must use TCP or TCPIntermediateO. See [»](https://corefork.telegram.org/mtproto/mtproto-transports#transport-obfuscation).
+
+- TCPIntermediateO
+
+```js
+TCP.TCPIntermediateO;
+```
+
+Connecting to Telegram server using TCP Obfuscation by using TCP Intermediate as a packet sender-reader. In the browser platform or when you use MTProto proxy, you must use TCP or TCPAbridgedO. See [»](https://corefork.telegram.org/mtproto/mtproto-transports#transport-obfuscation).
+
+## Reference
+
+```ts
+interface ClientOptions {
+  /**
+   * Connect to telegram using MTProto proxy or Socks proxy.
+   */
+  proxy?: ProxyInterface;
+  /**
+   * Connecting to telegram test server.
+   */
+  testMode?: boolean;
+  /**
+   * Connecting using ipv6.
+   */
+  ipv6?: boolean;
+  /**
+   * The device model which is using for login.
+   */
+  deviceModel?: string;
+  /**
+   * The system version which is using for login.
+   */
+  systemVersion?: string;
+  /**
+   * The App version which is using for login.
+   */
+  appVersion?: string;
+  /**
+   * What language is used by the system.
+   */
+  systemLangCode?: string;
+  /**
+   * What language do you use.
+   */
+  langCode?: string;
+  /**
+   * Sleep treshold when flood wait reached.
+   */
+  sleepTreshold?: number;
+  /**
+   * Max retries when execution is fail.
+   */
+  maxRetries?: number;
+  /**
+   * Connenting to cdn telegram server.
+   */
+  isCdn?: boolean;
+  /**
+   * Pass true to disable incoming updates.<br/>
+   * When updates are disabled the client can't receive messages or other updates.<br/>
+   * Useful for batch programs that don't need to deal with updates.
+   */
+  noUpdates?: boolean;
+  /**
+   * Pass true to let the client use a takeout session instead of a normal one, implies `noUpdates : true`.<br/>
+   * Useful for exporting Telegram data. Methods invoked inside a takeout session (such as get_chat_history,download_media, ...) are less prone to throw FloodWait exceptions.<br/>
+   * Only available for users, bots will ignore this parameter.
+   */
+  takeout?: boolean;
+  /**
+   * TCP Modes.<br/>
+   * Fill with index of tcp modes if you want to switch from one tcp to another. <br/>
+   * Default is 1 (TCPAbridge)
+   */
+  tcp?: TCP;
+  /**
+   * Only for browser platform! Set false when you deployed your app offside the local machine. it wil use `ws://` in local machine and `wss://` in deployment.
+   */
+  local?: boolean;
+  /**
+   * Set the maximum amount of concurrent transmissions (uploads & downloads).
+   * A value that is too high may result in network related issues.
+   * Defaults to 1.
+   */
+  maxConcurrentTransmissions?: number;
+  /**
+   * How many attempts to connect to the telegram server when the connection is interrupted.
+   * Default is 3
+   */
+  maxReconnectRetries?: number;
+}
+
+interface SocksProxyInterface {
+  /**
+   * IP destination for socks proxy.
+   */
+  hostname: string;
+  /**
+   * Port destination for socks proxy.
+   */
+  port: number;
+  /**
+   * Socks version. It should be 4 or 5. It marks using Socks4 or Socks5.
+   */
+  socks: 4 | 5;
+  /**
+   * If the proxy uses authentication, enter this using the authentication username.
+   */
+  username?: string;
+  /**
+   * If the proxy uses authentication, enter this using the authentication password of given username.
+   */
+  password?: string;
+}
+interface MtprotoProxyInterface {
+  /**
+   * Destination hostname or server for connecting MTProto Proxy server.
+   */
+  server: string;
+  /**
+   * Destination port for connecting to MTProto Proxy server.
+   */
+  port: number;
+  /**
+   * Secret of MTProto Proxy, can be encoded as hex string or buffer.
+   */
+  secret: string | Buffer;
+}
+type ProxyInterface = SocksProxyInterface | MtprotoProxyInterface;
+
+enum TCP {
+  TCPFull = 0,
+  TCPAbridged = 1,
+  TCPIntermediate = 2,
+  TCPPaddedIntermediate = 3,
+  TCPAbridgedO = 4,
+  TCPIntermediateO = 5,
+}
+```

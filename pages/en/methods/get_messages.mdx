@@ -3,18 +3,34 @@ title: Get Messages
 ---
 
 import { Callout } from 'nextra/components';
+import { TableData } from '@/components/errorTable';
+
+export const getStaticProps = ({ params }) => {
+  return fetch(
+    `https://raw.githubusercontent.com/tgsnake/core/master/generator/error/source/errors.json`,
+  )
+    .then((res) => res.json())
+    .then((list) => ({
+      props: {
+        ssg: {
+          list: list,
+        },
+      },
+      revalidate: 60,
+    }));
+};
 
 # Get Messages
 
 File: [src/Methods/Messages/GetMessages.ts](https://github.com/tgsnake/tgsnake/blob/wayang-kulit/src/Methods/Messages/GetMessages.ts)  
-Schema: [channels.GetMessages](https://core.telegram.org/method/channels.getMessages) & [messages.getMessages](https://core.telegram.org/method/messages.getMessages)
+Schema: [channels.GetMessages](https://core.telegram.org/method/channels.getMessages) & [messages.GetMessages](https://core.telegram.org/method/messages.getMessages)
 
 Get one or more messages from a chat by using message identifiers.
 
 ## Usage
 
 ```ts
-client.api.invoke(chatId, messageIds, replyToMessageIds, replies);
+client.api.getMessages(chatId, messageIds, replyToMessageIds, replies);
 ```
 
 | name | required | type | description |
@@ -32,12 +48,6 @@ client.api.invoke(chatId, messageIds, replyToMessageIds, replies);
 
 ## Possible Error
 
-| code | error                  | description                                                  |
-| :--: | :--------------------- | :----------------------------------------------------------- |
-| 400  | CHANNEL_INVALID        | The provided channel is invalid.                             |
-| 406  | CHANNEL_PRIVATE        | You haven't joined this channel/supergroup.                  |
-| 400  | MESSAGE_IDS_EMPTY      | No message ids were provided.                                |
-| 400  | MSG_ID_INVALID         | Invalid message ID provided.                                 |
-| 400  | USER_BANNED_IN_CHANNEL | You're banned from sending messages in supergroups/channels. |
+<TableData showAffected={false} onlyShow={/(channels|messages)\.GetMessages$/gim} />
 
 ## Bots can use

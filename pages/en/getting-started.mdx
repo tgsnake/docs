@@ -43,12 +43,27 @@ create-tgsnake-app location [options]
 
 ### Installing tgsnake
 
+{/* prettier-ignore */}
 <Tabs items={['npm', 'yarn', 'Bun', 'Deno', 'Browser']}>
-  <Tabs.Tab>```bash filename="terminal" npm i tgsnake@latest ```</Tabs.Tab>
-  <Tabs.Tab>```bash filename="terminal" yarn tgsnake@latest ```</Tabs.Tab>
-  <Tabs.Tab>```bash filename="terminal" Bun add tgsnake@latest ```</Tabs.Tab>
   <Tabs.Tab>
-    ```ts filename="index.ts" import {Snake} from 'https://deno.land/x/tgsnake/src/index.ts' ```
+    ```bash filename="terminal" 
+    npm i tgsnake@latest 
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash filename="terminal" 
+    yarn tgsnake@latest
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash filename="terminal"
+    Bun add tgsnake@latest
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```ts filename="index.ts" 
+    import {Snake} from 'https://deno.land/x/tgsnake/src/index.ts' 
+    ```
   </Tabs.Tab>
   <Tabs.Tab>Coming soon.</Tabs.Tab>
 </Tabs>
@@ -64,7 +79,7 @@ import { Snake, shutdown } from 'tgsnake';
 
 // we no need to pass the option here, because we will use config file (tgsnake.config.js) const client = new Snake();
 
-client.on('message.text', (update) => { return update.msg?.reply('I hear You!'); });
+client.on('msg.text', (update) => { return update.msg?.reply('I hear You!'); });
 
 client.run();
 
@@ -77,7 +92,7 @@ const { Snake, shutdown } = require('tgsnake');
 // we no need to pass the option here, because we will use config file (tgsnake.config.js)
 const client = new Snake();
 
-client.on('message.text', (update) => {
+client.on('msg.text', (update) => {
   return update.msg?.reply('I hear You!');
 });
 
@@ -91,7 +106,7 @@ import { Snake, shutdown } from 'https://deno.land/x/tgsnake/src/index.ts';
 
 // we no need to pass the option here, because we will use config file (tgsnake.config.js) const client = new Snake();
 
-client.on('message.text', (update) => { return update.msg?.reply('I hear You!'); });
+client.on('msg.text', (update) => { return update.msg?.reply('I hear You!'); });
 
 client.run();
 

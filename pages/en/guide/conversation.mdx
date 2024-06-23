@@ -1,0 +1,101 @@
+---
+title: Working With Conversation
+---
+
+import { Callout } from 'nextra/components';
+
+# Working With Conversation
+
+<Callout type="info">
+  This feature is only available in tgsnake version 3.3.0 or latest. This feature is currently in
+  testing which may be unstable.
+</Callout>
+
+Conversation is a feature that works to wait for a response from the person you are talking to, like a conversation in the real world.  
+This conversation works with a chat id, so that anyone in the chat group can answer the ongoing conversation.
+
+```plain
+USER                : <sending message to trigger conversation>
+           ---   triggering start conversation       ---
+|------> |- CLIENT  : <sending response to USER>
+|        | ---   CLIENT waiting response from USER   ---
+|------• |- USER    : <sending response to CLIENT>
+           ---   conversation ended                  ---
+```
+
+By using conversations, the client application you create will look interactive.
+
+You can find this conversation feature in `<client>. conversation`
+
+```ts filename="index.ts"
+import { Snake } from 'tgsnake';
+const client = new Snake();
+
+const conversationManager = client.conversation;
+```
+
+`<client>.conversation` will be return `ConversationManager`.
+
+```ts filename="manager.ts"
+class ConversationManager<T> {
+  create(peer: bigint): Conversation<T> {}
+  remove(peer: bigint): boolean {}
+}
+```
+
+### create
+
+```ts
+create(peer: bigint): Conversation<T> {}
+```
+
+This function is uses for creating conversation in given peer (chat id).  
+This function will be return `Conversation` class which is can waiting any response.
+
+```ts filename="conversation.ts"
+type ConversationWaitFilterFn<T> = (context: T) => boolean;
+class Conversation<T> {
+  wait<K extends keyof FilterContext>(key: k, filter?: ConversationWaitFilterFn);
+}
+```
+
+`wait` function in the Conversation class it is used to wait for a response from the other side.
+
+- **key**  
+  Like `<client>.on`, the key here is the type of event that must be waited for, if appropriate it will return the event as a resolve from promise.
+- **filter**  
+  Apart from the key, this filter function is useful for selecting whether the current event is as expected. The filter function must return a boolean (true or false) and is not an async function.
+
+### remove
+
+```ts
+remove(peer: bigint): boolean {}
+```
+
+This function is uses for removing any conversation in given peer (chat id).  
+This function will be return true if the chat have the active conversation and will be return false if the chat haven't the active conversation.
+
+## Example
+
+```ts filename="index.ts"
+import { Snake } from 'tgsnake';
+
+const client = new Snake();
+
+client.cmd('start', async (ctx) => {
+  const conversation = client.conversation.create(ctx.message.chat.id);
+  await ctx.message.reply('Input A');
+  const response_1 = await conversation.wait('msg.text');
+  await response_1.message.reply('Input B');
+  const response_2 = await conversation.wait('msg.text', (update) => {
+    if (update.message.text.toLowerCase() === 'b') {
+      return true;
+    }
+    update.message.reply('Input B');
+    return false;
+  });
+  response_2.message.reply('Done');
+});
+
+client.run();
+```
